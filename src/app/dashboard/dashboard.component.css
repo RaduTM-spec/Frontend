@@ -1,0 +1,54 @@
+.disabled {
+  pointer-events: none;
+  opacity: 0.6;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+.active {
+
+}
+.dashboard-container {
+  width: 80%;
+  margin: 0 auto;
+}
+
+.team-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+h3 {
+  text-align: center;
+}
+
+.attendances-button {
+  padding: 8px 16px;
+  background-color: #0773d0;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+}
+
+.team-members-table {
+  max-width: 80%;
+  margin: 0 auto;
+}
+
+.table {
+  width: 100%;
+}
+
+.table th,
+.table td {
+  text-align: center;
+}
+
+.table th:first-child,
+.table td:first-child {
+  text-align: left;
+}

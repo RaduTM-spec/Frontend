@@ -1,1 +1,83 @@
-/* You can add global styles to this file, and also import other style files */
+body {
+  background-color: #333333;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+
+.app-container {
+  flex-grow: 1;
+  display: flex;
+}
+
+.side-panel-header {
+  background-color: lightgray;
+
+
+}
+
+.side-panel {
+  background-color: white;
+  border-radius: 10px;
+  margin-left: 20px;
+  margin-top: 20px;
+  margin-bottom: 123px;
+  width: 300px;
+
+
+  padding: 20px;
+  position: relative;
+}
+
+.activity-list {
+  list-style-type: none;
+  padding: 0;
+  margin-bottom: 20px;
+}
+
+.user-box {
+  width: 300px;
+  background-color: white;
+  border-radius: 10px;
+  margin: 20px 4000px 20px 20px;
+  margin-right: auto;
+  padding: 20px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.user-profile {
+  font-weight: bold;
+}
+
+.content-container {
+  background-color: white;
+  border-radius: 10px;
+  margin: 20px;
+  padding: 20px;
+  flex-grow: 1;
+}
+
+.header {
+  height: 100px;
+  margin-bottom: 20px;
+  background-color: lightgray;
+}
+
+.teams ul {
+  padding: 0;
+  list-style-type: none;
+}
+
+.teams li {
+  margin-bottom: 10px;
+}
+
+h2 {
+  margin-top: 0;
+}
