@@ -1,51 +1,81 @@
 
-<div>
+<div class="dashboard-container">
+  <div class="team-header">
+<!--    <h3 class="header-title">TEAM XXXX Members</h3>-->
+    <app-progress-bar [grade]="teamGrade"></app-progress-bar>
 
-</div>
 
-
-<div class="team-members-container">
-  <div style="color: #0773d0;position: fixed;
-              top: 60px;
-              right: 360px;
-              z-index:1000">
-    <span class="sr-only"></span>
   </div>
 
-  <div class="row">
-    <div class="col-md-12 mt-3">
+  <div class="attendances-button-container">
+    <button class="attendances-button">Add Attendances</button>
+  </div>
 
-      <div class="team-header">
-        <h3> TEAM XXXX` members</h3>
+  <div class="team-members-table">
+    <table class="table table-striped">
+      <thead>
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Photo</th>
+        <th scope="col">Name</th>
+        <th scope="col">Role</th>
+        <th scope="col">Attendances</th>
+        <th scope="col">Grade</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr class="row-color">
+        <th scope="row">id here</th>
+        <td>
+          <img src="" width="38" height="32" class="rounded-circle" alt="">
+        </td>
+        <td>username here</td>
+        <td>role here</td>
+        <td>attendances here</td>
+        <td>pers grade here</td>
+      </tr>
+      <tr class="row-color">
+        <th scope="row">id here</th>
+        <td>
+          <img src="" width="38" height="32" class="rounded-circle" alt="">
+        </td>
+        <td>username here</td>
+        <td>role here</td>
+        <td>attendances here</td>
+        <td>pers grade here</td>
+      </tr>
+      <tr class="row-color">
+        <th scope="row">id here</th>
+        <td>
+          <img src="" width="38" height="32" class="rounded-circle" alt="">
+        </td>
+        <td>username here</td>
+        <td>role here</td>
+        <td>attendances here</td>
+        <td>pers grade here</td>
+      </tr>
+      <tr class="row-color">
+        <th scope="row">id here</th>
+        <td>
+          <img src="" width="38" height="32" class="rounded-circle" alt="">
+        </td>
+        <td>username here</td>
+        <td>role here</td>
+        <td>attendances here</td>
+        <td>pers grade here</td>
+      </tr><tr class="row-color">
+        <th scope="row">id here</th>
+        <td>
+          <img src="" width="38" height="32" class="rounded-circle" alt="">
+        </td>
+        <td>username here</td>
+        <td>role here</td>
+        <td>attendances here</td>
+        <td>pers grade here</td>
+      </tr>
 
-        <button class="attendances-button">Give Attendances</button>
-      </div>
 
-
-        <table class="table table-striped">
-          <thead>
-          <tr>
-            <th scope="col">ID</th>
-            <th scope="col">Photo</th>
-            <th scope="col">Name</th>
-            <th scope="col">Role</th>
-            <th scope="col">Attendances</th>
-            <th scope="col">Grade</th>
-          </tr>
-          </thead>
-          <tbody>
-          <tr>
-            <th scope="row">id here</th>
-            <td>
-              <img src="" width="38" height="32" class="rounded-circle"
-                   alt=""></td>
-            <td> username here</td>
-            <td>role here</td>
-            <td>attendances here</td>
-            <td> pers grade here</td>
-          </tr>
-          </tbody>
-        </table>
-    </div>
+      </tbody>
+    </table>
   </div>
 </div>
