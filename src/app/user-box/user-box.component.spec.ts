@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { MainFrameComponent } from './main-frame.component';
+import { UserBoxComponent } from './user-box.component';
 
-describe('MainFrameComponent', () => {
-  let component: MainFrameComponent;
-  let fixture: ComponentFixture<MainFrameComponent>;
+describe('UserBoxComponent', () => {
+  let component: UserBoxComponent;
+  let fixture: ComponentFixture<UserBoxComponent>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [MainFrameComponent]
+      declarations: [UserBoxComponent]
     });
-    fixture = TestBed.createComponent(MainFrameComponent);
+    fixture = TestBed.createComponent(UserBoxComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

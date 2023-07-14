@@ -4,15 +4,14 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavigationComponent } from './navigation/navigation.component';
-import { JoinActivityFrameComponent } from './main/join-activity-frame/join-activity-frame.component';
-import { MainFrameComponent } from './main/main-frame/main-frame.component';
+import { UserBoxComponent } from './user-box/user-box.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavigationComponent,
-    JoinActivityFrameComponent,
-    MainFrameComponent,
+    UserBoxComponent,
+
   ],
   imports: [
     BrowserModule,
