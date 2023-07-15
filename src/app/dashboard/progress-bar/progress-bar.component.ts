@@ -9,9 +9,13 @@ import { Component, Input } from '@angular/core';
 export class ProgressBarComponent {
   @Input() grade: number = 10;
 
+  @Input() primary: string = "";
+  @Input() secondary: string = "";
+
   getProgressBarStyle(): object {
-    const width = this.grade * 10; // Assuming each grade unit corresponds to 10% width
-    const style = {
+    const width: number = this.grade * 10;
+
+    const style: {width: string} = {
       'width': `${width}%`
     };
     return style;
@@ -29,4 +33,6 @@ export class ProgressBarComponent {
     }
   }
 }
+
+
 
