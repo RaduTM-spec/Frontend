@@ -1,0 +1,16 @@
+<h2 mat-dialog-title>Join Activity</h2>
+<mat-dialog-content>
+  <form #joinForm="ngForm">
+    <mat-form-field>
+      <input matInput placeholder="Activity Name" name="activityName" required [(ngModel)]="activityName">
+      <mat-error *ngIf="joinForm.controls['activityName'].invalid">Please enter a valid activity name.</mat-error>
+
+    </mat-form-field>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cancel</button>
+  <button mat-button color="primary" [mat-dialog-close]="activityName" >Join</button>
+</mat-dialog-actions>
+
+<!--[disabled]="joinForm.invalid"-->
