@@ -1,0 +1,42 @@
+.progress-bar-container {
+  width: 100%;
+  height: 20px;
+  background-color: #f1f1f1;
+}
+
+.progress-bar {
+  height: 100%;
+}
+
+.progress-bar-empty {
+  width: 0%;
+  background-color: #f1f1f1;
+}
+
+.progress-bar-red {
+  background-color: darkred;
+}
+
+.progress-bar-yellow {
+  background-color: orangered;
+}
+
+.progress-bar-green {
+  background-color: green;
+}
+
+.progress-bar-container {
+  width: 100%;
+  height: 10px;
+  background-color: #f1f1f1;
+  margin-top: 10px;
+}
+
+/* Add new styles for coloring and sizing the progress bar */
+.progress-bar-filled {
+  background-color: #008000;
+}
+
+.progress-bar-empty {
+  background-color: #dddddd;
+}
