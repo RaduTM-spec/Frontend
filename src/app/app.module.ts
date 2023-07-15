@@ -9,6 +9,12 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import {FormsModule} from "@angular/forms";
 import { ProgressBarComponent } from './dashboard/progress-bar/progress-bar.component';
 import { TeamCardComponent } from './dashboard/team-card/team-card.component';
+import { JoinActivityModalComponent } from './join-activity-modal/join-activity-modal.component';
+import { CreateActivityModalComponent } from './create-activity-modal/create-activity-modal.component';
+import {MatInputModule} from "@angular/material/input";
+import {MatDialogModule} from "@angular/material/dialog";
+import {MatButtonModule} from "@angular/material/button";
+import {MatDatepickerModule} from "@angular/material/datepicker";
 
 @NgModule({
   declarations: [
@@ -18,12 +24,18 @@ import { TeamCardComponent } from './dashboard/team-card/team-card.component';
     DashboardComponent,
     ProgressBarComponent,
     TeamCardComponent,
+    JoinActivityModalComponent,
+    CreateActivityModalComponent,
 
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    MatInputModule,
+    MatDialogModule,
+    MatButtonModule,
+    MatDatepickerModule
   ],
   providers: [],
   bootstrap: [AppComponent]
