@@ -8,6 +8,7 @@ import { UserBoxComponent } from './user-box/user-box.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import {FormsModule} from "@angular/forms";
 import { ProgressBarComponent } from './dashboard/progress-bar/progress-bar.component';
+import { TeamCardComponent } from './dashboard/team-card/team-card.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { ProgressBarComponent } from './dashboard/progress-bar/progress-bar.comp
     UserBoxComponent,
     DashboardComponent,
     ProgressBarComponent,
+    TeamCardComponent,
 
   ],
   imports: [

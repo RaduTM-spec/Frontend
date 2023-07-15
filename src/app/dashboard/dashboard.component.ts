@@ -7,7 +7,7 @@ import { Component, Input } from '@angular/core';
 })
 export class DashboardComponent {
 
-  teamGrade: number = 7;
+  teamGrade: number = 6;
 
   isMentor: boolean = false;
   isMember: boolean = false;
