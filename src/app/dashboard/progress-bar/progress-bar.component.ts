@@ -9,8 +9,8 @@ import { Component, Input } from '@angular/core';
 export class ProgressBarComponent {
   @Input() grade: number = 10;
 
-  primary: string = "";
-  secondary: string = "";
+  @Input() primary: string = "";
+  @Input() secondary: string = "";
 
   getProgressBarStyle(): object {
     const width: number = this.grade * 10;
