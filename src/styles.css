@@ -27,7 +27,7 @@ body {
   /* background-color: white; */
   /* border-top-right-radius: 1rem;
   border-bottom-right-radius: 1rem; */
-  border-radius: 1rem;
+  border-radius: 8px;
   display: flex;
   flex-direction: column;
   margin: 25px;
@@ -37,11 +37,10 @@ body {
   background-color: #929496;
   color: white;
   height: 60px;
-  padding-top: 10px;
   text-align: center;
   font-size: 40px;
-  border-top-right-radius: 1rem;
-  border-top-left-radius: 1rem;
+  border-top-right-radius: 8px;
+  border-top-left-radius: 8px;
 }
 
 .sidenav {
@@ -64,7 +63,7 @@ body {
   color: white;
   background-color: #434445;
   display: block;
-  border-radius: 1rem;
+  border-radius: 8px;
 }
 
 .sidenav a:hover {
@@ -78,8 +77,8 @@ body {
   align-items: center;
   bottom: 0;
   margin-top: auto;
-  border-bottom-left-radius: 1rem;
-  border-bottom-right-radius: 1rem;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
   background-color: white;
 }
 
@@ -94,7 +93,7 @@ body {
   display: inline-block;
   font-size: 16px;
   cursor: pointer;
-  border-radius: 1rem;
+  border-radius: 8px;
 }
 
 footer {
@@ -111,7 +110,7 @@ footer {
   color: #DCDDDE;
   height: 5rem;
   width: 250px;
-  border-radius: 1rem;
+  border-radius: 8px;
   /* border: 1px solid black; */
   
 }
@@ -142,7 +141,7 @@ footer {
   top: 0;
   transition: margin-left .6s;
   margin-left: 275px;
-  position: absolute;
+  position: fixed;
   font-weight:bold;
   font-size:20px;
   color:white;
