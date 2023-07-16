@@ -1,0 +1,180 @@
+body {
+  background-color: #002245;
+  margin: 0;
+  height: 100%;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  background-color: #333333;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.app-container {
+  flex-grow: 1;
+  display: flex;
+}
+
+.side-panel {
+  height: calc(100% - 50px);
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  overflow-x: hidden;
+  transition: 0.5s;
+  /* background-color: white; */
+  /* border-top-right-radius: 1rem;
+  border-bottom-right-radius: 1rem; */
+  border-radius: 1rem;
+  display: flex;
+  flex-direction: column;
+  margin: 25px;
+}
+
+.sidenav-header {
+  background-color: #929496;
+  color: white;
+  height: 60px;
+  padding-top: 10px;
+  text-align: center;
+  font-size: 40px;
+  border-top-right-radius: 1rem;
+  border-top-left-radius: 1rem;
+}
+
+.sidenav {
+  flex: 1;
+  top: 0;
+  left: 0;
+  
+  text-align: center;
+  background-color: white;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.sidenav a {
+  padding: 10px 8px 10px 16px;
+  margin: 10px;
+  text-decoration: none;
+  font-size: 25px;
+  color: white;
+  background-color: #434445;
+  display: block;
+  border-radius: 1rem;
+}
+
+.sidenav a:hover {
+  background-color: #333;
+}
+
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  bottom: 0;
+  margin-top: auto;
+  border-bottom-left-radius: 1rem;
+  border-bottom-right-radius: 1rem;
+  background-color: white;
+}
+
+.button {
+  margin: 10px;
+  padding: 10px 20px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 1rem;
+}
+
+footer {
+  height: 5rem;
+  margin-top: 25px;
+  
+}
+
+.user-box {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  background-color: #434445;
+  color: #DCDDDE;
+  height: 5rem;
+  width: 250px;
+  border-radius: 1rem;
+  /* border: 1px solid black; */
+  
+}
+
+.user-box:hover {
+  background-color: #222;
+}
+
+.user-profile {
+  font-weight: bold;
+  padding-top: 20px;
+  padding-left: 20%;
+
+}
+
+.username {
+  padding-left: 20%;
+}
+.collapse-div i:hover{
+  color: #929496;
+}
+.collapse-div{
+  height: 100%;
+  line-height: 100%;
+  width: 20px;
+  cursor: pointer;
+  left: 0;
+  top: 0;
+  transition: margin-left .6s;
+  margin-left: 275px;
+  position: absolute;
+  font-weight:bold;
+  font-size:20px;
+  color:white;
+  display: flex;
+  align-items: center;
+  padding-left: 3px;
+}
+
+.content-container {
+  background-color: white;
+  border-radius: 10px;
+  margin: 25px;
+  margin-left: 300px;
+  padding: 20px;
+  flex-grow: 1;
+  transition: margin-left .5s;
+}
+.header {
+  height: 100px;
+  margin-bottom: 20px;
+  background-color: lightgray;
+}
+
+.teams ul {
+  padding: 0;
+  list-style-type: none;
+}
+
+.teams li {
+  margin-bottom: 10px;
+}
+
+h2 {
+  margin-top: 0;
+}

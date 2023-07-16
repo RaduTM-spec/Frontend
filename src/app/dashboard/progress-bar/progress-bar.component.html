@@ -1,0 +1,9 @@
+
+<!--&lt;!&ndash;  We need the length reference text as an indicator of how long should the progress bar be&ndash;&gt;-->
+  <h3 class="principal-length-reference">{{ this.primary}}</h3>
+  <h5 class="secondary-length-reference"> {{ this.secondary }}</h5>
+
+  <div class="progress-bar-container">
+
+    <div class="progress-bar" [ngStyle]="getProgressBarStyle()" [ngClass]="getProgressBarClass()"></div>
+  </div>
