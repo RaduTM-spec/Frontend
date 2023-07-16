@@ -89,7 +89,16 @@
 
 
 <!--  from here downwards I will work on modals-->
+  <!-- Button trigger modals -->
+  <button type="button" class="btn btn-primary" (click)="showJoinActivityModal()">Join Activity</button>
+  <button type="button" class="btn btn-primary" (click)="showCreateActivityModal()">Create Activity</button>
 
+
+  <!-- Join Activity Modal -->
+  <app-join-activity-modal></app-join-activity-modal>
+
+  <!-- Create Activity Modal -->
+  <app-create-activity-modal></app-create-activity-modal>
 
 
 </div>
