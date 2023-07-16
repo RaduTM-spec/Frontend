@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
+declare var $: any; // Declare the $ symbol from jQuery
+
 @Component({
   selector: 'app-join-activity-modal',
   templateUrl: './join-activity-modal.component.html',

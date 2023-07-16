@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { NavigationComponent } from '../navigation/navigation.component';
 
 @Component({
   selector: 'app-create-activity-modal',

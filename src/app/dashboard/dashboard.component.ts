@@ -23,17 +23,5 @@ export class DashboardComponent {
 
   constructor(private renderer: Renderer2) { }
 
-
-
-  showJoinActivityModal() {
-    const joinActivityModal = document.getElementById('joinActivityModal');
-    this.renderer.addClass(joinActivityModal, 'show');
-    this.renderer.setStyle(joinActivityModal, 'display', 'block');
-  }
-
-  showCreateActivityModal() {
-    const createActivityModal = document.getElementById('createActivityModal');
-    this.renderer.addClass(createActivityModal, 'show');
-    this.renderer.setStyle(createActivityModal, 'display', 'block');
-  }
+  
 }
