@@ -13,20 +13,19 @@ export class CreateActivityModalComponent {
   constructor(private http: HttpClient) { }
 
   createActivity() {
-    // Perform any input validation here
+    // Input validation here somewhere
     if (this.newActivityName.trim() === "" || this.endingDate.trim() === "") {
-      // Handle invalid input, show error message, etc.
       return;
     }
 
-    // Perform the POST request to the backend API using the HttpClient
+    // POST request to the backend API using the HttpClient
     this.http.post('/api/activities', { name: this.newActivityName, endingDate: this.endingDate }).subscribe(
       (response) => {
         // Handle the response from the backend
         console.log(response);
       },
       (error) => {
-        // Handle any error that occurs during the POST request
+        // Error that occurs during the POST request
         console.error(error);
       }
     );

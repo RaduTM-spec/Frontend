@@ -12,13 +12,13 @@ export class JoinActivityModalComponent {
   constructor(private http: HttpClient) { }
 
   joinActivity() {
-    // Perform any input validation here
+    // Input validation here, again
     if (this.activityName.trim() === "") {
-      // Handle invalid input, show error message, etc.
+      // Handle invalid input, show error message, etc. etc.
       return;
     }
 
-    // Perform the POST request to the backend API using the HttpClient
+    // The POST request..but I think we will use a service here instead
     this.http.post('/api/activities', { name: this.activityName }).subscribe(
       (response) => {
         // Handle the response from the backend

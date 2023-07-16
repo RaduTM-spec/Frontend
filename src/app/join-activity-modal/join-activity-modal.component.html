@@ -1,26 +1,12 @@
-<!--<h2 mat-dialog-title>Join Activity</h2>-->
-<!--<mat-dialog-content>-->
-<!--  <form #joinForm="ngForm">-->
-<!--    <mat-form-field>-->
-<!--      <input matInput placeholder="Activity Name" name="activityName" required [(ngModel)]="activityName">-->
-<!--      <mat-error *ngIf="joinForm.controls['activityName'].invalid">Please enter a valid activity name.</mat-error>-->
-
-<!--    </mat-form-field>-->
-<!--  </form>-->
-<!--</mat-dialog-content>-->
-<!--<mat-dialog-actions align="end">-->
-<!--  <button mat-button mat-dialog-close>Cancel</button>-->
-<!--  <button mat-button color="primary" [mat-dialog-close]="activityName" >Join</button>-->
-<!--</mat-dialog-actions>-->
-
-<!--&lt;!&ndash;[disabled]="joinForm.invalid"&ndash;&gt;-->
 
 
-<div class="modal fade" id="joinActivityModal" tabindex="-1" role="dialog" aria-labelledby="joinActivityModalTitle" aria-hidden="true">
+<!-- Join Activity Modal -->
+<div id="joinActivityModal" tabindex="-1" role="dialog" aria-labelledby="joinActivityModalLabel"
+     aria-hidden="true" class="modal fade">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="joinActivityModalTitle">Join Activity</h5>
+        <h5 class="modal-title" id="joinActivityModalLabel">Join Activity</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -30,8 +16,6 @@
           <div class="form-group">
             <label for="activityName">Activity Name</label>
             <<input type="text" class="form-control" id="activityName" [(ngModel)]="activityName" name="activityName" required>
-
-            <!-- Add any additional validation or styling as needed -->
           </div>
         </form>
       </div>
@@ -42,3 +26,4 @@
     </div>
   </div>
 </div>
+
