@@ -1,30 +1,9 @@
-<!--<h2 mat-dialog-title>Create Activity</h2>-->
-<!--<mat-dialog-content>-->
-<!--  <form #createForm="ngForm">-->
-<!--    <mat-form-field>-->
-<!--      <input matInput placeholder="Activity Name" name="activityName" required [(ngModel)]="activityName">-->
-<!--      <mat-error *ngIf="createForm.controls['activityName'].invalid">Please enter a valid activity name.</mat-error>-->
-<!--    </mat-form-field>-->
-<!--    <mat-form-field>-->
-<!--      <input matInput [matDatepicker]="endDatePicker" placeholder="Ending Date" name="endDate" required [(ngModel)]="endDate">-->
-<!--      <mat-datepicker-toggle matSuffix [for]="endDatePicker"></mat-datepicker-toggle>-->
-<!--      <mat-datepicker #endDatePicker></mat-datepicker>-->
-<!--      <mat-error *ngIf="createForm.controls['endDate'].invalid">Please enter a valid ending date.</mat-error>-->
-<!--    </mat-form-field>-->
-<!--  </form>-->
-<!--</mat-dialog-content>-->
-<!--<mat-dialog-actions align="end">-->
-<!--  <button mat-button mat-dialog-close>Cancel</button>-->
-<!--  <button mat-button color="primary" [mat-dialog-close]="{ activityName: activityName, endDate: endDate }" >Create</button>-->
-<!--</mat-dialog-actions>-->
-<!--&lt;!&ndash;[disabled]="createForm.invalid"&ndash;&gt;-->
-
-
-<div class="modal fade" id="createActivityModal" tabindex="-1" role="dialog" aria-labelledby="createActivityModalTitle" aria-hidden="true">
+<div class="modal fade" id="createActivityModal" tabindex="-1" role="dialog" aria-labelledby="createActivityModalLabel"
+     aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="createActivityModalTitle">Create Activity</h5>
+        <h5 class="modal-title" id="createActivityModalLabel">Create Activity</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -35,12 +14,10 @@
             <label for="newActivityName">New Activity Name</label>
             <input type="text" class="form-control" id="newActivityName" [(ngModel)]="newActivityName" name="newActivityName" required>
 
-            <!-- Add any additional validation or styling as needed -->
           </div>
           <div class="form-group">
             <label for="endingDate">Ending Date</label>
             <input type="date" class="form-control" id="endingDate" [(ngModel)]="endingDate" name="endingDate" required>
-            <!-- Add any additional validation or styling as needed -->
           </div>
         </form>
       </div>
@@ -51,3 +28,4 @@
     </div>
   </div>
 </div>
+

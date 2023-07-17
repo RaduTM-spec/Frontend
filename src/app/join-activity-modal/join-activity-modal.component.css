@@ -1,0 +1,21 @@
+.modal {
+  background-color: transparent;
+  border: none;
+}
+
+.modal-content {
+  box-shadow: none;
+}
+
+.modal.fade.show {
+  display: block;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+.modal.fade .modal-dialog {
+  transition: transform 0.3s;
+}
+
+.modal.fade.show .modal-dialog {
+  transform: translate(0, 0);
+}
