@@ -1,1 +1,49 @@
-<p>navigation works!</p>
+<div id="sidepanel" class="side-panel" style="width: 250px;">
+  <header class="sidenav-header">Activities</header>
+  <main class="sidenav">
+    <a href="#">Activity 1</a>
+    <a href="#">Activity 2</a>
+    <a href="#">Activity 3</a>
+    <a href="#">Activity 4</a>
+    <a href="#">Activity 5</a>
+
+    <!--
+    <a href="#">Activity 6</a>
+    <a href="#">Activity 7</a>
+    <a href="#">Activity 8</a>
+    <a href="#">Activity 9</a>
+    <a href="#">Activity 10</a>
+    <a href="#">Activity 11</a>
+    <a href="#">Activity 12</a>
+    <a href="#">Activity 13</a>
+    <a href="#">Activity 14</a>
+    <a href="#">Activity 15</a>
+-->
+
+  </main>
+  <div class="button-container">
+    <button type="button" class="button" (click)="showJoinActivityModal()">+ Join</button>
+    <button type="button" class="button" (click)="showCreateActivityModal()">+ Create</button>
+  </div>
+  <footer>
+
+    <div class="user-box">
+      <div class="user-profile">
+        User Profile
+      </div>
+      <div class="username">
+        Username
+      </div>
+    </div>
+  </footer>
+</div>
+
+<div id="collapse" class="collapse-div" onclick="opencloseNav()">
+  <i id="arrow" class="fa-solid fa-arrow-left"></i>
+</div>
+
+<!-- Join Activity Modal -->
+<app-join-activity-modal></app-join-activity-modal>
+
+<!-- Create Activity Modal -->
+<app-create-activity-modal></app-create-activity-modal>

@@ -1,0 +1,134 @@
+.side-panel {
+  height: calc(100% - 50px);
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  overflow-x: hidden;
+  transition: 0.5s;
+  /* background-color: white; */
+  /* border-top-right-radius: 1rem;
+  border-bottom-right-radius: 1rem; */
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  margin: 25px;
+}
+
+.sidenav-header {
+  background-color: #929496;
+  color: white;
+  height: 60px;
+  text-align: center;
+  font-size: 40px;
+  border-top-right-radius: 8px;
+  border-top-left-radius: 8px;
+}
+
+.sidenav {
+  flex: 1;
+  top: 0;
+  left: 0;
+
+  text-align: center;
+  background-color: white;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.sidenav a {
+  padding: 10px 8px 10px 16px;
+  margin: 10px;
+  text-decoration: none;
+  font-size: 25px;
+  color: white;
+  background-color: #434445;
+  display: block;
+  border-radius: 8px;
+}
+
+.sidenav a:hover {
+  background-color: #333;
+}
+
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  bottom: 0;
+  margin-top: auto;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  background-color: white;
+}
+
+.button {
+  margin: 10px;
+  padding: 10px 20px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 8px;
+}
+
+footer {
+  height: 5rem;
+  margin-top: 25px;
+
+}
+
+.user-box {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  background-color: #434445;
+  color: #DCDDDE;
+  height: 5rem;
+  width: 250px;
+  border-radius: 8px;
+  /* border: 1px solid black; */
+
+}
+
+.user-box:hover {
+  background-color: #222;
+}
+
+.user-profile {
+  font-weight: bold;
+  padding-top: 20px;
+  padding-left: 20%;
+
+}
+
+.username {
+  padding-left: 20%;
+}
+
+.collapse-div{
+  height: 100%;
+  line-height: 100%;
+  width: 20px;
+  cursor: pointer;
+  left: 0;
+  top: 0;
+  transition: margin-left .6s;
+  margin-left: 275px;
+  position: fixed;
+  font-weight:bold;
+  font-size:20px;
+  color:white;
+  display: flex;
+  align-items: center;
+  padding-left: 3px;
+}
+.collapse-div:hover{
+  color:#bdbdbd;
+}
