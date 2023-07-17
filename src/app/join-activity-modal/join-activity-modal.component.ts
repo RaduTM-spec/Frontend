@@ -8,8 +8,17 @@ import { HttpClient } from '@angular/common/http';
 })
 export class JoinActivityModalComponent {
   activityName: string = "";
+  isActive: boolean = false;
 
   constructor(private http: HttpClient) { }
+
+  showJoinActivityModal() {
+    this.isActive = true;
+  }
+
+  closeModal() {
+    this.isActive = false;
+  }
 
   joinActivity() {
     // Input validation here, again
