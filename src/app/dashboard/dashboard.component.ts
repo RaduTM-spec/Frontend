@@ -14,7 +14,7 @@ declare var $: any; // Declared the $ symbol from jQuery
 })
 export class DashboardComponent {
 
-  teamGrade: number = 7;
+  teamGrade: number = 10;
 
   isMentor: boolean = false;
   isMember: boolean = false;
@@ -35,28 +35,34 @@ export class DashboardComponent {
 
   showJoinActivityModal() {
     const joinActivityModal = this.joinActivityModalRef.nativeElement.querySelector('#joinActivityModal');
-    this.renderer.addClass(joinActivityModal, 'show');
-    this.renderer.setStyle(joinActivityModal, 'display', 'block');
+    $(joinActivityModal).modal('show');
 
     // Close modal when clicking outside or on close button (x)
     this.renderer.listen(joinActivityModal, 'click', (event) => {
-      if (event.target === joinActivityModal || event.target.classList.contains('close')) {
-        this.renderer.removeClass(joinActivityModal, 'show');
-        this.renderer.setStyle(joinActivityModal, 'display', 'none');
+      if (
+        event.target === joinActivityModal ||
+        event.target.classList.contains('close') ||
+        event.target.classList.contains('btn') &&
+        event.target.classList.contains('btn-secondary')
+      ) {
+        $(joinActivityModal).modal('hide');
       }
     });
   }
 
   showCreateActivityModal() {
     const createActivityModal = this.createActivityModalRef.nativeElement.querySelector('#createActivityModal');
-    this.renderer.addClass(createActivityModal, 'show');
-    this.renderer.setStyle(createActivityModal, 'display', 'block');
+    $(createActivityModal).modal('show');
 
     // Close modal when clicking outside or on close button (x)
     this.renderer.listen(createActivityModal, 'click', (event) => {
-      if (event.target === createActivityModal || event.target.classList.contains('close')) {
-        this.renderer.removeClass(createActivityModal, 'show');
-        this.renderer.setStyle(createActivityModal, 'display', 'none');
+      if (
+        event.target === createActivityModal ||
+        event.target.classList.contains('close') ||
+        event.target.classList.contains('btn') &&
+        event.target.classList.contains('btn-secondary')
+      ) {
+        $(createActivityModal).modal('hide');
       }
     });
   }
@@ -68,5 +74,9 @@ export class DashboardComponent {
       this.renderer.removeChild(document.body, modalBackdrop[0]);
     }
   }
+
+
+
+
 
 }
