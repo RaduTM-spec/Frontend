@@ -9,9 +9,25 @@
 
   </div>
 
-  <div class="attendances-button-container">
-    <button class="attendances-button">Add Attendances</button>
+
+  <div class="buttons-container">
+    <div class="team-info">
+      <div class="team-grade">
+        <span class="label">Team Grade:</span>
+        <span class="value">{{ teamGrade }}</span>
+      </div>
+      <div class="team-members">
+        <span class="label">Team Members:</span>
+        <span class="value">{{ members.length }}</span>
+      </div>
+    </div>
+    <div class="actions">
+      <span class="export-icon" (click)="exportSituation()"><i class="fas fa-file-export"></i></span>
+      <button class="attendances-button">Attendances</button>
+    </div>
   </div>
+
+
 
   <div class="team-members-table">
     <table class="table table-striped">

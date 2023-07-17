@@ -1,29 +1,25 @@
-
 <!-- Join Activity Modal -->
-<div class="modal fade" id="joinActivityModal" tabindex="-1" role="dialog" aria-labelledby="joinActivityModalLabel"
-     aria-hidden="true">
+<div class="modal fade" id="joinActivityModal" tabindex="-1" role="dialog" aria-labelledby="joinActivityModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="joinActivityModalLabel">Join Activity</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
+          <span aria-hidden="true" class="custom-close-button">&times;</span>
         </button>
       </div>
       <div class="modal-body">
         <form>
           <div class="form-group">
             <label for="activityName">Activity Name</label>
-            <<input type="text" class="form-control" id="activityName" [(ngModel)]="activityName" name="activityName" required>
+            <input type="text" class="form-control" id="activityName" [(ngModel)]="activityName" name="activityName" required>
           </div>
         </form>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal" aria-label="Close">Close</button>
-        <button type="button" class="btn btn-primary" (click)="joinActivity()">Join</button>
+        <button type="button" class="btn btn-primary custom-join-button" (click)="joinActivity()">Join</button>
       </div>
     </div>
   </div>
 </div>
-
-
