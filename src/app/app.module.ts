@@ -16,6 +16,7 @@ import {MatDialogModule} from "@angular/material/dialog";
 import {MatButtonModule} from "@angular/material/button";
 import {MatDatepickerModule} from "@angular/material/datepicker";
 import {HttpClientModule} from "@angular/common/http";
+import { SessionCardComponent } from './user-box/session-card/session-card.component';
 
 @NgModule({
   declarations: [
@@ -27,18 +28,19 @@ import {HttpClientModule} from "@angular/common/http";
     TeamCardComponent,
     JoinActivityModalComponent,
     CreateActivityModalComponent,
+    SessionCardComponent,
 
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    FormsModule,
-    MatInputModule,
-    MatDialogModule,
-    MatButtonModule,
-    MatDatepickerModule,
-    HttpClientModule
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        FormsModule,
+        MatInputModule,
+        MatDialogModule,
+        MatButtonModule,
+        MatDatepickerModule,
+        HttpClientModule,
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })
