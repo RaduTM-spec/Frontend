@@ -2,6 +2,7 @@ import { Component, Input } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { Renderer2 } from '@angular/core';
 import { ElementRef } from '@angular/core';
+import {User} from "../models/user";
 
 
 declare var $: any; // Declared the $ symbol from jQuery
@@ -14,7 +15,7 @@ declare var $: any; // Declared the $ symbol from jQuery
 })
 export class DashboardComponent {
 
-  teamGrade: number = 10;
+  teamGrade: number = 7;
 
   userType: string = "team lead";
 
@@ -22,7 +23,7 @@ export class DashboardComponent {
   isMember: boolean = false;
   isLead: boolean = false;
   teams: any[] = [];
-  members: any[] = [];
+  members: User[] = [];
   activityName: String = "";
 
   joinActivityModalRef: ElementRef;
