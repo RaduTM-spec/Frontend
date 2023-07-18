@@ -1,10 +1,11 @@
 :root{
-  --background-color: #222;
+  --background-color: #1c1c1c;
   --frame-background-color: white;
-  --header-background-color: #222;
+  --header-background-color: #1c1c1c;
+  /* past color for backgrounds: #222*/
   --button: #eeecec;
   --button-hover: #444;
   --button-text: black;
-  --modals-button: #0b9611;
+  --modals-button: #188504;
   --modals-button-hover: #0da914;
 }
