@@ -1,12 +1,17 @@
 
 <div class="dashboard-container">
   <div class="team-header">
-
     <div class="header-content">
-      <h3 class="header-title">TEAM XXXX Members</h3>
-      <app-progress-bar [grade]="teamGrade"></app-progress-bar>
-    </div>
+      <div *ngIf="userType === 'mentor'">
+        <h3 class="header-title">Activity XXXX</h3>
 
+      </div>
+
+      <div *ngIf="userType === 'team lead'" >
+        <h3 class="header-title">TEAM XXXX Members</h3>
+        <app-progress-bar [grade]="teamGrade"></app-progress-bar>
+      </div>
+    </div>
   </div>
 
 
@@ -23,13 +28,13 @@
     </div>
     <div class="actions">
       <span class="export-icon" (click)="exportSituation()"><i class="fas fa-file-export"></i></span>
-      <button class="attendances-button">Attendances</button>
+      <button class="attendances-button" *ngIf="userType !== 'team lead'">Attendances</button>
     </div>
   </div>
 
 
 
-  <div class="team-members-table">
+  <div class="team-members-table" *ngIf="userType === 'team lead'">
     <table class="table table-striped">
       <thead>
       <tr>
@@ -97,20 +102,8 @@
     </table>
   </div>
 
-<!--&lt;!&ndash;  this will also need a teamGrade property I think, but we need to parse it somehow from string to number&ndash;&gt;-->
-<!--  <app-team-card-->
-<!--    teamName="SOLID"-->
-<!--    teamLeader="Leader Here"-->
-<!--  ></app-team-card>-->
 
-
-<!--&lt;!&ndash;  from here downwards I will work on modals&ndash;&gt;-->
-<!--  &lt;!&ndash; Button trigger modals &ndash;&gt;-->
-<!--  <button type="button" class="btn btn-primary" (click)="showJoinActivityModal()">Join Activity</button>-->
-<!--  <button type="button" class="btn btn-primary" (click)="showCreateActivityModal()">Create Activity</button>-->
-
-
-  <div class="teams-container">
+  <div class="teams-container" *ngIf="userType === 'mentor'">
     <app-team-card
       teamName="SOLID"
       teamLeader="Leader Here"
@@ -139,9 +132,6 @@
       teamName="SOLID"
       teamLeader="Leader Here"
     ></app-team-card>
-
-
-
 
   </div>
 

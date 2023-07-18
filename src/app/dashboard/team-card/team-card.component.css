@@ -1,37 +1,101 @@
+/*.team-card {*/
+/*  position: relative;*/
+/*  display: inline-block;*/
+/*  background-color: rgba(0, 0, 0, 0.5);*/
+/*  color: white;*/
+/*  padding: 20px;*/
+/*  border-radius: 5px;*/
+/*  transition: background-color 0.3s ease;*/
+/*  cursor: pointer;*/
+/*}*/
+
+/*.team-card:hover {*/
+/*  background-color: rgba(0, 0, 0, 0.7);*/
+/*}*/
+
+/*.team-card-header {*/
+/*  display: flex;*/
+/*  justify-content: space-between;*/
+/*  align-items: center;*/
+/*  margin-bottom: 10px;*/
+/*}*/
+
+/*.team-grade-box {*/
+/*  background-color: white;*/
+/*  color: black;*/
+/*  border-radius: 3px;*/
+/*  padding: 5px;*/
+/*}*/
+
+/*.team-card-content p {*/
+/*  margin: 0;*/
+/*}*/
+
+/*.team-card-content app-progress-bar {*/
+/*  margin-top: 10px;*/
+/*}*/
+
+.team-card-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+
 .team-card {
   position: relative;
   display: inline-block;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.7);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
   color: white;
   padding: 20px;
   border-radius: 5px;
   transition: background-color 0.3s ease;
   cursor: pointer;
   margin:15px;
-}
-
-.team-card:hover {
-  background-color: rgba(0, 0, 0, 0.7);
+  width: 300px; /* Increase the width to your desired size */
+  animation: card-appear 0.5s ease; /* Add animation */
 }
 
 .team-card-header {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start; /* Adjust alignment */
   margin-bottom: 10px;
+  position: relative; /* Position the grade box relative to the header */
 }
+
+.team-card:hover,
+.team-card:focus {
+  background-color: rgba(0, 0, 0, 0.7);
+  transform: scale(1.02);
+}
+
 
 .team-grade-box {
   background-color: white;
   color: black;
   border-radius: 3px;
   padding: 5px;
+  position: absolute;
+  top: 5px;
+  right: 5px;
 }
 
-.team-card-content p {
-  margin: 0;
+
+@keyframes card-appear {
+  0% {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
-.team-card-content app-progress-bar {
-  margin-top: 10px;
+@media (max-width: 768px) {
+  .team-card {
+    width: 100%; /* Adjust the width for smaller screens */
+  }
 }

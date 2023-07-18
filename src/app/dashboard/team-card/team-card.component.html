@@ -1,14 +1,14 @@
-<div class="team-card">
-  <div class="team-card-header">
-    <h3>{{ teamName }}</h3>
-    <div class="team-grade-box">
-      <span>{{ teamGrade }}</span>
+<div class="team-card-container">
+  <div class="team-card">
+    <div class="team-card-header">
+      <h3>{{ teamName }}</h3>
+      <div class="team-grade-box">
+        <span>{{ teamGrade }}</span>
+      </div>
     </div>
-  </div>
-  <div class="team-card-content">
-    <p>Leader: {{ teamLeader }}</p>
-
-<!--    you can also property bind "secondary" here-->
-    <app-progress-bar [primary]="teamLeader" [grade]="teamGrade"></app-progress-bar>
+    <div class="team-card-content">
+      <p>Leader: {{ teamLeader }}</p>
+      <app-progress-bar [primary]="teamLeader" [grade]="teamGrade"></app-progress-bar>
+    </div>
   </div>
 </div>

@@ -16,6 +16,8 @@ export class DashboardComponent {
 
   teamGrade: number = 10;
 
+  userType: string = "team lead";
+
   isMentor: boolean = false;
   isMember: boolean = false;
   isLead: boolean = false;
