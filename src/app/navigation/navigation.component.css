@@ -20,6 +20,7 @@
   background-color: var(--header-background-color);
   color: white;
   height: 60px;
+  width: 250px;
   text-align: center;
   font-size: 40px;
   border-top-right-radius: 8px;
@@ -30,7 +31,9 @@
   flex: 1;
   top: 0;
   left: 0;
-
+  width: 250px;
+  border-top-right-radius: 8px;
+  border-top-left-radius: 8px;
   text-align: center;
   background-color: var(--frame-background-color);
   overflow-x: hidden;
@@ -40,7 +43,7 @@
 
 .sidenav a {
   padding: 10px 8px 10px 16px;
-  margin: 10px;
+  margin: 5px;
   text-decoration: none;
   font-size: 25px;
   color: var(--button-text);
@@ -48,6 +51,7 @@
   display: block;
   border-radius: 8px;
   border: 1px solid var(--button);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
 }
 .sidenav a:hover {
   border: 1px solid var(--button-hover);
@@ -58,6 +62,7 @@
 
 
 .button-container {
+  width: 250px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -67,6 +72,7 @@
   border-bottom-right-radius: 8px;
   background-color: var(--frame-background-color);
 
+
 }
 
 .button {
@@ -74,7 +80,7 @@
   padding: 10px 20px;
   background-color: var(--modals-button);
   color: white;
-  border: 1px solid black;
+  border: 1px solid var(--frame-background-color);
   text-align: center;
   text-decoration: none;
   display: inline-block;
@@ -84,6 +90,7 @@
 }
 .button:hover{
   background-color: var(--modals-button-hover);
+  border: 1px solid var(--modals-button-hover);
 }
 
 footer {
@@ -100,17 +107,18 @@ footer {
   height: 5rem;
   width: 250px;
   border-radius: 8px;
-  border: 1px solid black;
+
+  border: 2px solid var(--background-color);
 
 
 }
 
 .user-box:hover {
-  border: 1px solid var(--button);
+  border: 2px solid var(--button);
 }
 
 .active{
-  border: 1px solid var(--button);
+  border: 2px solid var(--button);
 }
 
 .user-profile {
@@ -143,6 +151,6 @@ footer {
   align-items: center;
   padding-left: 3px;
 }
-.collapse-div:hover{
-  color: var(--button-hover);
+.collapse-div :hover{
+  transform: scale(1.25);
 }

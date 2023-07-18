@@ -2,8 +2,8 @@
   max-width: 95%;
   margin: 0 auto;
   margin-bottom: 20px;
-  background-color:#293D34;
-  color:white;
+  background-color:var(--button);
+  color: var(--background-color);
   border-radius: 8px;
   padding: 20px;
 }
@@ -22,17 +22,30 @@
 
 .info {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: flex-end;
+}
+
+.date{
+  background-color: #c20e0e;
+
+}
+.grade{
+  background-color: var(--background-color);
 }
 
 .date, .grade {
   font-size: 14px;
+  border-radius: 8px;
+  padding: 8px;
+  margin:5px;
+  color: white;
 }
 
 .content {
   margin-top: 10px;
-  background-color: #405E50;
+  background-color: var(--background-color);
+  color: var(--frame-background-color);
   padding:10px;
   border-radius: 8px;
 }
@@ -44,9 +57,9 @@
 
 .comment {
   font-size: 16px;
-  background-color: #b1c4bc;
+  background-color: var(--button);
   min-height: 100px;
   padding: 10px;
   border-radius: 8px;
-  color: #252525;
+  color: var(--background-color);
 }
