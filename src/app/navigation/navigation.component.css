@@ -107,29 +107,30 @@ footer {
   height: 5rem;
   width: 250px;
   border-radius: 8px;
-
   border: 2px solid var(--background-color);
-
-
+  display: flex;
+  align-items: center;
+  padding: 0 10px;
 }
 
-.user-box:hover {
-  border: 2px solid var(--button);
+.user-profile-picture {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 10px;
 }
 
-.active{
-  border: 2px solid var(--button);
+.user-details {
+  display: flex;
+  flex-direction: column;
 }
 
 .user-profile {
   font-weight: bold;
-  padding-top: 15px;
-  padding-left: 20%;
-
 }
 
 .username {
-  padding-left: 20%;
+  margin-top: 5px;
 }
 
 

@@ -19,13 +19,16 @@
         <span class="value">{{ teamGrade }}</span>
       </div>
       <div class="team-members">
-        <span class="label">Team Members:</span>
+        <span class="label">Members:</span>
         <span class="value">{{ members.length }}</span>
       </div>
     </div>
     <div class="actions">
-      <span class="export-button" (click)="exportSituation()"><i class="fas fa-file-export"></i> Export</span>
-      <button class="assessment-button" *ngIf="userType == 'team lead'">Session Assessment</button>
+      <div *ngIf="userType != 'member'">
+        <button class="export-button" (click)="exportSituation()"><i class="fas fa-file-export"></i> Export</button>
+        <button class="assessment-button"><i class="fas fa-clipboard-check"></i> Assessment</button>
+      </div>
+
     </div>
   </div>
 
@@ -45,7 +48,7 @@
       <tr class="row-color" *ngFor="let user of members">
         <th scope="row">{{ user.id }}</th>
         <td>
-          <img [src]="user.imageUrl" width="34" height="34" class="rounded-circle" alt="">
+          <img [src]="user.imageUrl" width="36" height="36" class="rounded-circle" alt="user.username">
         </td>
         <td>{{ user.username }}</td>
         <td>
