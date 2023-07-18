@@ -1,0 +1,10 @@
+:root{
+  --background-color: #222;
+  --frame-background-color: white;
+  --header-background-color: #222;
+  --button: #eeecec;
+  --button-hover: #444;
+  --button-text: black;
+  --modals-button: #09830E;
+  --modals-button-hover: #086e0c;
+}

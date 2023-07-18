@@ -13,10 +13,11 @@
   display: flex;
   flex-direction: column;
   margin: 25px;
+
 }
 
 .sidenav-header {
-  background-color: #929496;
+  background-color: var(--header-background-color);
   color: white;
   height: 60px;
   text-align: center;
@@ -31,7 +32,7 @@
   left: 0;
 
   text-align: center;
-  background-color: white;
+  background-color: var(--frame-background-color);
   overflow-x: hidden;
   display: flex;
   flex-direction: column;
@@ -42,15 +43,18 @@
   margin: 10px;
   text-decoration: none;
   font-size: 25px;
-  color: white;
-  background-color: #434445;
+  color: var(--button-text);
+  background-color: var(--button);
   display: block;
   border-radius: 8px;
+  border: 1px solid var(--button);
 }
-
 .sidenav a:hover {
-  background-color: #333;
+  border: 1px solid var(--button-hover);
 }
+/*.sidenav a.active{*/
+/*  background-color: #405e50;*/
+/*}*/
 
 
 .button-container {
@@ -61,21 +65,25 @@
   margin-top: auto;
   border-bottom-left-radius: 8px;
   border-bottom-right-radius: 8px;
-  background-color: white;
+  background-color: var(--frame-background-color);
+
 }
 
 .button {
   margin: 10px;
   padding: 10px 20px;
-  background-color: #4CAF50;
+  background-color: var(--modals-button);
   color: white;
-  border: none;
+  border: 1px solid black;
   text-align: center;
   text-decoration: none;
   display: inline-block;
   font-size: 16px;
   cursor: pointer;
   border-radius: 8px;
+}
+.button:hover{
+  background-color: var(--modals-button-hover);
 }
 
 footer {
@@ -88,22 +96,26 @@ footer {
   position: absolute;
   left: 0;
   bottom: 0;
-  background-color: #434445;
-  color: #DCDDDE;
+  background-color: var(--frame-background-color);
   height: 5rem;
   width: 250px;
   border-radius: 8px;
-  /* border: 1px solid black; */
+  border: 1px solid black;
+
 
 }
 
 .user-box:hover {
-  background-color: #222;
+  border: 1px solid var(--button);
+}
+
+.active{
+  border: 1px solid var(--button);
 }
 
 .user-profile {
   font-weight: bold;
-  padding-top: 20px;
+  padding-top: 15px;
   padding-left: 20%;
 
 }
@@ -111,6 +123,8 @@ footer {
 .username {
   padding-left: 20%;
 }
+
+
 
 .collapse-div{
   height: 100%;
@@ -124,11 +138,11 @@ footer {
   position: fixed;
   font-weight:bold;
   font-size:20px;
-  color:white;
+  color: var(--frame-background-color);
   display: flex;
   align-items: center;
   padding-left: 3px;
 }
 .collapse-div:hover{
-  color:#bdbdbd;
+  color: var(--button-hover);
 }

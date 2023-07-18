@@ -1,7 +1,8 @@
 .card {
-  width: 100%;
+  max-width: 95%;
+  margin: 0 auto;
   margin-bottom: 20px;
-  background-color: #434445;
+  background-color:#293D34;
   color:white;
   border-radius: 8px;
   padding: 20px;
@@ -31,7 +32,7 @@
 
 .content {
   margin-top: 10px;
-  background-color: #777;
+  background-color: #405E50;
   padding:10px;
   border-radius: 8px;
 }
@@ -43,9 +44,9 @@
 
 .comment {
   font-size: 16px;
-  background-color: white;
+  background-color: #b1c4bc;
   min-height: 100px;
   padding: 10px;
   border-radius: 8px;
-  color: black;
+  color: #252525;
 }

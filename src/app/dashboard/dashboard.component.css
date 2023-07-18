@@ -9,8 +9,7 @@
   align-items: center;
   color: white;
   margin-bottom: 20px;
-  background-color: rgba(51, 51, 51, 0.9);
-  box-shadow: #333333;
+  background-color: var(--header-background-color);
   border-radius: 8px;
   padding: 10px;
 }
@@ -40,15 +39,20 @@
 .team-members-table {
   max-width: 95%;
   margin: 0 auto;
+
+  ;
 }
 
 .table {
   width: 100%;
+
+
 }
 
-.table th,
-.table td {
+.table th,td{
   text-align: center;
+  background-color: var(--frame-background-color);
+
 }
 
 .table th:first-child,
@@ -138,7 +142,8 @@
   justify-content: space-between;
   padding: 10px;
   margin-bottom: 20px;
-  background-color: #f2f2f2;
+  background-color: var(--button);
+
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
 }
@@ -153,7 +158,6 @@
   display: flex;
   align-items: center;
   margin-right: 10px;
-  color: #333;
 }
 
 .team-grade .label,
@@ -164,6 +168,7 @@
 .actions {
   display: flex;
   align-items: center;
+
 }
 
 .export-icon {

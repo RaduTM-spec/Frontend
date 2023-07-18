@@ -1,11 +1,9 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
-import { AppRoutingModule } from './app-routing.module';
+import { AppRoutingModule, routingComponents } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavigationComponent } from './navigation/navigation.component';
-import { UserBoxComponent } from './user-box/user-box.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
 import {FormsModule} from "@angular/forms";
 import { ProgressBarComponent } from './dashboard/progress-bar/progress-bar.component';
 import { TeamCardComponent } from './dashboard/team-card/team-card.component';
@@ -22,13 +20,12 @@ import { SessionCardComponent } from './user-box/session-card/session-card.compo
   declarations: [
     AppComponent,
     NavigationComponent,
-    UserBoxComponent,
-    DashboardComponent,
     ProgressBarComponent,
     TeamCardComponent,
     JoinActivityModalComponent,
     CreateActivityModalComponent,
     SessionCardComponent,
+    routingComponents
 
   ],
     imports: [
