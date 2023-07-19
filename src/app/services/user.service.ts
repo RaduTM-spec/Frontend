@@ -64,8 +64,8 @@ export class UserService {
       username: "sam_smith",
       role: "MEMBER",
       attendances: 3,
-      grade: 6,
-      imageUrl: "https://robohash.org/idk-bruh-idk?bgset=bg1",
+      grade: 6.5,
+      imageUrl: "https://robohash.org/randomphoto?bgset=bg1",
       team : 2
     },
     {
@@ -73,8 +73,8 @@ export class UserService {
       username: "daniel_black",
       role: "MEMBER",
       attendances: 11,
-      grade: 5,
-      imageUrl: "https://robohash.org/idk-bruh-idk?bgset=bg1",
+      grade: 8.5,
+      imageUrl: "https://robohash.org/randomphotohere?bgset=bg1",
       team : 2
     }];
 
