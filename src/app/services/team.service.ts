@@ -6,43 +6,43 @@ import {Team} from "../models/team";
 export class TeamService {
   protected teamsList: Team[] = [
     {
-      id: 0,
+      id: 1,
       name: 'Team1',
       grade: 6,
       team_leader_name: 'John'
     },
     {
-      id: 1,
+      id: 2,
       name: 'Team2',
       grade: 7,
-      team_leader_name: 'John'
+      team_leader_name: 'Sam'
     },
     {
-      id: 2,
+      id: 3,
       name: 'Team3',
       grade: 2,
       team_leader_name: 'Anthony'
     },
     {
-      id: 3,
+      id: 4,
       name: 'Team4',
       grade: 3,
       team_leader_name: 'Daniel'
     },
     {
-      id: 4,
+      id: 5,
       name: 'Team5',
       grade: 9,
       team_leader_name: 'Jane'
     },
     {
-      id: 5,
+      id: 6,
       name: 'Team6',
       grade: 10,
       team_leader_name: 'Mike'
     },
     {
-      id: 6,
+      id: 7,
       name: 'Team7',
       grade: 8,
       team_leader_name: 'Emily'

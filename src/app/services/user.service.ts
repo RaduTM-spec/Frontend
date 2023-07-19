@@ -61,19 +61,19 @@ export class UserService {
     },
     {
       id: 7,
-      username: "emily_clark",
+      username: "sam_smith",
       role: "MEMBER",
-      attendances: 8,
-      grade: 6.5,
+      attendances: 3,
+      grade: 6,
       imageUrl: "https://robohash.org/idk-bruh-idk?bgset=bg1",
       team : 2
     },
     {
       id: 8,
-      username: "emily_clark",
+      username: "daniel_black",
       role: "MEMBER",
-      attendances: 8,
-      grade: 6.5,
+      attendances: 11,
+      grade: 5,
       imageUrl: "https://robohash.org/idk-bruh-idk?bgset=bg1",
       team : 2
     }];
