@@ -19,17 +19,17 @@ export class MentorViewTeamComponent{
 
   usersService: UserService = inject(UserService);
   usersList: User[] = [];
-
+  members: User[] = [];
   constructor() {
     const teamName:string = this.route.snapshot.params['name'];
     this.team = this.teamsService.getTeamByName(teamName);
     this.teamGrade = this.teamsService.getTeamGrade(this.team.id);
     this.usersList = this.usersService.getAllUsers();
+    this.members = this.usersList.filter((user) => { return user.team === this.team?.id;});
   }
 
-  teamName: string = "X";
 
-  members:User[] = this.usersList.filter((user) => { return user.team !== this.team?.id;});
+
 
   exportSituation() {
 
