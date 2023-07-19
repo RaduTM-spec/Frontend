@@ -55,26 +55,26 @@ export class UserService {
       username: "emily_clark",
       role: "MEMBER",
       attendances: 8,
-      grade: 6.5,
+      grade: 5.5,
       imageUrl: "https://robohash.org/idk-bruh-idk?bgset=bg1",
       team : 2
     },
     {
       id: 7,
-      username: "emily_clark",
+      username: "mark_johnson",
       role: "MEMBER",
-      attendances: 8,
-      grade: 6.5,
-      imageUrl: "https://robohash.org/idk-bruh-idk?bgset=bg1",
+      attendances: 14,
+      grade: 8.5,
+      imageUrl: "https://robohash.org/zeroinspiration?bgset=bg1",
       team : 2
     },
     {
       id: 8,
-      username: "emily_clark",
+      username: "george_bush",
       role: "MEMBER",
-      attendances: 8,
-      grade: 6.5,
-      imageUrl: "https://robohash.org/idk-bruh-idk?bgset=bg1",
+      attendances: 18,
+      grade: 10,
+      imageUrl: "https://robohash.org/noinspiration?bgset=bg1",
       team : 2
     }];
 

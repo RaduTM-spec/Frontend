@@ -8,6 +8,12 @@
       <h3 class="header-title">TEAM XXXX Members</h3>
       <app-progress-bar [grade]="teamGrade"></app-progress-bar>
     </div>
+
+
+    <div *ngIf="userType === 'member'">
+      <h3 class="header-title">TEAM XXXX Members</h3>
+      <app-progress-bar [grade]="teamGrade"></app-progress-bar>
+    </div>
   </div>
 </div>
 
@@ -18,17 +24,19 @@
       <span class="value">{{ teamGrade }}</span>
     </div>
     <div class="team-members">
-      <span class="label">Team Members:</span>
+      <span class="label">Members:</span>
       <span class="value">{{ usersList.length }}</span>
     </div>
   </div>
   <div class="actions">
-    <span class="export-button" (click)="exportSituation()"><i class="fas fa-file-export"></i> Export</span>
-    <button class="assessment-button" *ngIf="userType == 'team lead'">Session Assessment</button>
+    <div *ngIf="userType != 'member'">
+      <button class="export-button" (click)="exportSituation()"><i class="fas fa-file-export"></i> Export</button>
+      <button class="assessment-button" *ngIf="userType == 'team lead'"><i class="fas fa-clipboard-check"></i>  Assessment</button>
+    </div>
   </div>
 </div>
 
-<div class="team-members-table" *ngIf="userType === 'team lead'">
+<div class="team-members-table" *ngIf="userType != 'mentor'">
   <table class="table table-striped">
     <thead>
     <tr>
@@ -37,7 +45,7 @@
       <th scope="col">Name</th>
       <th scope="col">Role</th>
       <th scope="col">Attendances</th>
-      <th scope="col">Grade</th>
+      <th *ngIf="userType != 'member'" scope="col">Grade</th>
     </tr>
     </thead>
     <tbody>
@@ -53,7 +61,7 @@
       <td>
         <span class="badge-attendance">{{ user.attendances }} / 20</span>
       </td>
-      <td>
+      <td *ngIf="userType != 'member'">
             <span [ngClass]="{
               'badge-grade-green': user.grade >= 8.0,
               'badge-grade-orange': user.grade < 8.0 && user.grade >= 5.0,
@@ -76,3 +84,4 @@
 
 <!-- Create Activity Modal -->
 <app-create-activity-modal></app-create-activity-modal>
+
