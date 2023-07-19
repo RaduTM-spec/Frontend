@@ -1,5 +1,14 @@
 
 
+/* Team cards container*/
+.teams-container{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
+
+}
+
 .team-card-container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));

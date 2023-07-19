@@ -28,16 +28,16 @@ import { SessionCardComponent } from './user-box/session-card/session-card.compo
     routingComponents
 
   ],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        FormsModule,
-        MatInputModule,
-        MatDialogModule,
-        MatButtonModule,
-        MatDatepickerModule,
-        HttpClientModule,
-    ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    FormsModule,
+    MatInputModule,
+    MatDialogModule,
+    MatButtonModule,
+    MatDatepickerModule,
+    HttpClientModule,
+  ],
   providers: [],
   bootstrap: [AppComponent]
 })

@@ -111,6 +111,7 @@ footer {
   display: flex;
   align-items: center;
   padding: 0 10px;
+  cursor: pointer;
 }
 
 .user-profile-picture {

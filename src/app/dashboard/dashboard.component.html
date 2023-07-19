@@ -1,84 +1,80 @@
-<div class="dashboard-container">
-  <div class="team-header">
-    <div class="header-content">
-      <div *ngIf="userType === 'mentor'">
-        <h3 class="header-title">Activity XXXX</h3>
-      </div>
+<div class="team-header">
+  <div class="header-content">
+    <div *ngIf="userType === 'mentor'">
+      <h3 class="header-title">Activity XXXX</h3>
+    </div>
 
-      <div *ngIf="userType === 'team lead'">
-        <h3 class="header-title">TEAM XXXX Members</h3>
-        <app-progress-bar [grade]="teamGrade"></app-progress-bar>
-      </div>
+    <div *ngIf="userType === 'team lead'">
+      <h3 class="header-title">TEAM XXXX Members</h3>
+      <app-progress-bar [grade]="teamGrade"></app-progress-bar>
     </div>
   </div>
+</div>
 
-  <div class="buttons-container">
-    <div class="team-info">
-      <div class="team-grade">
-        <span class="label">Team Grade:</span>
-        <span class="value">{{ teamGrade }}</span>
-      </div>
-      <div class="team-members">
-        <span class="label">Members:</span>
-        <span class="value">{{ members.length }}</span>
-      </div>
+<div class="buttons-container">
+  <div class="team-info">
+    <div class="team-grade">
+      <span class="label">Team Grade:</span>
+      <span class="value">{{ teamGrade }}</span>
     </div>
-    <div class="actions">
-      <div *ngIf="userType != 'member'">
-        <button class="export-button" (click)="exportSituation()"><i class="fas fa-file-export"></i> Export</button>
-        <button class="assessment-button"><i class="fas fa-clipboard-check"></i> Assessment</button>
-      </div>
-
+    <div class="team-members">
+      <span class="label">Team Members:</span>
+      <span class="value">{{ members.length }}</span>
     </div>
   </div>
+  <div class="actions">
+    <span class="export-button" (click)="exportSituation()"><i class="fas fa-file-export"></i> Export</span>
+    <button class="assessment-button" *ngIf="userType == 'team lead'">Session Assessment</button>
+  </div>
+</div>
 
-  <div class="team-members-table" *ngIf="userType === 'team lead'">
-    <table class="table table-striped">
-      <thead>
-      <tr>
-        <th scope="col">ID</th>
-        <th scope="col">Photo</th>
-        <th scope="col">Name</th>
-        <th scope="col">Role</th>
-        <th scope="col">Attendances</th>
-        <th scope="col">Grade</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr class="row-color" *ngFor="let user of members">
-        <th scope="row">{{ user.id }}</th>
-        <td>
-          <img [src]="user.imageUrl" width="36" height="36" class="rounded-circle" alt="user.username">
-        </td>
-        <td>{{ user.username }}</td>
-        <td>
-          <span >{{ user.role }}</span>
-        </td>
-        <td>
-          <span class="badge-attendance">{{ user.attendances }} / 20</span>
-        </td>
-        <td>
+<div class="team-members-table" *ngIf="userType === 'team lead'">
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Photo</th>
+      <th scope="col">Name</th>
+      <th scope="col">Role</th>
+      <th scope="col">Attendances</th>
+      <th scope="col">Grade</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr class="row-color" *ngFor="let user of members">
+      <th scope="row">{{ user.id }}</th>
+      <td>
+        <img [src]="user.imageUrl" width="34" height="34" class="rounded-circle" alt="">
+      </td>
+      <td>{{ user.username }}</td>
+      <td>
+        <span>{{ user.role }}</span>
+      </td>
+      <td>
+        <span class="badge-attendance">{{ user.attendances }} / 20</span>
+      </td>
+      <td>
             <span [ngClass]="{
               'badge-grade-green': user.grade >= 8.0,
               'badge-grade-orange': user.grade < 8.0 && user.grade >= 5.0,
               'badge-grade-red': user.grade < 5.0
             }">{{ user.grade }}</span>
-        </td>
-      </tr>
-      </tbody>
-    </table>
-  </div>
-
-  <div class="teams-container" *ngIf="userType === 'mentor'">
-    <app-team-card *ngFor="let user of members"
-                   [teamName]="user.username"
-                   [teamLeader]="user.username"
-    ></app-team-card>
-  </div>
-
-  <!-- Join Activity Modal -->
-  <app-join-activity-modal></app-join-activity-modal>
-
-  <!-- Create Activity Modal -->
-  <app-create-activity-modal></app-create-activity-modal>
+      </td>
+    </tr>
+    </tbody>
+  </table>
 </div>
+
+<div class="teams-container" *ngIf="userType === 'mentor'">
+  <app-team-card *ngFor="let user of members"
+                 [teamName]="user.username"
+                 [teamLeader]="user.username"
+                 [routerLink]="['/team', user.username]"
+  ></app-team-card>
+</div>
+
+<!-- Join Activity Modal -->
+<app-join-activity-modal></app-join-activity-modal>
+
+<!-- Create Activity Modal -->
+<app-create-activity-modal></app-create-activity-modal>

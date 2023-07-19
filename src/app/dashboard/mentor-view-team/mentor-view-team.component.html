@@ -1,0 +1,93 @@
+<div class="team-header">
+  <div class="header-content">
+    <div>
+      <h3 class="header-title">TEAM {{teamName}}`s Members</h3>
+      <app-progress-bar [grade]="teamGrade"></app-progress-bar>
+    </div>
+  </div>
+</div>
+
+<div class="buttons-container">
+  <div class="team-info">
+    <div class="team-grade">
+      <span class="label">Team Grade:</span>
+      <span class="value">{{ teamGrade }}</span>
+    </div>
+    <div class="team-members">
+      <span class="label">Team Members:</span>
+      <span class="value">{{ members.length }}</span>
+    </div>
+  </div>
+  <div class="actions">
+    <span class="export-button" (click)="exportSituation()"><i class="fas fa-file-export"></i> Export</span>
+    <button class="assessment-button">Session Assessment</button>
+  </div>
+</div>
+
+<div class="team-members-table" >
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Photo</th>
+      <th scope="col">Name</th>
+      <th scope="col">Role</th>
+      <th scope="col">Attendances</th>
+      <th scope="col">Grade</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr class="row-color">
+      <th scope="row">id here</th>
+      <td>
+        <img src="https://robohash.org/12?bgset=bg1" width="38" height="38" class="rounded-circle" alt="">
+      </td>
+      <td>username here</td>
+      <td>role here</td>
+      <td>attendances here</td>
+      <td>pers grade here</td>
+    </tr>
+    <tr class="row-color">
+      <th scope="row">id here</th>
+      <td>
+        <img src="https://robohash.org/1?bgset=bg1" width="38" height="38" class="rounded-circle" alt="">
+      </td>
+      <td>username here</td>
+      <td>role here</td>
+      <td>attendances here</td>
+      <td>pers grade here</td>
+    </tr>
+    <tr class="row-color">
+      <th scope="row">id here</th>
+      <td>
+        <img src="https://robohash.org/134?bgset=bg2" width="38" height="38" class="rounded-circle" alt="">
+      </td>
+      <td>username here</td>
+      <td>role here</td>
+      <td>attendances here</td>
+      <td>pers grade here</td>
+    </tr>
+    <tr class="row-color">
+      <th scope="row">id here</th>
+      <td>
+        <img src="https://robohash.org/1331?bgset=bg1" width="38" height="38" class="rounded-circle" alt="">
+      </td>
+      <td>username here</td>
+      <td>role here</td>
+      <td>attendances here</td>
+      <td>pers grade here</td>
+    </tr><tr class="row-color">
+      <th scope="row">id here</th>
+      <td>
+        <img src="https://robohash.org/112312?bgset=bg2" width="38" height="38" class="rounded-circle" alt="">
+      </td>
+      <td>username here</td>
+      <td>role here</td>
+      <td>attendances here</td>
+      <td>pers grade here</td>
+    </tr>
+
+
+    </tbody>
+  </table>
+</div>

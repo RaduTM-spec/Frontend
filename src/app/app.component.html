@@ -2,25 +2,13 @@
 <body>
 
 <div class="app-container">
-  <app-navigation></app-navigation>
 
-  <div id="main" class="content-container">
-    <!--      <div class="header">-->
-    <!--      </div>-->
+    <app-navigation></app-navigation>
 
-    <!--      <div class="teams">-->
-    <!--        <h2>Teams</h2>-->
-    <!--        <ul>-->
-    <!--          <li>Team 1</li>-->
-    <!--          <li>Team 2</li>-->
-    <!--          <li>Team 3</li>-->
-
-    <!--        </ul>-->
-    <!--      </div>-->
-<!--    <app-dashboard></app-dashboard>-->
-
-<!--    &lt;!&ndash; user profile component   &ndash;&gt;-->
-<!--    <app-user-box>-->
-      <router-outlet></router-outlet>
-  </div>
+    <div id="main" class="content-container">
+      <div class="dashboard-container">
+        <div class="team-header"></div>
+        <router-outlet></router-outlet>
+      </div>
+    </div>
 </div>

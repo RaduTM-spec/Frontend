@@ -1,11 +1,10 @@
-import { Component, Input } from '@angular/core';
-import { MatDialogRef } from '@angular/material/dialog';
+import { Component} from '@angular/core';
 import { Renderer2 } from '@angular/core';
 import { ElementRef } from '@angular/core';
 import {User} from "../models/user";
 
 
-declare var $: any; // Declared the $ symbol from jQuery
+// declare var $: any; // Declared the $ symbol from jQuery
 
 
 @Component({
@@ -17,7 +16,7 @@ export class DashboardComponent {
 
   teamGrade: number = 7;
 
-  userType: string = "team lead";
+  userType: string = "mentor";
 
   isMentor: boolean = false;
   isMember: boolean = false;
