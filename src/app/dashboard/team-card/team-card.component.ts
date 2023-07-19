@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import {Team} from "../../models/team";
 
 @Component({
   selector: 'app-team-card',
@@ -6,8 +7,6 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./team-card.component.css']
 })
 export class TeamCardComponent {
-  @Input() teamName: string = "TeamNameHere";
-  @Input() teamLeader: string = "Leader";
-  @Input() teamGrade: number = 10;
+  @Input() team!: Team;
 
 }

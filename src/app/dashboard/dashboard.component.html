@@ -19,7 +19,7 @@
     </div>
     <div class="team-members">
       <span class="label">Team Members:</span>
-      <span class="value">{{ members.length }}</span>
+      <span class="value">{{ usersList.length }}</span>
     </div>
   </div>
   <div class="actions">
@@ -41,7 +41,7 @@
     </tr>
     </thead>
     <tbody>
-    <tr class="row-color" *ngFor="let user of members">
+    <tr class="row-color" *ngFor="let user of usersList">
       <th scope="row">{{ user.id }}</th>
       <td>
         <img [src]="user.imageUrl" width="34" height="34" class="rounded-circle" alt="">
@@ -66,10 +66,8 @@
 </div>
 
 <div class="teams-container" *ngIf="userType === 'mentor'">
-  <app-team-card *ngFor="let user of members"
-                 [teamName]="user.username"
-                 [teamLeader]="user.username"
-                 [routerLink]="['/team', user.username]"
+  <app-team-card *ngFor="let team of teamsList"
+                 [team]="team"
   ></app-team-card>
 </div>
 

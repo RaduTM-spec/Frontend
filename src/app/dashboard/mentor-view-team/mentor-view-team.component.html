@@ -1,7 +1,7 @@
 <div class="team-header">
   <div class="header-content">
     <div>
-      <h3 class="header-title">TEAM {{teamName}}`s Members</h3>
+      <h3 class="header-title">TEAM {{team?.name}}`s Members</h3>
       <app-progress-bar [grade]="teamGrade"></app-progress-bar>
     </div>
   </div>
@@ -11,7 +11,7 @@
   <div class="team-info">
     <div class="team-grade">
       <span class="label">Team Grade:</span>
-      <span class="value">{{ teamGrade }}</span>
+      <span class="value">{{ team?.grade }}</span>
     </div>
     <div class="team-members">
       <span class="label">Team Members:</span>
@@ -24,7 +24,7 @@
   </div>
 </div>
 
-<div class="team-members-table" >
+<div class="team-members-table">
   <table class="table table-striped">
     <thead>
     <tr>
@@ -37,57 +37,26 @@
     </tr>
     </thead>
     <tbody>
-    <tr class="row-color">
-      <th scope="row">id here</th>
+    <tr class="row-color" *ngFor="let member of usersList">
+      <th scope="row">{{ member.id }}</th>
       <td>
-        <img src="https://robohash.org/12?bgset=bg1" width="38" height="38" class="rounded-circle" alt="">
+        <img [src]="member.imageUrl" width="34" height="34" class="rounded-circle" alt="">
       </td>
-      <td>username here</td>
-      <td>role here</td>
-      <td>attendances here</td>
-      <td>pers grade here</td>
+      <td>{{ member.username }}</td>
+      <td>
+        <span>{{ member.role }}</span>
+      </td>
+      <td>
+        <span class="badge-attendance">{{ member.attendances }} / 20</span>
+      </td>
+      <td>
+            <span [ngClass]="{
+              'badge-grade-green': member.grade >= 8.0,
+              'badge-grade-orange': member.grade < 8.0 && member.grade >= 5.0,
+              'badge-grade-red': member.grade < 5.0
+            }">{{ member.grade }}</span>
+      </td>
     </tr>
-    <tr class="row-color">
-      <th scope="row">id here</th>
-      <td>
-        <img src="https://robohash.org/1?bgset=bg1" width="38" height="38" class="rounded-circle" alt="">
-      </td>
-      <td>username here</td>
-      <td>role here</td>
-      <td>attendances here</td>
-      <td>pers grade here</td>
-    </tr>
-    <tr class="row-color">
-      <th scope="row">id here</th>
-      <td>
-        <img src="https://robohash.org/134?bgset=bg2" width="38" height="38" class="rounded-circle" alt="">
-      </td>
-      <td>username here</td>
-      <td>role here</td>
-      <td>attendances here</td>
-      <td>pers grade here</td>
-    </tr>
-    <tr class="row-color">
-      <th scope="row">id here</th>
-      <td>
-        <img src="https://robohash.org/1331?bgset=bg1" width="38" height="38" class="rounded-circle" alt="">
-      </td>
-      <td>username here</td>
-      <td>role here</td>
-      <td>attendances here</td>
-      <td>pers grade here</td>
-    </tr><tr class="row-color">
-      <th scope="row">id here</th>
-      <td>
-        <img src="https://robohash.org/112312?bgset=bg2" width="38" height="38" class="rounded-circle" alt="">
-      </td>
-      <td>username here</td>
-      <td>role here</td>
-      <td>attendances here</td>
-      <td>pers grade here</td>
-    </tr>
-
-
     </tbody>
   </table>
 </div>
