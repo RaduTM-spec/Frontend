@@ -9,43 +9,52 @@ export class TeamService {
       id: 1,
       name: 'Team1',
       grade: 6,
-      team_leader_name: 'John'
+      team_leader_name: 'John',
+      activity: 1
     },
     {
       id: 2,
       name: 'Team2',
       grade: 7,
-      team_leader_name: 'Sam'
+      team_leader_name: 'Sam',
+      activity: 1
+
     },
     {
       id: 3,
       name: 'Team3',
       grade: 2,
-      team_leader_name: 'Anthony'
+      team_leader_name: 'Anthony',
+      activity: 1
+
     },
     {
       id: 4,
       name: 'Team4',
       grade: 3,
-      team_leader_name: 'Daniel'
+      team_leader_name: 'Daniel',
+      activity: 2
     },
     {
       id: 5,
       name: 'Team5',
       grade: 9,
-      team_leader_name: 'Jane'
+      team_leader_name: 'Jane',
+      activity: 2
     },
     {
       id: 6,
       name: 'Team6',
       grade: 10,
-      team_leader_name: 'Mike'
+      team_leader_name: 'Mike',
+      activity: 3
     },
     {
       id: 7,
       name: 'Team7',
       grade: 8,
-      team_leader_name: 'Emily'
+      team_leader_name: 'Emily',
+      activity: 3
     }
   ];
 

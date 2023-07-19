@@ -15,6 +15,7 @@ import {MatButtonModule} from "@angular/material/button";
 import {MatDatepickerModule} from "@angular/material/datepicker";
 import {HttpClientModule} from "@angular/common/http";
 import { SessionCardComponent } from './user-box/session-card/session-card.component';
+import { ActivityComponent } from './navigation/activity/activity.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { SessionCardComponent } from './user-box/session-card/session-card.compo
     JoinActivityModalComponent,
     CreateActivityModalComponent,
     SessionCardComponent,
-    routingComponents
+    routingComponents,
+    ActivityComponent,
 
   ],
   imports: [

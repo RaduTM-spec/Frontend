@@ -1,11 +1,11 @@
 <div id="sidepanel" class="side-panel" style="width: 250px;">
   <header class="sidenav-header">Activities</header>
   <main class="sidenav">
-    <a routerLink="/dashboard" routerLinkActive="active">Activity 1</a>
-    <a routerLink="/dashboard" routerLinkActive="active">Activity 2</a>
-    <a routerLink="/dashboard" routerLinkActive="active">Activity 3</a>
-    <a routerLink="/dashboard" routerLinkActive="active">Activity 4</a>
-    <a routerLink="/dashboard" routerLinkActive="active">Activity 5</a>
+    <app-activity *ngFor="let activity of activitiesList"
+                  [activity]="activity"
+                  (click)="reloadPage()">
+    </app-activity>
+
 
   </main>
   <div class="button-container">

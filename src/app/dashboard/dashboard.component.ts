@@ -5,6 +5,9 @@ import {User} from "../models/user";
 import {Team} from "../models/team";
 import {TeamService} from "../services/team.service";
 import {UserService} from "../services/user.service";
+import {ActivatedRoute} from "@angular/router";
+import {ActivityService} from "../services/activity.service";
+import {Activity} from "../models/activity";
 
 
 // declare var $: any; // Declared the $ symbol from jQuery
@@ -17,8 +20,14 @@ import {UserService} from "../services/user.service";
 })
 export class DashboardComponent {
 
+  route: ActivatedRoute = inject(ActivatedRoute);
+  activitiesService: ActivityService = inject(ActivityService);
+  activity: Activity | undefined;
+
+
   teamsList: Team[] = [];
   teamsService: TeamService = inject(TeamService);
+  teamsActivity: Team[] = [];
 
   usersList: User[] = [];
   usersService: UserService = inject(UserService);
@@ -27,10 +36,20 @@ export class DashboardComponent {
   createActivityModalRef: ElementRef;
 
   constructor(private renderer: Renderer2, private elementRef: ElementRef) {
-    this.joinActivityModalRef = this.elementRef;
-    this.createActivityModalRef = this.elementRef;
+
+    const activityName:string = this.route.snapshot.params['name'];
+    this.activity = this.activitiesService.getActivityByName(activityName);
+
+
+
     this.teamsList = this.teamsService.getAllTeams();
     this.usersList = this.usersService.getAllUsers();
+    this.teamsActivity = this.teamsList.filter((team) => { return team.activity === this.activity?.id;});
+
+
+
+    this.joinActivityModalRef = this.elementRef;
+    this.createActivityModalRef = this.elementRef;
   }
 
   teamGrade: number = 7;
@@ -42,6 +61,8 @@ export class DashboardComponent {
   isLead: boolean = false;
 
   activityName: String = "";
+
+
 
   exportSituation() {
 

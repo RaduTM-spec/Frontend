@@ -1,6 +1,8 @@
-import { Component } from '@angular/core';
+import {Component, inject} from '@angular/core';
 import { Renderer2 } from '@angular/core';
 import { ElementRef } from '@angular/core';
+import {Activity} from "../models/activity";
+import {ActivityService} from "../services/activity.service";
 
 declare var $: any; // Declared the $ symbol from jQuery
 
@@ -11,12 +13,16 @@ declare var $: any; // Declared the $ symbol from jQuery
 })
 export class NavigationComponent {
 
+  activitiesList: Activity[] = [];
+  activitiesService: ActivityService = inject(ActivityService);
+
   joinActivityModalRef: ElementRef;
   createActivityModalRef: ElementRef;
 
   constructor(private renderer: Renderer2, private elementRef: ElementRef) {
     this.joinActivityModalRef = this.elementRef;
     this.createActivityModalRef = this.elementRef;
+    this.activitiesList = this.activitiesService.getAllActivities();
   }
 
 
@@ -63,4 +69,7 @@ export class NavigationComponent {
     }
   }
 
+  reloadPage(){
+    window.location.reload();
+  }
 }

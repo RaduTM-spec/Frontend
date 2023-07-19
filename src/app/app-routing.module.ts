@@ -6,9 +6,9 @@ import {MentorViewTeamComponent} from "./dashboard/mentor-view-team/mentor-view-
 
 const routes: Routes = [
   {path:'user', component:UserBoxComponent},
-  {path:'dashboard', component:DashboardComponent},
+  {path:'dashboard/:name', component:DashboardComponent},
   {path:'team/:name', component:MentorViewTeamComponent},
-  { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
+  { path: '', redirectTo: '/user', pathMatch: 'full' },
 ];
 
 @NgModule({
