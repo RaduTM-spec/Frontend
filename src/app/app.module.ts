@@ -16,6 +16,8 @@ import {MatDatepickerModule} from "@angular/material/datepicker";
 import {HttpClientModule} from "@angular/common/http";
 import { SessionCardComponent } from './user-box/session-card/session-card.component';
 import { ActivityComponent } from './navigation/activity/activity.component';
+import { InfoContainerComponent } from './dashboard/info-container/info-container.component';
+import { MembersTableComponent } from './dashboard/members-table/members-table.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +30,8 @@ import { ActivityComponent } from './navigation/activity/activity.component';
     SessionCardComponent,
     routingComponents,
     ActivityComponent,
+    InfoContainerComponent,
+    MembersTableComponent,
 
   ],
   imports: [

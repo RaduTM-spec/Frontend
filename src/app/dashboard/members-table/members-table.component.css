@@ -1,0 +1,65 @@
+/* table */
+.team-members-table {
+  max-width: 90%;
+  margin: 0 auto;
+}
+
+.table {
+  width: 100%;
+  max-width: 1600px;
+}
+
+.table th,
+.table td {
+  text-align: center;
+}
+
+.table th:first-child,
+.table td:first-child {
+  text-align: left;
+}
+
+.row-color:nth-child(odd) {
+  background-color: #c4c4c4;
+}
+
+.row-color:hover {
+  cursor: pointer;
+}
+
+
+/* badges */
+.badge-member {
+  background-color: var(--background-color);
+  color: #fff;
+  padding: 3px 6px;
+  border-radius: 4px;
+}
+
+.badge-attendance {
+  background-color: #257ac0;
+  color: #fff;
+  padding: 3px 6px;
+  border-radius: 4px;
+}
+
+.badge-grade-green {
+  background-color: var(--modals-button);
+  color: #fff;
+  padding: 3px 6px;
+  border-radius: 4px;
+}
+
+.badge-grade-orange {
+  background-color: #ee911e;
+  color: #fff;
+  padding: 3px 6px;
+  border-radius: 4px;
+}
+
+.badge-grade-red {
+  background-color: #9d140b;
+  color: #fff;
+  padding: 3px 6px;
+  border-radius: 4px;
+}

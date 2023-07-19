@@ -1,0 +1,36 @@
+<div class="team-members-table" *ngIf="userType != 'mentor'">
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Photo</th>
+      <th scope="col">Name</th>
+      <th scope="col">Role</th>
+      <th scope="col">Attendances</th>
+      <th *ngIf="userType != 'member'" scope="col">Grade</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr class="row-color" *ngFor="let user of usersList">
+      <th scope="row">{{ user.id }}</th>
+      <td>
+        <img [src]="user.imageUrl" width="34" height="34" class="rounded-circle" alt="">
+      </td>
+      <td>{{ user.username }}</td>
+      <td>
+        <span>{{ user.role }}</span>
+      </td>
+      <td>
+        <span class="badge-attendance">{{ user.attendances }} / 20</span>
+      </td>
+      <td *ngIf="userType != 'member'">
+            <span [ngClass]="{
+              'badge-grade-green': user.grade >= 8.0,
+              'badge-grade-orange': user.grade < 8.0 && user.grade >= 5.0,
+              'badge-grade-red': user.grade < 5.0
+            }">{{ user.grade }}</span>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>

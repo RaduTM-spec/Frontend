@@ -20,6 +20,7 @@ export class NavigationComponent {
   createActivityModalRef: ElementRef;
 
   constructor(private renderer: Renderer2, private elementRef: ElementRef) {
+
     this.joinActivityModalRef = this.elementRef;
     this.createActivityModalRef = this.elementRef;
     this.activitiesList = this.activitiesService.getAllActivities();

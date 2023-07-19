@@ -1,7 +1,7 @@
 <div class="team-header">
   <div class="header-content">
     <div *ngIf="userType === 'mentor'">
-      <h3 class="header-title">Activity XXXX</h3>
+      <h3 class="header-title">Activity {{activity?.name}}</h3>
     </div>
 
     <div *ngIf="userType === 'team lead'">
@@ -17,74 +17,30 @@
   </div>
 </div>
 
-<div class="buttons-container">
-  <div class="team-info" *ngIf="userType == 'team lead'">
-    <div class="team-grade">
-      <span class="label">Team Grade:</span>
-      <span class="value">{{ teamGrade }}</span>
-    </div>
-    <div class="team-members">
-      <span class="label">Members:</span>
-      <span class="value">{{ usersList.length }}</span>
-    </div>
-  </div>
-  <div class="team-info" *ngIf="userType == 'mentor'">
-    <div class="team-grade">
-      <span class="label">Number of teams:</span>
-      <span class="value">{{ teamsActivity.length }}</span>
-    </div>
-  </div>
-  <div class="actions">
-    <div *ngIf="userType != 'member'">
-      <button class="export-button" (click)="exportSituation()"><i class="fas fa-file-export"></i> Export</button>
-      <button class="assessment-button" *ngIf="userType == 'team lead'"><i class="fas fa-clipboard-check"></i>  Assessment</button>
-    </div>
-  </div>
-</div>
+<!--info-container starts-->
+<app-info-container *ngIf="userType == 'mentor'"
+                    [userType]="userType"
+                    [number]="teamsActivity.length"
+></app-info-container>
+<app-info-container *ngIf="userType != 'mentor'"
+                    [userType]="userType"
+                    [number]="usersList.length"
+                    [teamGrade]="teamGrade"
+></app-info-container>
+<!--info-container ends-->
 
-<div class="team-members-table" *ngIf="userType != 'mentor'">
-  <table class="table table-striped">
-    <thead>
-    <tr>
-      <th scope="col">ID</th>
-      <th scope="col">Photo</th>
-      <th scope="col">Name</th>
-      <th scope="col">Role</th>
-      <th scope="col">Attendances</th>
-      <th *ngIf="userType != 'member'" scope="col">Grade</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr class="row-color" *ngFor="let user of usersList">
-      <th scope="row">{{ user.id }}</th>
-      <td>
-        <img [src]="user.imageUrl" width="34" height="34" class="rounded-circle" alt="">
-      </td>
-      <td>{{ user.username }}</td>
-      <td>
-        <span>{{ user.role }}</span>
-      </td>
-      <td>
-        <span class="badge-attendance">{{ user.attendances }} / 20</span>
-      </td>
-      <td *ngIf="userType != 'member'">
-            <span [ngClass]="{
-              'badge-grade-green': user.grade >= 8.0,
-              'badge-grade-orange': user.grade < 8.0 && user.grade >= 5.0,
-              'badge-grade-red': user.grade < 5.0
-            }">{{ user.grade }}</span>
-      </td>
-    </tr>
-    </tbody>
-  </table>
-</div>
-
+<!--main-content starts-->
+<app-members-table *ngIf="userType != 'mentor'"
+                   [userType]="userType"
+                   [usersList]="usersList"
+></app-members-table>
 <div class="teams-container" *ngIf="userType === 'mentor'">
   <app-team-card *ngFor="let team of teamsActivity"
                  [team]="team"
-
   ></app-team-card>
 </div>
+<!--main-content ends-->
+
 
 <!-- Join Activity Modal -->
 <app-join-activity-modal></app-join-activity-modal>

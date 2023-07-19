@@ -8,6 +8,7 @@ import {UserService} from "../services/user.service";
 import {ActivatedRoute} from "@angular/router";
 import {ActivityService} from "../services/activity.service";
 import {Activity} from "../models/activity";
+import {NgIf} from "@angular/common";
 
 
 // declare var $: any; // Declared the $ symbol from jQuery
@@ -62,9 +63,9 @@ export class DashboardComponent {
 
   activityName: String = "";
 
-
-
   exportSituation() {
 
   }
+
+  protected readonly NgIf = NgIf;
 }
