@@ -1,4 +1,4 @@
-import {Component, inject} from '@angular/core';
+import {Component} from '@angular/core';
 import { Renderer2 } from '@angular/core';
 import { ElementRef } from '@angular/core';
 import {User} from "../models/user";
@@ -8,7 +8,6 @@ import {UserService} from "../services/user.service";
 import {ActivatedRoute} from "@angular/router";
 import {ActivityService} from "../services/activity.service";
 import {Activity} from "../models/activity";
-import {NgIf} from "@angular/common";
 
 
 // declare var $: any; // Declared the $ symbol from jQuery
@@ -21,33 +20,35 @@ import {NgIf} from "@angular/common";
 })
 export class DashboardComponent {
 
-  route: ActivatedRoute = inject(ActivatedRoute);
-  activitiesService: ActivityService = inject(ActivityService);
   activity: Activity | undefined;
+  loggedUser: User;
 
 
+  //members variables;
+  membersList: User[] = [];
+  loggedUserTeam: Team;
+
+  // mentor variables
   teamsList: Team[] = [];
-  teamsService: TeamService = inject(TeamService);
   teamsActivity: Team[] = [];
-
   usersList: User[] = [];
-  usersService: UserService = inject(UserService);
+
 
   joinActivityModalRef: ElementRef;
   createActivityModalRef: ElementRef;
 
-  constructor(private renderer: Renderer2, private elementRef: ElementRef) {
+  constructor(private route: ActivatedRoute, private activitiesService: ActivityService,private  teamsService: TeamService,private  usersService: UserService, private renderer: Renderer2, private elementRef: ElementRef) {
 
     const activityName:string = this.route.snapshot.params['name'];
     this.activity = this.activitiesService.getActivityByName(activityName);
-
-
+    this.loggedUser = usersService.getLoggedUser();
+    this.loggedUserTeam = this.teamsService.getUserTeam(this.loggedUser.id);
 
     this.teamsList = this.teamsService.getAllTeams();
     this.usersList = this.usersService.getAllUsers();
-    this.teamsActivity = this.teamsList.filter((team) => { return team.activity === this.activity?.id;});
+    this.teamsActivity = this.teamsList.filter((team) => { return team.activities.includes(<number>this.activity?.id);});
 
-
+    this.membersList = this.usersList.filter((user) => { return this.loggedUserTeam.members.includes(user.id);});
 
     this.joinActivityModalRef = this.elementRef;
     this.createActivityModalRef = this.elementRef;
@@ -55,17 +56,4 @@ export class DashboardComponent {
 
   teamGrade: number = 7;
 
-  userType: string = "mentor";
-
-  isMentor: boolean = false;
-  isMember: boolean = false;
-  isLead: boolean = false;
-
-  activityName: String = "";
-
-  exportSituation() {
-
-  }
-
-  protected readonly NgIf = NgIf;
 }

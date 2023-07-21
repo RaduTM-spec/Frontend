@@ -1,40 +1,36 @@
 <div class="team-header">
   <div class="header-content">
-    <div *ngIf="userType === 'mentor'">
+    <div *ngIf="loggedUser.role === 'mentor'">
       <h3 class="header-title">Activity {{activity?.name}}</h3>
     </div>
 
-    <div *ngIf="userType === 'team lead'">
-      <h3 class="header-title">TEAM XXXX Members</h3>
-      <app-progress-bar [grade]="teamGrade"></app-progress-bar>
-    </div>
-
-
-    <div *ngIf="userType === 'member'">
-      <h3 class="header-title">TEAM XXXX Members</h3>
-      <app-progress-bar [grade]="teamGrade"></app-progress-bar>
+    <div *ngIf="loggedUser.role != 'mentor'">
+      <h3 class="header-title">TEAM {{loggedUserTeam.name}} Members</h3>
+      <app-progress-bar [grade]="loggedUserTeam.grade"></app-progress-bar>
     </div>
   </div>
 </div>
 
+
 <!--info-container starts-->
-<app-info-container *ngIf="userType == 'mentor'"
-                    [userType]="userType"
+<app-info-container *ngIf="loggedUser.role == 'mentor'"
+                    [userType]="loggedUser.role"
                     [number]="teamsActivity.length"
 ></app-info-container>
-<app-info-container *ngIf="userType != 'mentor'"
-                    [userType]="userType"
-                    [number]="usersList.length"
+<app-info-container *ngIf="loggedUser.role != 'mentor'"
+                    [userType]="loggedUser.role"
+                    [number]="membersList.length"
                     [teamGrade]="teamGrade"
 ></app-info-container>
 <!--info-container ends-->
 
+
 <!--main-content starts-->
-<app-members-table *ngIf="userType != 'mentor'"
-                   [userType]="userType"
-                   [usersList]="usersList"
+<app-members-table *ngIf="loggedUser.role != 'mentor'"
+                   [userType]="loggedUser.role"
+                   [usersList]="membersList"
 ></app-members-table>
-<div class="teams-container" *ngIf="userType === 'mentor'">
+<div class="teams-container" *ngIf="loggedUser.role === 'mentor'">
   <app-team-card *ngFor="let team of teamsActivity"
                  [team]="team"
   ></app-team-card>

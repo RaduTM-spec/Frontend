@@ -1,8 +1,13 @@
-import {Component, inject} from '@angular/core';
+import {Component} from '@angular/core';
 import { Renderer2 } from '@angular/core';
 import { ElementRef } from '@angular/core';
 import {Activity} from "../models/activity";
 import {ActivityService} from "../services/activity.service";
+import {Router} from "@angular/router";
+import {User} from "../models/user";
+import {UserService} from "../services/user.service";
+import {TeamService} from "../services/team.service";
+import {Team} from "../models/team";
 
 declare var $: any; // Declared the $ symbol from jQuery
 
@@ -14,18 +19,25 @@ declare var $: any; // Declared the $ symbol from jQuery
 export class NavigationComponent {
 
   activitiesList: Activity[] = [];
-  activitiesService: ActivityService = inject(ActivityService);
+  user: User | undefined;
+  team: Team | undefined;
+  // activitiesService: ActivityService = inject(ActivityService);
 
   joinActivityModalRef: ElementRef;
   createActivityModalRef: ElementRef;
 
-  constructor(private renderer: Renderer2, private elementRef: ElementRef) {
-
+  constructor(private router: Router, private activitiesService: ActivityService, private userService:UserService, private teamService:TeamService,private renderer: Renderer2, private elementRef: ElementRef) {
     this.joinActivityModalRef = this.elementRef;
     this.createActivityModalRef = this.elementRef;
+    this.user = userService.getLoggedUser();
     this.activitiesList = this.activitiesService.getAllActivities();
-  }
+    if(this.user.role != 'mentor'){
+      this.team = this.teamService.getUserTeam(this.user.id);
+      this.activitiesList = this.activitiesList.filter((activity) => {return this.team?.activities.includes(activity.id);});
+    }
 
+
+  }
 
 
   showJoinActivityModal() {
@@ -73,4 +85,5 @@ export class NavigationComponent {
   reloadPage(){
     window.location.reload();
   }
+
 }

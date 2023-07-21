@@ -11,8 +11,7 @@ export class UserService {
     role: "TEAM LEAD",
     attendances: 20,
     grade: 9.5,
-    imageUrl: "https://robohash.org/john_doe?bgset=bg1",
-    team : 1
+    imageUrl: "https://robohash.org/john_doe?bgset=bg1"
   },
     {
       id: 2,
@@ -20,8 +19,7 @@ export class UserService {
       role: "MEMBER",
       attendances: 15,
       grade: 8.5,
-      imageUrl: "https://robohash.org/bruhdh?bgset=bg1",
-      team : 1
+      imageUrl: "https://robohash.org/bruhdh?bgset=bg1"
     },
     {
       id: 3,
@@ -29,8 +27,7 @@ export class UserService {
       role: "MEMBER",
       attendances: 10,
       grade: 7.5,
-      imageUrl: "https://robohash.org/asdasdaaaa?bgset=bg1",
-      team : 1
+      imageUrl: "https://robohash.org/asdasdaaaa?bgset=bg1"
     },
     {
       id: 4,
@@ -38,8 +35,7 @@ export class UserService {
       role: "MEMBER",
       attendances: 5,
       grade: 4.5,
-      imageUrl: "https://robohash.org/asdasdasd?bgset=bg1",
-      team : 1
+      imageUrl: "https://robohash.org/asdasdasd?bgset=bg1"
     },
     {
       id: 5,
@@ -47,8 +43,7 @@ export class UserService {
       role: "MEMBER",
       attendances: 12,
       grade: 9.5,
-      imageUrl: "https://robohash.org/hehehe?bgset=bg1",
-      team : 1
+      imageUrl: "https://robohash.org/hehehe?bgset=bg1"
     },
     {
       id: 6,
@@ -56,8 +51,7 @@ export class UserService {
       role: "MEMBER",
       attendances: 8,
       grade: 6.5,
-      imageUrl: "https://robohash.org/idk-bruh-idk?bgset=bg1",
-      team : 2
+      imageUrl: "https://robohash.org/idk-bruh-idk?bgset=bg1"
     },
     {
       id: 7,
@@ -65,8 +59,7 @@ export class UserService {
       role: "MEMBER",
       attendances: 3,
       grade: 6.5,
-      imageUrl: "https://robohash.org/randomphoto?bgset=bg1",
-      team : 2
+      imageUrl: "https://robohash.org/randomphoto?bgset=bg1"
     },
     {
       id: 8,
@@ -74,12 +67,34 @@ export class UserService {
       role: "MEMBER",
       attendances: 11,
       grade: 8.5,
-      imageUrl: "https://robohash.org/randomphotohere?bgset=bg1",
-      team : 2
+      imageUrl: "https://robohash.org/hehehe?bgset=bg1"
+    },
+    {
+      id: 9,
+      username: "vasile",
+      role: "mentor",
+      attendances: 20,
+      grade: 10,
+      imageUrl: "https://robohash.org/hehehe?bgset=bg1"
     }];
 
+  protected loggedUser: User = {
+    id: 1,
+    username: "john_doe",
+    role: "TEAM LEAD",
+    attendances: 20,
+    grade: 9.5,
+    imageUrl: "https://robohash.org/john_doe?bgset=bg1"
+  }
+
+  getLoggedUser(){
+    return this.loggedUser;
+  }
   getAllUsers(): User[] {
     return this.usersList;
   }
+
+
+
 
 }

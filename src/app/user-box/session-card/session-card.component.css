@@ -1,6 +1,6 @@
 .card {
   width: 350px;
-  margin-bottom: 20px;
+  margin: 10px;
   background-color: var(--button);
   color: var(--background-color);
   border-radius: 8px;

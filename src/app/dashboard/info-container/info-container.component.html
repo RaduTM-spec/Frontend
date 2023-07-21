@@ -1,5 +1,5 @@
 <div class="buttons-container">
-  <div class="team-info" *ngIf="userType == 'team lead'">
+  <div class="team-info" *ngIf="userType != 'MENTOR'">
     <div class="team-grade">
       <span class="label">Team Grade:</span>
       <span class="value">{{ teamGrade }}</span>
@@ -16,9 +16,9 @@
     </div>
   </div>
   <div class="actions">
-    <div *ngIf="userType != 'member'">
+    <div>
       <button class="export-button" (click)="exportSituation()"><i class="fas fa-file-export"></i> Export</button>
-      <button class="assessment-button" *ngIf="userType == 'team lead'"><i class="fas fa-clipboard-check"></i>  Assessment</button>
+      <button class="assessment-button" *ngIf="userType == 'mentor'"><i class="fas fa-clipboard-check"></i>  Assessment</button>
     </div>
   </div>
 </div>

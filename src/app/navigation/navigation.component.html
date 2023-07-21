@@ -3,7 +3,8 @@
   <main class="sidenav">
     <app-activity *ngFor="let activity of activitiesList"
                   [activity]="activity"
-                  (click)="reloadPage()">
+                  (click)="reloadPage()"
+    >
     </app-activity>
 
 
@@ -19,10 +20,10 @@
 <!--      src="https://robohash.org/profilepic.jpeg?bgset=bg1" -->
       <div class="user-details">
         <div class="user-profile">
-          Username
+          {{user?.username}}
         </div>
         <div class="username">
-          ROLE
+          {{user?.role}}
         </div>
       </div>
     </div>

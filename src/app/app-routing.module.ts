@@ -8,7 +8,7 @@ const routes: Routes = [
   {path:'user', component:UserBoxComponent},
   {path:'dashboard/:name', component:DashboardComponent},
   {path:'team/:name', component:MentorViewTeamComponent},
-  { path: '', redirectTo: '/user', pathMatch: 'full' },
+  {path: '', redirectTo: '/user', pathMatch: 'full'},
 ];
 
 @NgModule({
