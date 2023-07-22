@@ -78,3 +78,40 @@
 .assessment-button:active {
   background-color: #003d00;
 }
+
+/* badges */
+.badge-member {
+  background-color: var(--background-color);
+  color: #fff;
+  padding: 3px 6px;
+  border-radius: 4px;
+}
+
+.badge-attendance {
+  background-color: #257ac0;
+  color: #fff;
+  padding: 3px 6px;
+  border-radius: 4px;
+}
+
+.badge-grade-green {
+  background-color: var(--modals-button);
+  color: #fff;
+  padding: 3px 6px;
+  border-radius: 4px;
+}
+
+.badge-grade-orange {
+  background-color: #ee911e;
+  color: #fff;
+  padding: 3px 6px;
+  border-radius: 4px;
+}
+
+.badge-grade-red {
+  background-color: #9d140b;
+  color: #fff;
+  padding: 3px 6px;
+  border-radius: 4px;
+}
+

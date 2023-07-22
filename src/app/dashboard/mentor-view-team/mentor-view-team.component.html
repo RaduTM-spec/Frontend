@@ -11,7 +11,11 @@
   <div class="team-info">
     <div class="team-grade">
       <span class="label">Team Grade:</span>
-      <span class="value">{{ team?.grade }}</span>
+      <span [ngClass]="{
+              'badge-grade-green': teamGrade >= 8.0,
+              'badge-grade-orange': teamGrade < 8.0 && teamGrade >= 5.0,
+              'badge-grade-red': teamGrade < 5.0
+            }">{{ teamGrade }}</span>
     </div>
     <div class="team-members">
       <span class="label">Members:</span>

@@ -79,12 +79,12 @@ export class UserService {
     }];
 
   protected loggedUser: User = {
-    id: 1,
-    username: "john_doe",
-    role: "TEAM LEAD",
+    id: 9,
+    username: "vasile",
+    role: "mentor",
     attendances: 20,
-    grade: 9.5,
-    imageUrl: "https://robohash.org/john_doe?bgset=bg1"
+    grade: 10,
+    imageUrl: "https://robohash.org/hehehe?bgset=bg1"
   }
 
   getLoggedUser(){
