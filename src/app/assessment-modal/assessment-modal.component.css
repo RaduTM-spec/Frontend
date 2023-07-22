@@ -1,0 +1,101 @@
+.modal-content {
+  box-shadow: none;
+}
+
+.modal.fade.show {
+  display: block;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+.modal.fade .modal-dialog {
+  transition: transform 0.3s;
+}
+
+.modal.fade.show .modal-dialog {
+  transform: translate(0, 0);
+}
+
+.custom-close-button {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+  transition: color 0.3s;
+  cursor: pointer;
+}
+
+.custom-close-button:hover {
+  color: red;
+}
+
+.custom-close-button:active {
+  color: darkred;
+}
+
+.btn-secondary {
+  background-color: black;
+  color: white;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.btn-secondary:hover {
+  background-color: #333;
+}
+
+.btn-secondary:active {
+  background-color: #222;
+}
+
+.btn-primary {
+  background-color: green;
+  color: white;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.btn-primary:hover {
+  background-color: #3d8b3d;
+}
+
+.btn-primary:active {
+  background-color: #2b6f2b;
+}
+
+.modal-dialog-scrollable {
+  max-height: 400px;
+}
+
+.scrollable-content {
+  overflow-y: auto;
+}
+
+.user-row {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+}
+
+.user-details {
+  margin-left: 10px;
+}
+
+.user-name {
+  margin-bottom: 5px;
+}
+
+.profile-picture {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.user-assessment {
+  flex: 1;
+  margin-left: 20px;
+}
+
+

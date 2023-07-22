@@ -22,7 +22,9 @@
   <div class="actions">
     <div>
       <button class="export-button" (click)="exportSituation()"><i class="fas fa-file-export"></i> Export</button>
-      <button class="assessment-button" *ngIf="userType == 'mentor'"><i class="fas fa-clipboard-check"></i>  Assessment</button>
+      <button class="assessment-button" *ngIf="userType == 'mentor'" (click)="openAssessmentModal()"><i class="fas fa-clipboard-check"></i>  Assessment</button>
     </div>
   </div>
 </div>
+
+<app-assessment-modal (saveAssessmentEvent)="handleSaveAssessment($event)" #assessmentModalRef></app-assessment-modal>

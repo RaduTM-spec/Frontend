@@ -18,6 +18,7 @@ import { SessionCardComponent } from './user-box/session-card/session-card.compo
 import { ActivityComponent } from './navigation/activity/activity.component';
 import { InfoContainerComponent } from './dashboard/info-container/info-container.component';
 import { MembersTableComponent } from './dashboard/members-table/members-table.component';
+import {AssessmentModalComponent} from "./assessment-modal/assessment-modal.component";
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { MembersTableComponent } from './dashboard/members-table/members-table.c
     ActivityComponent,
     InfoContainerComponent,
     MembersTableComponent,
+    AssessmentModalComponent,
 
   ],
   imports: [
