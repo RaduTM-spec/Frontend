@@ -1,7 +1,6 @@
-
 import { Component, ElementRef, Input, Renderer2, ViewChild } from '@angular/core';
 import { User } from "../../models/user";
-import {UserService} from "../../services/user.service";
+import { UserService } from "../../services/user.service"; // Import the UserService
 
 declare var $: any;
 
@@ -15,19 +14,21 @@ export class InfoContainerComponent {
   @Input() teamGrade: number = 0;
   @Input() number: number = 0;
 
+  teamMembers: User[];
+
   exportSituation() {
   }
 
-  teamMembers: User[];
-
-  @ViewChild('assessmentModalRef', { static: true }) assessmentModalRef!: ElementRef;
+  @ViewChild('assessmentModalRef') assessmentModalRef!: ElementRef; // removed { static: true } idk if it helps or not
 
   constructor(private renderer: Renderer2, private userService: UserService) {
-    this.teamMembers = userService.getAllUsers();
+    console.log("assessment modal constructed!")
+    this.teamMembers = userService.getAllUsers(); // Fetch the team members using UserService
   }
 
-  openAssessmentModal() {
+  openAssessmentModal(): void {
     const assessmentModal = this.assessmentModalRef.nativeElement.querySelector('#assessmentModal');
+    console.log("in open assessment modal!")
     $(assessmentModal).modal('show');
 
     this.renderer.listen(assessmentModal, 'click', (event) => {

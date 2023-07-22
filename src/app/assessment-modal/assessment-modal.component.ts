@@ -15,7 +15,9 @@ export class AssessmentModalComponent {
   @Input() teamUsers: User[];
   @Output() saveAssessmentEvent = new EventEmitter<User[]>();
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {
+    console.log("assessment modal constructed!");
+  }
 
   saveAssessment() {
     // to emit the updated teamUsers array to the parent component
