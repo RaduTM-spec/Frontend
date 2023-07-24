@@ -82,8 +82,8 @@ export class NavigationComponent {
     }
   }
 
-  reloadPage(){
-    window.location.reload();
-  }
+  // reloadPage(){
+  //   window.location.reload();
+  // }
 
 }

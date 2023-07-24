@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import { Renderer2 } from '@angular/core';
 import { ElementRef } from '@angular/core';
 import {User} from "../models/user";
@@ -18,8 +18,9 @@ import {Activity} from "../models/activity";
   templateUrl:  './dashboard.component.html',
   styleUrls: ['./dashboard.component.css']
 })
-export class DashboardComponent {
+export class DashboardComponent implements OnInit{
 
+  activityName:string = '';
   activity: Activity | undefined;
   loggedUser: User;
 
@@ -39,8 +40,8 @@ export class DashboardComponent {
 
   constructor(private route: ActivatedRoute, private activitiesService: ActivityService,private  teamsService: TeamService,private  usersService: UserService, private renderer: Renderer2, private elementRef: ElementRef) {
 
-    const activityName:string = this.route.snapshot.params['name'];
-    this.activity = this.activitiesService.getActivityByName(activityName);
+    this.activityName = this.route.snapshot.params['name'];
+    this.activity = this.activitiesService.getActivityByName(this.activityName);
     this.loggedUser = usersService.getLoggedUser();
     this.loggedUserTeam = this.teamsService.getUserTeam(this.loggedUser.id);
 
@@ -54,6 +55,23 @@ export class DashboardComponent {
     this.createActivityModalRef = this.elementRef;
   }
 
+  ngOnInit(){
+    this.route.paramMap.subscribe((params) => {
+        this.activityName = params.get('name') || '';
+        this.activity = this.activitiesService.getActivityByName(this.activityName);
+        this.loggedUser = this.usersService.getLoggedUser();
+        this.loggedUserTeam = this.teamsService.getUserTeam(this.loggedUser.id);
+
+        this.teamsList = this.teamsService.getAllTeams();
+        this.usersList = this.usersService.getAllUsers();
+        this.teamsActivity = this.teamsList.filter((team) => { return team.activities.includes(<number>this.activity?.id);});
+
+        this.membersList = this.usersList.filter((user) => { return this.loggedUserTeam.members.includes(user.id);});
+
+        this.joinActivityModalRef = this.elementRef;
+        this.createActivityModalRef = this.elementRef;
+    })
+  }
   teamGrade: number = 7;
 
 }

@@ -1,7 +1,7 @@
 <div class="team-header">
 
   <div class="header-content">
-    <h3 class="header-title">USER`S SITUATION</h3>
+    <h3 class="header-title">{{user?.username}}`S SITUATION</h3>
   </div>
 
 </div>
@@ -25,7 +25,7 @@
     </div>
   </div>
 
-  <div class="sessions-container">
+  <div class="sessions-container" *ngIf="user?.role != 'mentor'">
     <app-session-card></app-session-card>
     <app-session-card></app-session-card>
     <app-session-card></app-session-card>
