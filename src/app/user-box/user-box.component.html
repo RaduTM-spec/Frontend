@@ -18,9 +18,9 @@
         <p class="team-name">Team: {{team?.name}}</p>
         <p class="email">Email: random.email@gmail.com</p>
         <p class="user-role">Role: {{user?.role}}</p>
-        <p class="total-attendances">Attendances: {{user?.attendances}}</p>
         <p class="total-activities">Activities: {{team?.activities}}</p>
-        <p class="session-assessments">Session Assessments: 10</p>
+        <p class="total-attendances" *ngIf="user?.role != 'mentor'">Attendances: {{user?.attendances}}</p>
+        <p class="session-assessments" *ngIf="user?.role != 'mentor'">Session Assessments: 10</p>
       </div>
     </div>
   </div>

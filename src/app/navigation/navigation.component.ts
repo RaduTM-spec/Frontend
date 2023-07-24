@@ -26,6 +26,7 @@ export class NavigationComponent {
   joinActivityModalRef: ElementRef;
   createActivityModalRef: ElementRef;
 
+  userRole: string = '';
   constructor(private router: Router, private activitiesService: ActivityService, private userService:UserService, private teamService:TeamService,private renderer: Renderer2, private elementRef: ElementRef) {
     this.joinActivityModalRef = this.elementRef;
     this.createActivityModalRef = this.elementRef;
@@ -35,7 +36,7 @@ export class NavigationComponent {
       this.team = this.teamService.getUserTeam(this.user.id);
       this.activitiesList = this.activitiesList.filter((activity) => {return this.team?.activities.includes(activity.id);});
     }
-
+     this.userRole = this.user.role || '';
 
   }
 

@@ -8,5 +8,6 @@ import {Activity} from "../../models/activity";
 })
 export class ActivityComponent {
   @Input() activity!: Activity;
+  @Input() userRole!: string;
 
 }

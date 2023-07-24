@@ -3,6 +3,7 @@
   <main class="sidenav">
     <app-activity *ngFor="let activity of activitiesList"
                   [activity]="activity"
+                  [userRole]="userRole"
     >
     </app-activity>
 
@@ -14,7 +15,7 @@
   </div>
   <footer>
 
-    <div class="user-box" routerLink="/user" routerLinkActive="active">
+    <div class="user-box" [routerLink]="['/', user?.username]" routerLinkActive="active">
       <img class="user-profile-picture" src="{{user?.imageUrl}}" alt="User Profile">
 <!--      src="https://robohash.org/profilepic.jpeg?bgset=bg1" -->
       <div class="user-details">

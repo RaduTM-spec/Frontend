@@ -39,6 +39,7 @@
   background-color: black;
   color: white;
   transition: background-color 0.3s, color 0.3s;
+  border: 1px solid #222;
 }
 
 .btn-secondary:hover {
@@ -53,6 +54,7 @@
   background-color: green;
   color: white;
   transition: background-color 0.3s, color 0.3s;
+  border: 1px solid #2b6f2b;
 }
 
 .btn-primary:hover {

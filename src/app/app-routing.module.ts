@@ -5,9 +5,10 @@ import {DashboardComponent} from "./dashboard/dashboard.component";
 import {MentorViewTeamComponent} from "./dashboard/mentor-view-team/mentor-view-team.component";
 
 const routes: Routes = [
-  {path:'user', component:UserBoxComponent},
-  {path:'dashboard/:name', component:DashboardComponent},
-  {path:'team/:name', component:MentorViewTeamComponent},
+  {path:':name', component:UserBoxComponent},
+  {path:'activities/:name', component:DashboardComponent},
+  {path:'activities/:name/teams', component:DashboardComponent},
+  {path:'activities/:name/teams/:name', component:MentorViewTeamComponent},
   {path: '', redirectTo: '/user', pathMatch: 'full'},
 ];
 

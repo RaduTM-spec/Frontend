@@ -20,7 +20,7 @@
 <app-info-container *ngIf="loggedUser.role != 'mentor'"
                     [userType]="loggedUser.role"
                     [number]="membersList.length"
-                    [teamGrade]="teamGrade"
+                    [teamGrade]="loggedUserTeam.grade"
 ></app-info-container>
 <!--info-container ends-->
 
@@ -33,6 +33,7 @@
 <div class="teams-container" *ngIf="loggedUser.role === 'mentor'">
   <app-team-card *ngFor="let team of teamsActivity"
                  [team]="team"
+                 [activity]="activityName"
   ></app-team-card>
 </div>
 <!--main-content ends-->

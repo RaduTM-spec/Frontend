@@ -1,1 +1,2 @@
-<a [routerLink]="['/dashboard', activity.name]" routerLinkActive="active">{{activity.name}}</a>
+<a *ngIf="userRole == 'mentor'" [routerLink]="['/activities', activity.name, 'teams']" routerLinkActive="active">{{activity.name}}</a>
+<a *ngIf="userRole != 'mentor'" [routerLink]="['/activities', activity.name]" routerLinkActive="active">{{activity.name}}</a>
