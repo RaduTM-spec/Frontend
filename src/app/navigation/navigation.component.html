@@ -10,8 +10,8 @@
 
   </main>
   <div class="button-container">
-    <button type="button" class="button" (click)="showJoinActivityModal()">+ Join</button>
-    <button type="button" class="button" (click)="showCreateActivityModal()">+ Create</button>
+    <button *ngIf="userRole != 'MEMBER'" type="button" class="button" (click)="showJoinActivityModal()">+ Join</button>
+    <button *ngIf="userRole == 'mentor'" type="button" class="button" (click)="showCreateActivityModal()">+ Create</button>
   </div>
   <footer>
 

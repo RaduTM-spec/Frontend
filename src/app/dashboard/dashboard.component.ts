@@ -23,11 +23,10 @@ export class DashboardComponent implements OnInit{
   activityName:string = '';
   activity: Activity | undefined;
   loggedUser: User;
-
+  loggedUserTeam: Team;
 
   //members variables;
   membersList: User[] = [];
-  loggedUserTeam: Team;
 
   // mentor variables
   teamsList: Team[] = [];
