@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import {Component, Input} from '@angular/core';
+import {Assessment} from "../../models/assessment";
 
 @Component({
   selector: 'app-session-card',
@@ -6,5 +7,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./session-card.component.css']
 })
 export class SessionCardComponent {
+  @Input() assessment: Assessment | undefined;
 
 }
