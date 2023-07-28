@@ -1,3 +1,15 @@
+.team-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  margin-bottom: 20px;
+  background-color: var(--background-color);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+  border-radius: 8px;
+  padding: 10px;
+}
+
 .buttons-container {
   display: flex;
   align-items: center;

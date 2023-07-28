@@ -1,6 +1,4 @@
-import {Component} from '@angular/core';
-import { Renderer2 } from '@angular/core';
-import { ElementRef } from '@angular/core';
+import {Component, ElementRef, OnInit, Renderer2} from '@angular/core';
 import {Activity} from "../models/activity";
 import {ActivityService} from "../services/activity.service";
 import {Router} from "@angular/router";
@@ -16,28 +14,42 @@ declare var $: any; // Declared the $ symbol from jQuery
   templateUrl: './navigation.component.html',
   styleUrls: ['./navigation.component.css']
 })
-export class NavigationComponent {
+export class NavigationComponent implements OnInit{
 
   activitiesList: Activity[] = [];
-  user: User | undefined;
+  user: User;
   team: Team | undefined;
-  // activitiesService: ActivityService = inject(ActivityService);
 
   joinActivityModalRef: ElementRef;
   createActivityModalRef: ElementRef;
 
   userRole: string = '';
+
+  getTeam(){
+    return this.teamService.getUserTeam(this.user.id);
+  }
   constructor(private router: Router, private activitiesService: ActivityService, private userService:UserService, private teamService:TeamService,private renderer: Renderer2, private elementRef: ElementRef) {
     this.joinActivityModalRef = this.elementRef;
     this.createActivityModalRef = this.elementRef;
+
     this.user = userService.getLoggedUser();
+    // this.activitiesList = this.activitiesService.getAllActivities();
+    // if(this.user.role != 'mentor'){
+    //   this.team = this.getTeam();
+    //   this.activitiesList = this.activitiesList.filter((activity) => {return this.team?.activities.includes(activity.id);});
+    // }
+    //  this.userRole = this.user.role || '';
+
+  }
+
+  ngOnInit() {
+    // this.user = this.userService.getLoggedUser();
     this.activitiesList = this.activitiesService.getAllActivities();
     if(this.user.role != 'mentor'){
-      this.team = this.teamService.getUserTeam(this.user.id);
+      this.team = this.getTeam();
       this.activitiesList = this.activitiesList.filter((activity) => {return this.team?.activities.includes(activity.id);});
     }
-     this.userRole = this.user.role || '';
-
+    this.userRole = this.user.role || '';
   }
 
 

@@ -7,22 +7,25 @@ import {UserService} from "../../services/user.service";
 
 @Component({
   selector: 'app-mentor-view-team',
-  templateUrl: './mentor-view-team.component.html',
-  styleUrls: ['./mentor-view-team.component.css']
+  templateUrl: './view-team.component.html',
+  styleUrls: ['./view-team.component.css']
 })
-export class MentorViewTeamComponent{
+export class ViewTeamComponent{
 
-  // route: ActivatedRoute = inject(ActivatedRoute);
-  // teamsService: TeamService = inject(TeamService);
+  loggedUser: User;
+
   team: Team | undefined;
   teamGrade: number = 0;
 
-  // usersService: UserService = inject(UserService);
   usersList: User[] = [];
   members: User[] = [];
-  constructor(private route: ActivatedRoute, private teamsService: TeamService, private usersService: UserService) {
-    const teamName:string = this.route.snapshot.params['name'];
+  constructor(private activatedRoute: ActivatedRoute, private teamsService: TeamService, private usersService: UserService) {
+    const teamName:string = this.activatedRoute.snapshot.queryParams['teamName'];
     this.team = this.teamsService.getTeamByName(teamName);
+
+    // const userName:string = this.activatedRoute.snapshot.queryParams['userName'];
+    this.loggedUser = this.usersService.getLoggedUser();
+
     this.teamGrade = this.teamsService.getTeamGrade(this.team.id);
     this.usersList = this.usersService.getAllUsers();
     this.members = this.usersList.filter((user) => { return this.team?.members.includes(user.id);});

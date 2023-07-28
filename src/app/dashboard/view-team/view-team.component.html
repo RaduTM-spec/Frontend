@@ -1,0 +1,11 @@
+
+<app-info-container
+                    [userType]="loggedUser.role"
+                    [number]="members.length"
+                    [teamGrade]="teamGrade"
+></app-info-container>
+
+<app-members-table
+                   [userType]="loggedUser.role"
+                   [usersList]="members"
+></app-members-table>

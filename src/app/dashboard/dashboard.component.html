@@ -1,42 +1,20 @@
-<div class="team-header">
-  <div class="header-content">
-    <div *ngIf="loggedUser.role === 'mentor'">
-      <h3 class="header-title">{{activity?.name}}</h3>
-    </div>
-
-    <div *ngIf="loggedUser.role != 'mentor'">
-      <h3 class="header-title">TEAM {{loggedUserTeam.name}} Members</h3>
-      <app-progress-bar [grade]="loggedUserTeam.grade"></app-progress-bar>
-    </div>
-  </div>
-</div>
-
-
 <!--info-container starts-->
 <app-info-container *ngIf="loggedUser.role == 'mentor'"
                     [userType]="loggedUser.role"
                     [number]="teamsActivity.length"
 ></app-info-container>
-<app-info-container *ngIf="loggedUser.role != 'mentor'"
-                    [userType]="loggedUser.role"
-                    [number]="membersList.length"
-                    [teamGrade]="loggedUserTeam.grade"
-></app-info-container>
 <!--info-container ends-->
 
-
 <!--main-content starts-->
-<app-members-table *ngIf="loggedUser.role != 'mentor'"
-                   [userType]="loggedUser.role"
-                   [usersList]="membersList"
-></app-members-table>
 <div class="teams-container" *ngIf="loggedUser.role === 'mentor'">
   <app-team-card *ngFor="let team of teamsActivity"
                  [team]="team"
                  [activity]="activityName"
+                 [loggedUser]="loggedUser"
   ></app-team-card>
 </div>
 <!--main-content ends-->
+
 
 
 <!-- Join Activity Modal -->

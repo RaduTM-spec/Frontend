@@ -37,9 +37,8 @@ export class DashboardComponent implements OnInit{
   joinActivityModalRef: ElementRef;
   createActivityModalRef: ElementRef;
 
-  constructor(private route: ActivatedRoute, private activitiesService: ActivityService,private  teamsService: TeamService,private  usersService: UserService, private renderer: Renderer2, private elementRef: ElementRef) {
+  constructor(private activatedRoute: ActivatedRoute, private activitiesService: ActivityService,private  teamsService: TeamService,private  usersService: UserService, private renderer: Renderer2, private elementRef: ElementRef) {
 
-    this.activityName = this.route.snapshot.params['name'];
     this.activity = this.activitiesService.getActivityByName(this.activityName);
     this.loggedUser = usersService.getLoggedUser();
     this.loggedUserTeam = this.teamsService.getUserTeam(this.loggedUser.id);
@@ -55,8 +54,8 @@ export class DashboardComponent implements OnInit{
   }
 
   ngOnInit(){
-    this.route.paramMap.subscribe((params) => {
-        this.activityName = params.get('name') || '';
+    this.activatedRoute.queryParamMap.subscribe((params) => {
+        this.activityName = params.get('activityName') || '';
         this.activity = this.activitiesService.getActivityByName(this.activityName);
         this.loggedUser = this.usersService.getLoggedUser();
         this.loggedUserTeam = this.teamsService.getUserTeam(this.loggedUser.id);
@@ -72,5 +71,9 @@ export class DashboardComponent implements OnInit{
     })
   }
   teamGrade: number = 7;
+
+  exportSituation(){
+
+  }
 
 }

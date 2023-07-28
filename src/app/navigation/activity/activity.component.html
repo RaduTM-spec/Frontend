@@ -1,2 +1,2 @@
-<a *ngIf="userRole == 'mentor'" [routerLink]="['/activities', activity.name, 'teams']" routerLinkActive="active">{{activity.name}}</a>
-<a *ngIf="userRole != 'mentor'" [routerLink]="['/activities', activity.name]" routerLinkActive="active">{{activity.name}}</a>
+<a *ngIf="user.role == 'mentor'" [routerLink]="['/activity-teams']" routerLinkActive="active" [queryParams]="{userName: user.username, activityName: activity.name}">{{activity.name}}</a>
+<a *ngIf="user.role != 'mentor'" [routerLink]="['/team-details']" routerLinkActive="active" [queryParams]="{userName: user.username, activityName: activity.name, teamName: team.name}">{{activity.name}}</a>

@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { MentorViewTeamComponent } from './mentor-view-team.component';
+import { ViewTeamComponent } from './view-team.component';
 
 describe('MentorViewTeamComponent', () => {
-  let component: MentorViewTeamComponent;
-  let fixture: ComponentFixture<MentorViewTeamComponent>;
+  let component: ViewTeamComponent;
+  let fixture: ComponentFixture<ViewTeamComponent>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [MentorViewTeamComponent]
+      declarations: [ViewTeamComponent]
     });
-    fixture = TestBed.createComponent(MentorViewTeamComponent);
+    fixture = TestBed.createComponent(ViewTeamComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

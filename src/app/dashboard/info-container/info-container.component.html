@@ -1,5 +1,14 @@
+<div class="team-header">
+  <div class="header-content">
+    <div>
+      <h3 class="header-title" *ngIf="getPath()">{{activityName}}</h3>
+      <h3 class="header-title" *ngIf="!getPath()">{{teamName}}</h3>
+    </div>
+  </div>
+</div>
+
 <div class="buttons-container">
-  <div class="team-info" *ngIf="userType != 'mentor'">
+  <div class="team-info" *ngIf="!getPath()">
     <div class="team-grade" [ngClass]="{
               'badge-grade-green': teamGrade >= 8.0,
               'badge-grade-orange': teamGrade < 8.0 && teamGrade >= 5.0,
@@ -13,7 +22,7 @@
       <span class="value">{{ number }}</span>
     </div>
   </div>
-  <div class="team-info" *ngIf="userType == 'mentor'">
+  <div class="team-info" *ngIf="getPath()">
     <div class="team-grade">
       <span class="label">Number of teams:</span>
       <span class="value">{{ number }}</span>

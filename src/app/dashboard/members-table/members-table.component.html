@@ -1,4 +1,4 @@
-<div class="team-members-table" *ngIf="userType != 'mentor'">
+<div class="team-members-table">
   <table class="table table-striped">
     <thead>
     <tr>
@@ -7,7 +7,7 @@
       <th scope="col">Name</th>
       <th scope="col">Role</th>
       <th scope="col">Attendances</th>
-      <th *ngIf="userType != 'member'" scope="col">Grade</th>
+      <th *ngIf="userType == 'mentor'" scope="col">Grade</th>
     </tr>
     </thead>
     <tbody>
@@ -23,7 +23,7 @@
       <td>
         <span class="badge-attendance">{{ user.attendances }} / 20</span>
       </td>
-      <td *ngIf="userType != 'member'">
+      <td *ngIf="userType == 'mentor'">
             <span [ngClass]="{
               'badge-grade-green': user.grade >= 8.0,
               'badge-grade-orange': user.grade < 8.0 && user.grade >= 5.0,

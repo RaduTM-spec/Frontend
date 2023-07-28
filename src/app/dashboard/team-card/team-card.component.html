@@ -1,4 +1,4 @@
-<div class="team-card-container" [routerLink]="['/activities', activity ,'teams' ,team.name]">
+<div class="team-card-container" [routerLink]="['/team-details']" [queryParams]="{userName: loggedUser.username, activityName: activity, teamName: team.name}">
   <div class="team-card">
     <div class="team-card-header">
       <h3>{{ team.name }}</h3>

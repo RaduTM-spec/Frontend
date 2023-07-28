@@ -3,11 +3,10 @@
   <main class="sidenav">
     <app-activity *ngFor="let activity of activitiesList"
                   [activity]="activity"
-                  [userRole]="userRole"
+                  [user]="user"
+                  [team]="getTeam()"
     >
     </app-activity>
-
-
   </main>
   <div class="button-container">
     <button *ngIf="userRole != 'MEMBER'" type="button" class="button" (click)="showJoinActivityModal()">+ Join</button>
@@ -15,15 +14,15 @@
   </div>
   <footer>
 
-    <div class="user-box" [routerLink]="['/', user?.username]" routerLinkActive="active">
-      <img class="user-profile-picture" src="{{user?.imageUrl}}" alt="User Profile">
+    <div class="user-box" [routerLink]="['/user-assessments']" routerLinkActive="active" [queryParams]="{userName: user.username}">
+      <img class="user-profile-picture" src="{{user.imageUrl}}" alt="User Profile">
 <!--      src="https://robohash.org/profilepic.jpeg?bgset=bg1" -->
       <div class="user-details">
         <div class="user-profile">
-          {{user?.username}}
+          {{user.username}}
         </div>
         <div class="username">
-          {{user?.role}}
+          {{user.role}}
         </div>
       </div>
     </div>
