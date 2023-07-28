@@ -2,12 +2,12 @@
   <div class="header">
     <div class="title">{{assessment?.title}}</div>
     <div class="info">
-<!--      <div class="date">Date: {{assessment?.activity.date | date:'dd/MM'}}</div>-->
+<!--      <div class="date">Date: {{assessment?.activity?.deadline | date:'dd/MM'}}</div>-->
       <div class="grade">Grade: {{assessment?.grade}}/10</div>
     </div>
   </div>
   <div class="content">
-    <div class="name">{{assessment?.mentor.username}}</div>
+    <div class="name">{{assessment?.mentor?.username}}</div>
     <div class="comment">{{assessment?.comment}}</div>
   </div>
 </div>

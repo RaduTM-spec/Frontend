@@ -34,16 +34,21 @@ export class UserBoxComponent implements OnInit{
 
   ngOnInit(): void {
     this.loggedUser = this.userService.getLoggedUser();
-    this.userAssessments$ = this.assessmentService.getUserAssessments(this.loggedUser.username) // Call the method to get user assessments
-      .pipe(
-        tap((assessments: Assessment[]) => {
-          console.log(' > Received user assessments:', assessments);
-        }),
-        catchError((error) => {
-          console.error('Error fetching user assessments:', error);
-          return [];
-        })
-      );
+
+    if (this.loggedUser.role != "mentor") {
+      this.loggedUserTeam = this.teamService.getUserTeam(this.loggedUser.id);
+      this.userAssessments$ = this.assessmentService.getUserAssessments(this.loggedUser.username) // Call the method to get user assessments
+        .pipe(
+          tap((assessments: Assessment[]) => {
+            console.log(' > Received user assessments:', assessments);
+          }),
+          catchError((error) => {
+            console.error('Error fetching user assessments:', error);
+            return [];
+          })
+        );
+    }
+
   }
 
 
