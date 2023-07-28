@@ -1,7 +1,7 @@
 <div class="team-header">
 
   <div class="header-content">
-    <h3 class="header-title">{{user?.username}}`S SITUATION</h3>
+    <h3 class="header-title">{{loggedUser?.username}}`S SITUATION</h3>
   </div>
 
 </div>
@@ -10,30 +10,33 @@
   <div class="profile-header">
     <div class="user-details-card">
       <div class="user-picture-container">
-        <img class="user-picture" src="{{user?.imageUrl}}" alt="User Picture">
+        <img class="user-picture" src="{{loggedUser?.imageUrl}}" alt="User Picture">
         <div class="change-photo">Change Photo</div>
       </div>
       <div class="user-details">
-        <h2 class="user-name">{{user?.username}}</h2>
-        <p class="team-name">Team: {{team?.name}}</p>
+        <h2 class="user-name">{{loggedUser?.username}}</h2>
+<!--        <p class="team-name">Team: {{loggedUser?.name}}</p>-->
         <p class="email">Email: random.email@gmail.com</p>
-        <p class="user-role">Role: {{user?.role}}</p>
-        <p class="total-activities">Activities: {{team?.activities}}</p>
-        <p class="total-attendances" *ngIf="user?.role != 'mentor'">Attendances: {{user?.attendances}}</p>
-        <p class="session-assessments" *ngIf="user?.role != 'mentor'">Session Assessments: 10</p>
+        <p class="user-role">Role: {{loggedUser?.role}}</p>
+<!--        <p class="total-activities">Activities: {{loggedUser?.activities}}</p>-->
+        <p class="total-attendances" *ngIf="loggedUser?.role != 'mentor'">Attendances: {{loggedUser?.attendances}}</p>
+        <p class="session-assessments" *ngIf="loggedUser?.role != 'mentor'">Session Assessments: 10</p>
       </div>
     </div>
   </div>
 
-  <div class="sessions-container" *ngIf="user?.role != 'mentor'">
-    <app-session-card></app-session-card>
-    <app-session-card></app-session-card>
-    <app-session-card></app-session-card>
-    <app-session-card></app-session-card>
-    <app-session-card></app-session-card>
-    <app-session-card></app-session-card>
-    <app-session-card></app-session-card>
-    <app-session-card></app-session-card>
-    <app-session-card></app-session-card>
-  </div>
+  <ng-container *ngIf="loggedUser?.role != 'mentor'">
+
+    <div class="sessions-container" *ngIf="userAssessments$ | async as assessments">
+<!--      <app-session-card></app-session-card>-->
+<!--      <app-session-card></app-session-card>-->
+<!--      <app-session-card></app-session-card>-->
+
+        <app-session-card *ngFor="let assessment of assessments" [assessment]="assessment"></app-session-card>
+
+    </div>
+
+
+  </ng-container>
+
 </div>

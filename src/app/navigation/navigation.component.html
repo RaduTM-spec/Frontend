@@ -1,5 +1,6 @@
 <div id="sidepanel" class="side-panel" style="width: 250px;">
   <header class="sidenav-header">Activities</header>
+
   <main class="sidenav">
     <app-activity *ngFor="let activity of activitiesList"
                   [activity]="activity"
@@ -8,6 +9,7 @@
     >
     </app-activity>
   </main>
+
   <div class="button-container">
     <button *ngIf="userRole != 'MEMBER'" type="button" class="button" (click)="showJoinActivityModal()">+ Join</button>
     <button *ngIf="userRole == 'mentor'" type="button" class="button" (click)="showCreateActivityModal()">+ Create</button>

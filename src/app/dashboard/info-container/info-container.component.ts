@@ -1,7 +1,8 @@
-import {Component, ElementRef, Input, OnInit, Renderer2, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, ElementRef, Input, OnInit, Renderer2, ViewChild} from '@angular/core';
 import { User } from "../../models/user";
 import { UserService } from "../../services/user.service";
-import {ActivatedRoute} from "@angular/router"; // Import the UserService
+import {ActivatedRoute} from "@angular/router";
+import {AssessmentModalComponent} from "../../assessment-modal/assessment-modal.component"; // Import the UserService
 
 declare var $: any;
 
@@ -10,7 +11,7 @@ declare var $: any;
   templateUrl: './info-container.component.html',
   styleUrls: ['./info-container.component.css']
 })
-export class InfoContainerComponent implements OnInit{
+export class InfoContainerComponent implements OnInit, AfterViewInit{
   @Input() userType: string = '';
   @Input() teamGrade: number = 0;
   @Input() number: number = 0;
@@ -21,14 +22,11 @@ export class InfoContainerComponent implements OnInit{
 
   exportSituation() {
   }
-
-  @ViewChild('assessmentModalRef') assessmentModalRef!: ElementRef; // removed { static: true } idk if it helps or not
+  @ViewChild(AssessmentModalComponent, { static: false }) assessmentModalComponent!: AssessmentModalComponent;
 
   constructor(private activatedRoute: ActivatedRoute, private renderer: Renderer2, private userService: UserService) {
-    console.log("assessment modal constructed!")
+    console.log("assessment modal constructed!");
     this.teamMembers = userService.getAllUsers(); // Fetch the team members using UserService
-
-
   }
 
   ngOnInit() {
@@ -38,22 +36,27 @@ export class InfoContainerComponent implements OnInit{
     })
   }
 
-
   openAssessmentModal(): void {
-    const assessmentModal = this.assessmentModalRef.nativeElement.querySelector('#assessmentModal');
-    console.log("in open assessment modal!")
-    $(assessmentModal).modal('show');
+    // we need to pass the team members array to the assessment modal
+    if (this.assessmentModalComponent) {
+      this.assessmentModalComponent.teamUsers = this.teamMembers;
+    }
 
-    this.renderer.listen(assessmentModal, 'click', (event) => {
-      if (
-        event.target === assessmentModal ||
-        event.target.classList.contains('close') ||
-        event.target.classList.contains('btn') &&
-        event.target.classList.contains('btn-secondary')
-      ) {
-        $(assessmentModal).modal('hide');
-      }
-    });
+    const assessmentModal = document.getElementById('assessmentModal');
+    console.log("in open assessment modal!");
+    if (assessmentModal) {
+      $(assessmentModal).modal('show');
+
+      this.renderer.listen(assessmentModal, 'click', (event) => {
+        if (
+          event.target === assessmentModal ||
+          event.target.classList.contains('close') ||
+          (event.target.classList.contains('btn') && event.target.classList.contains('btn-secondary'))
+        ) {
+          $(assessmentModal).modal('hide');
+        }
+      });
+    }
   }
 
   handleSaveAssessment(teamUsers: User[]) {
@@ -62,5 +65,8 @@ export class InfoContainerComponent implements OnInit{
 
   getPath(){
     return window.location.pathname == '/activity-teams';
+  }
+
+  ngAfterViewInit(): void {
   }
 }

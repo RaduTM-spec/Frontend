@@ -79,11 +79,11 @@ export class UserService {
     }];
 
   protected loggedUser: User = {
-    id: 8,
-    username: "daniel_black",
-    role: "MEMBER",
-    attendances: 11,
-    grade: 8.5,
+    id: 9,
+    username: "vasile",
+    role: "mentor",
+    attendances: 20,
+    grade: 10,
     imageUrl: "https://robohash.org/hehehe?bgset=bg1"
   }
 
