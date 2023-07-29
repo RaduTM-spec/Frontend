@@ -1,53 +1,56 @@
+// app-assessment-modal.component.ts
 
-import {Component, EventEmitter, Input, Output} from '@angular/core';
-import {HttpClient} from "@angular/common/http";
-import {User} from "../models/user";
+import { Component, Input } from '@angular/core';
+import { User } from '../models/user';
+import { Assessment } from '../models/assessment';
+import { AssessmentService } from '../services/assessment.service';
 import {Activity} from "../models/activity";
-import {Assessment} from "../models/assessment";
-
 
 @Component({
   selector: 'app-assessment-modal',
   templateUrl: './assessment-modal.component.html',
-  styleUrls: ['./assessment-modal.component.css']
+  styleUrls: ['./assessment-modal.component.css'],
 })
 export class AssessmentModalComponent {
+  @Input() teamUsers: User[] = [];
+  assessments: Assessment[] = [];
+  private activity: Activity = {
+    id: 1,
+    name: "Activity1"
+  };
+  private mentor: User = {
+    id: 9,
+    username: "vasile",
+    role: "mentor",
+    attendances: 20,
+    grade: 10,
+    imageUrl: "https://robohash.org/hehehe?bgset=bg1"
+  };
 
-  // @ts-ignore
-  @Input() teamUsers: User[];
-  // @Output() saveAssessmentEvent = new EventEmitter<Assessment[]>(); // Update the type to Assessment[]
-
-  // assessments: Assessment[] = [];
-  //
-  // // @ts-ignore
-  // mentor: User;
-  //
-  // // @ts-ignore
-  // activity: Activity;
-
-  constructor(private http: HttpClient) {
-    console.log("assessment modal constructed!");
-  }
-
-  // saveAssessment() {
-  //   // Create an assessment for each team user and push it to the assessments array
-  //   this.assessments = this.teamUsers.map(user => ({
-  //     id: 0, // You can assign an appropriate value for the assessment ID or handle it on the backend
-  //     title: "Assessment Title", // Provide an appropriate title for the assessment or handle it as needed
-  //     activity: this.activity,
-  //     mentor: this.mentor,
-  //     user: user,
-  //     grade: user.grade,
-  //     attended: true,
-  //     comment: ""
-  //   }));
-  //
-  //   // Emit the assessments array to the parent component to send it to the backend
-  //   this.saveAssessmentEvent.emit(this.assessments);
-  // }
-
+  constructor(private assessmentService: AssessmentService) {}
 
   markAllAsAttended() {
-    this.teamUsers.forEach(user => (user.attendances += 1));
+    this.teamUsers.forEach((user) => (user.attendances += 1));
+  }
+
+  saveAssessments() {
+    this.assessments = this.teamUsers.map((user : User) : Assessment => ({
+      id: user.id,
+      title: 'Team Assessment',
+      activity: this.activity,
+      mentor: this.mentor,
+      user: user,
+      grade: user.grade,
+      attended: true,
+      comment: 1,
+    }));
+
+    // Send the assessments to the backend
+    // this.assessmentService
+    //   .saveTeamAssessments(this.assessments)
+    //   .subscribe((response) => {
+    //     // Handle the response from the backend if needed
+    //     console.log('Assessments saved successfully!');
+    //   });
   }
 }

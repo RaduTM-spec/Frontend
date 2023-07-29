@@ -5,7 +5,7 @@ import { TeamService } from "../services/team.service";
 import { Team } from "../models/team";
 import { ActivatedRoute } from "@angular/router";
 import { Assessment } from "../models/assessment";
-import { AssessmentService } from "../services/assessment.service";
+import { AssessmentService} from "../services/assessment.service";
 import { catchError, Observable, tap } from "rxjs";
 
 @Component({
@@ -47,7 +47,7 @@ export class UserBoxComponent implements OnInit {
           })
         );
     } else {
-      this.appState = 'APP_LOADED'; // If user is a mentor, set app state to loaded
+      this.appState = 'APP_LOADED'; // If the user is a mentor, we set app state to loaded
     }
   }
 }
