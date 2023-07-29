@@ -111,3 +111,17 @@
   outline: none;
   box-shadow: none;
 }
+
+/* Styles for the grade input */
+.form-control.grade-input {
+  max-width: 80px;
+}
+
+/* Styles for the comment textarea */
+.form-control.comment-input {
+  resize: vertical;
+}
+
+.comment-input::placeholder {
+  color: #999;
+}

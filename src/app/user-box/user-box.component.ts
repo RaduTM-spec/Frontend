@@ -31,7 +31,7 @@ export class UserBoxComponent implements OnInit {
 
     if (this.loggedUser.role != "mentor") {
 
-      this.appState = 'APP_ERROR'
+      // this.appState = 'APP_ERROR'
 
       this.loggedUserTeam = this.teamService.getUserTeam(this.loggedUser.id);
       this.userAssessments$ = this.assessmentService.getUserAssessments(this.loggedUser.username)
@@ -41,7 +41,7 @@ export class UserBoxComponent implements OnInit {
             this.appState = assessments.length > 0 ? 'APP_LOADED' : 'APP_ERROR';
           }),
           catchError((error) => {
-            console.error('Error fetching user assessments:', error);
+            console.log('Error fetching user assessments:', error);
             this.appState = 'APP_ERROR';
             return [];
           })

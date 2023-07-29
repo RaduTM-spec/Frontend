@@ -9,5 +9,5 @@ export interface Assessment {
   user: User
   grade: number
   attended: boolean
-  comment: number
+  comment: string
 }
