@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import {UserBoxComponent} from "./user-box/user-box.component";
-import {DashboardComponent} from "./dashboard/dashboard.component";
-import {ViewTeamComponent} from "./dashboard/view-team/view-team.component";
+import { UserBoxComponent } from "./user-box/user-box.component";
+import { DashboardComponent } from "./dashboard/dashboard.component";
+import { ViewTeamComponent } from "./dashboard/view-team/view-team.component";
 
 const routes: Routes = [
   {path:'user-assessments', component:UserBoxComponent},
