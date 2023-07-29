@@ -8,6 +8,7 @@ import {UserService} from "../services/user.service";
 import {ActivatedRoute} from "@angular/router";
 import {ActivityService} from "../services/activity.service";
 import {Activity} from "../models/activity";
+import {catchError, Observable, tap} from "rxjs";
 
 
 // declare var $: any; // Declared the $ symbol from jQuery
@@ -25,6 +26,8 @@ export class DashboardComponent implements OnInit{
   loggedUser: User;
   loggedUserTeam: Team;
 
+  activityTeams$: Observable<Team[]> | undefined;
+
   //members variables;
   membersList: User[] = [];
 
@@ -37,13 +40,13 @@ export class DashboardComponent implements OnInit{
   joinActivityModalRef: ElementRef;
   createActivityModalRef: ElementRef;
 
-  constructor(private activatedRoute: ActivatedRoute, private activitiesService: ActivityService,private  teamsService: TeamService,private  usersService: UserService, private renderer: Renderer2, private elementRef: ElementRef) {
+  constructor(private activatedRoute: ActivatedRoute, private activitiesService: ActivityService,private  teamService: TeamService,private  usersService: UserService, private renderer: Renderer2, private elementRef: ElementRef) {
 
     this.activity = this.activitiesService.getActivityByName(this.activityName);
     this.loggedUser = usersService.getLoggedUser();
-    this.loggedUserTeam = this.teamsService.getUserTeam(this.loggedUser.id);
+    this.loggedUserTeam = this.teamService.getUserTeam(this.loggedUser.id);
 
-    this.teamsList = this.teamsService.getAllTeams();
+    this.teamsList = this.teamService.getAllTeams();
     this.usersList = this.usersService.getAllUsers();
     this.teamsActivity = this.teamsList.filter((team) => { return team.activities.includes(<number>this.activity?.id);});
 
@@ -58,9 +61,9 @@ export class DashboardComponent implements OnInit{
         this.activityName = params.get('activityName') || '';
         this.activity = this.activitiesService.getActivityByName(this.activityName);
         this.loggedUser = this.usersService.getLoggedUser();
-        this.loggedUserTeam = this.teamsService.getUserTeam(this.loggedUser.id);
+        this.loggedUserTeam = this.teamService.getUserTeam(this.loggedUser.id);
 
-        this.teamsList = this.teamsService.getAllTeams();
+        this.teamsList = this.teamService.getAllTeams();
         this.usersList = this.usersService.getAllUsers();
         this.teamsActivity = this.teamsList.filter((team) => { return team.activities.includes(<number>this.activity?.id);});
 
@@ -68,7 +71,20 @@ export class DashboardComponent implements OnInit{
 
         this.joinActivityModalRef = this.elementRef;
         this.createActivityModalRef = this.elementRef;
+
+
     })
+
+    this.activityTeams$ = this.teamService.getActivityTeams(this.loggedUser.username, this.activityName)
+      .pipe(
+        tap((teams: Team[]) => {
+          console.log(' > Received activity teams:', teams);
+        }),
+        catchError((error) => {
+          console.error('Error fetching activity teams:', error);
+          return [];
+        })
+      );
   }
   teamGrade: number = 7;
 

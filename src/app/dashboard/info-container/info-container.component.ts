@@ -1,8 +1,11 @@
-import {AfterViewInit, Component, ElementRef, Input, OnInit, Renderer2, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, Input, OnInit, Renderer2, ViewChild} from '@angular/core';
 import { User } from "../../models/user";
 import { UserService } from "../../services/user.service";
 import {ActivatedRoute} from "@angular/router";
-import {AssessmentModalComponent} from "../../assessment-modal/assessment-modal.component"; // Import the UserService
+import {AssessmentModalComponent} from "../../assessment-modal/assessment-modal.component";
+import {catchError, Observable, tap} from "rxjs";
+import {TeamDetails} from "../../models/team-details";
+import {TeamService} from "../../services/team.service";
 
 declare var $: any;
 
@@ -18,22 +21,38 @@ export class InfoContainerComponent implements OnInit, AfterViewInit{
   activityName: string = '';
   teamName: string = '';
 
+  loggedUser: User | undefined;
+
   teamMembers: User[];
+
+  teamDetails$: Observable<TeamDetails> | undefined;
 
   exportSituation() {
   }
   @ViewChild(AssessmentModalComponent, { static: false }) assessmentModalComponent!: AssessmentModalComponent;
 
-  constructor(private activatedRoute: ActivatedRoute, private renderer: Renderer2, private userService: UserService) {
+  constructor(private activatedRoute: ActivatedRoute, private userService: UserService, private teamService: TeamService, private renderer: Renderer2) {
     console.log("assessment modal constructed!");
     this.teamMembers = userService.getAllUsers(); // Fetch the team members using UserService
   }
 
   ngOnInit() {
+    this.loggedUser = this.userService.getLoggedUser();
     this.activatedRoute.queryParamMap.subscribe((params) => {
       this.activityName = params.get('activityName') || '';
       this.teamName = params.get('teamName') || '';
     })
+
+    this.teamDetails$ = this.teamService.getTeamDetailsFromAnActivity(this.loggedUser?.username, this.activityName, this.teamName)
+      .pipe(
+        tap((teamDetails: TeamDetails) => {
+          console.log(' > Received team details:', teamDetails);
+        }),
+        catchError((error) => {
+          console.error('Error fetching team details:', error);
+          return [];
+        })
+      );
   }
 
   openAssessmentModal(): void {

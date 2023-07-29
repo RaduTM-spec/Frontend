@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import {Activity} from "../models/activity";
+import {HttpClient} from "@angular/common/http";
+import {Observable, of} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
@@ -51,5 +53,31 @@ export class ActivityService {
     // return this.teamsList.find(team => team.name === name);
   }
 
+  private URL_PATH = '';
 
+  constructor(private http: HttpClient) {}
+
+  getEnrolledActivities(userName: string): Observable<Activity[]> {
+    const ACTIVITIES_URL = `${this.URL_PATH}/activities?userName=${userName}`;
+    return this.http.get<Activity[]>(ACTIVITIES_URL);
+  }
+
+  // test
+  get(): Observable<Activity[]>{
+    return of([
+      {
+        id: 1,
+        name: 'Activity1',
+      },
+      {
+        id: 2,
+        name: 'Activity2',
+      },
+      {
+        id: 3,
+        name: 'Activity3',
+
+      }
+    ])
+  }
 }

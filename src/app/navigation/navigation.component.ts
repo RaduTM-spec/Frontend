@@ -1,11 +1,12 @@
 import {Component, ElementRef, OnInit, Renderer2} from '@angular/core';
 import {Activity} from "../models/activity";
 import {ActivityService} from "../services/activity.service";
-import {Router} from "@angular/router";
+import {ActivatedRoute} from "@angular/router";
 import {User} from "../models/user";
 import {UserService} from "../services/user.service";
 import {TeamService} from "../services/team.service";
 import {Team} from "../models/team";
+import {catchError, Observable, tap} from "rxjs";
 
 declare var $: any; // Declared the $ symbol from jQuery
 
@@ -19,37 +20,46 @@ export class NavigationComponent implements OnInit{
   activitiesList: Activity[] = [];
   user: User;
   team: Team | undefined;
+  userRole: string = '';
+
+  enrolledActivities$: Observable<Activity[]> | undefined;
+
 
   joinActivityModalRef: ElementRef;
   createActivityModalRef: ElementRef;
 
-  userRole: string = '';
-
   getTeam(){
     return this.teamService.getUserTeam(this.user.id);
   }
-  constructor(private router: Router, private activitiesService: ActivityService, private userService:UserService, private teamService:TeamService,private renderer: Renderer2, private elementRef: ElementRef) {
+  constructor(private activatedRoute: ActivatedRoute, private activityService: ActivityService, private userService:UserService, private teamService:TeamService,private renderer: Renderer2, private elementRef: ElementRef) {
     this.joinActivityModalRef = this.elementRef;
     this.createActivityModalRef = this.elementRef;
 
     this.user = userService.getLoggedUser();
-    // this.activitiesList = this.activitiesService.getAllActivities();
-    // if(this.user.role != 'mentor'){
-    //   this.team = this.getTeam();
-    //   this.activitiesList = this.activitiesList.filter((activity) => {return this.team?.activities.includes(activity.id);});
-    // }
-    //  this.userRole = this.user.role || '';
 
   }
 
   ngOnInit() {
     // this.user = this.userService.getLoggedUser();
-    this.activitiesList = this.activitiesService.getAllActivities();
+    this.activitiesList = this.activityService.getAllActivities();
     if(this.user.role != 'mentor'){
       this.team = this.getTeam();
       this.activitiesList = this.activitiesList.filter((activity) => {return this.team?.activities.includes(activity.id);});
     }
     this.userRole = this.user.role || '';
+
+    this.enrolledActivities$ = this.activityService.getEnrolledActivities(this.user.username)
+      .pipe(
+        tap((activities: Activity[]) => {
+          console.log(' > Received enrolled activity:', activities);
+        }),
+        catchError((error) => {
+          console.error('Error fetching enrolled activities:', error);
+          return [];
+        })
+
+      );
+    // this.enrolledActivities$ = this.activityService.get();
   }
 
 
@@ -86,8 +96,6 @@ export class NavigationComponent implements OnInit{
       }
     });
   }
-
-
   closeModalOnOutsideClick() {
     const modalBackdrop = document.getElementsByClassName('modal-backdrop');
     if (modalBackdrop && modalBackdrop.length > 0) {

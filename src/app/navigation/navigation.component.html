@@ -1,7 +1,8 @@
 <div id="sidepanel" class="side-panel" style="width: 250px;">
   <header class="sidenav-header">Activities</header>
 
-  <main class="sidenav">
+  <!--  *ngIf="enrolledActivities$ | async as activities"-->
+  <main class="sidenav" >
     <app-activity *ngFor="let activity of activitiesList"
                   [activity]="activity"
                   [user]="user"
