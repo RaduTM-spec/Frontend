@@ -1,23 +1,28 @@
 // app-assessment-modal.component.ts
 
-import { Component, Input } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import { User } from '../models/user';
 import { Assessment } from '../models/assessment';
 import { AssessmentService } from '../services/assessment.service';
 import {Activity} from "../models/activity";
+import {catchError, of} from "rxjs";
+import {UserService} from "../services/user.service";
 
 @Component({
   selector: 'app-assessment-modal',
   templateUrl: './assessment-modal.component.html',
   styleUrls: ['./assessment-modal.component.css'],
 })
-export class AssessmentModalComponent {
+export class AssessmentModalComponent implements OnInit
+{
   @Input() teamUsers: User[] = [];
-  assessments: Assessment[] = [];
+  @Input() teamName: string = "";
+
   private activity: Activity = {
     id: 1,
     name: "Activity1"
   };
+
   private mentor: User = {
     id: 9,
     username: "vasile",
@@ -27,30 +32,57 @@ export class AssessmentModalComponent {
     imageUrl: "https://robohash.org/hehehe?bgset=bg1"
   };
 
-  constructor(private assessmentService: AssessmentService) {}
+  assessments: Assessment[] = [];
+
+  assessmentTitle: string = "Assessment";
+
+
+  constructor(private assessmentService: AssessmentService,
+              private userService: UserService) {}
 
   markAllAsAttended() {
-    this.teamUsers.forEach((user) => (user.attendances += 1));
+    this.assessments.forEach((assessment) => {
+      assessment.attended = !assessment.attended;
+    });
   }
 
-  saveAssessments() {
+  ngOnInit() {
+    let tempId: number = 1;
+
     this.assessments = this.teamUsers.map((user : User) : Assessment => ({
-      id: user.id,
-      title: 'Team Assessment',
+      id: tempId++,
+      title: this.assessmentTitle,
       activity: this.activity,
       mentor: this.mentor,
       user: user,
-      grade: user.grade,
-      attended: true,
-      comment: 1,
+      grade: 5,
+      attended: false,
+      comment: "",
     }));
+  }
 
-    // Send the assessments to the backend
-    // this.assessmentService
-    //   .saveTeamAssessments(this.assessments)
-    //   .subscribe((response) => {
-    //     // Handle the response from the backend if needed
-    //     console.log('Assessments saved successfully!');
-    //   });
+
+  // UNFINISHED
+  saveAssessments() {
+
+    let mentorUserName: string = this.userService.getLoggedUser().username;
+
+    this.assessmentService
+      .sendTeamAssessments(this.assessments, mentorUserName, this.activity.name, this.teamName).pipe(
+      catchError((error) => {
+        console.error('Error saving assessments:', error);
+        return of(null);
+      })
+    )
+      .subscribe((response) => {
+        if (response) {
+          console.log('Assessments saved successfully!', response);
+        }
+      });
+  }
+
+  toggleAttendance(assessment: Assessment) {
+    assessment.attended = !assessment.attended;
+
   }
 }
