@@ -6,37 +6,52 @@
 
 </div>
 
-<div class="user-profile">
-  <div class="profile-header">
-    <div class="user-details-card">
-      <div class="user-picture-container">
-        <img class="user-picture" src="{{loggedUser?.imageUrl}}" alt="User Picture">
-        <div class="change-photo">Change Photo</div>
-      </div>
-      <div class="user-details">
-        <h2 class="user-name">{{loggedUser?.username}}</h2>
-<!--        <p class="team-name">Team: {{loggedUser?.name}}</p>-->
-        <p class="email">Email: random.email@gmail.com</p>
-        <p class="user-role">Role: {{loggedUser?.role}}</p>
-<!--        <p class="total-activities">Activities: {{loggedUser?.activities}}</p>-->
-        <p class="total-attendances" *ngIf="loggedUser?.role != 'mentor'">Attendances: {{loggedUser?.attendances}}</p>
-        <p class="session-assessments" *ngIf="loggedUser?.role != 'mentor'">Session Assessments: 10</p>
+<ng-container [ngSwitch]="appState">
+  <div *ngSwitchCase="'APP_LOADING'">
+    <div class="d-flex justify-content-center mt-4">
+      <div class="spinner-border" role="status">
+        <span class="visually-hidden">Loading...</span>
       </div>
     </div>
   </div>
 
-  <ng-container *ngIf="loggedUser?.role != 'mentor'">
+  <div *ngSwitchCase="'APP_LOADED'">
+    <ng-container class="user-profile">
+      <div class="profile-header">
+        <div class="user-details-card">
+          <div class="user-picture-container">
+            <img class="user-picture" src="{{loggedUser?.imageUrl}}" alt="User Picture">
+            <div class="change-photo">Change Photo</div>
+          </div>
+          <div class="user-details">
+            <h2 class="user-name">{{loggedUser?.username}}</h2>
+            <!--        <p class="team-name">Team: {{loggedUser?.name}}</p>-->
+            <p class="email">Email: random.email@gmail.com</p>
+            <p class="user-role">Role: {{loggedUser?.role}}</p>
+            <!--        <p class="total-activities">Activities: {{loggedUser?.activities}}</p>-->
+            <p class="total-attendances" *ngIf="loggedUser?.role != 'mentor'">Attendances: {{loggedUser?.attendances}}</p>
+            <p class="session-assessments" *ngIf="loggedUser?.role != 'mentor'">Session Assessments: 10</p>
+          </div>
+        </div>
+      </div>
 
-    <div class="sessions-container" *ngIf="userAssessments$ | async as assessments">
-<!--      <app-session-card></app-session-card>-->
-<!--      <app-session-card></app-session-card>-->
-<!--      <app-session-card></app-session-card>-->
+        <ng-container *ngIf="loggedUser?.role != 'mentor'">
+          <div class="sessions-container" *ngIf="userAssessments$ | async as assessments">
+            <!--      <app-session-card></app-session-card>-->
+            <!--      <app-session-card></app-session-card>-->
+            <!--      <app-session-card></app-session-card>-->
 
-        <app-session-card *ngFor="let assessment of assessments" [assessment]="assessment"></app-session-card>
+            <app-session-card *ngFor="let assessment of assessments" [assessment]="assessment"></app-session-card>
+          </div>
+        </ng-container>
+    </ng-container>
+  </div>
 
+  <div *ngSwitchCase="'APP_ERROR'">
+    <div class="alert alert-secondary" role="alert">
+      Seems like there is no assessment data for you yet.
     </div>
+  </div>
 
+</ng-container>
 
-  </ng-container>
-
-</div>
