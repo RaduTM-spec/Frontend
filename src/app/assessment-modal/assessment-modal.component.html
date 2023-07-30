@@ -27,9 +27,9 @@
             <tr *ngFor="let user of teamUsers">
               <td>{{ user.id }}</td>
               <td>
-                <img [src]="user.imageUrl" width="34" height="34" class="rounded-circle" alt="">
+                <img [src]="user.pictureUrl" width="34" height="34" class="rounded-circle" alt="">
               </td>
-              <td>{{ user.username }}</td>
+              <td>{{ user.name }}</td>
               <td>{{ user.role }}</td>
               <td>
                 <button class="btn btn-toggle" [ngClass]="{ 'btn-toggle-attended': user.attendances, 'btn-toggle-unattended': !user.attendances }">

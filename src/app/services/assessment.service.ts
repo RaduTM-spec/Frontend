@@ -8,7 +8,7 @@ import {Assessment} from "../models/assessment";
 })
 export class AssessmentService {
 
-  private URL_PATH = '';
+  private URL_PATH = 'http://localhost:8080';
 
   constructor(private http: HttpClient) {}
 

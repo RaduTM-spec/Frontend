@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from "../services/user.service";
 import { User } from "../models/user";
-import { TeamService } from "../services/team.service";
-import { Team } from "../models/team";
 import { ActivatedRoute } from "@angular/router";
 import { Assessment } from "../models/assessment";
 import { AssessmentService} from "../services/assessment.service";
@@ -15,14 +13,12 @@ import { catchError, Observable, tap } from "rxjs";
 })
 export class UserBoxComponent implements OnInit {
   loggedUser: User | undefined;
-  loggedUserTeam: Team | undefined;
   userAssessments$: Observable<Assessment[]> | undefined;
   appState: 'APP_LOADING' | 'APP_LOADED' | 'APP_ERROR' = 'APP_LOADING'; // Will change it to be a global enum
 
   constructor(
     private activatedRoute: ActivatedRoute,
     private userService: UserService,
-    private teamService: TeamService,
     private assessmentService: AssessmentService
   ) {}
 
@@ -31,10 +27,9 @@ export class UserBoxComponent implements OnInit {
 
     if (this.loggedUser.role != "mentor") {
 
-      this.appState = 'APP_ERROR'
+      this.appState = 'APP_LOADED'
 
-      this.loggedUserTeam = this.teamService.getUserTeam(this.loggedUser.id);
-      this.userAssessments$ = this.assessmentService.getUserAssessments(this.loggedUser.username)
+      this.userAssessments$ = this.assessmentService.getUserAssessments(this.loggedUser.name)
         .pipe(
           tap((assessments: Assessment[]) => {
             console.log(' > Received user assessments:', assessments);

@@ -1,8 +1,8 @@
 export interface User {
   id: number
-  username: string
+  name: string
   role : string
-  imageUrl : string
+  pictureUrl : string
 
   attendances: number
   grade: number

@@ -11,24 +11,24 @@
     </tr>
     </thead>
     <tbody>
-    <tr class="row-color" *ngFor="let user of usersList">
+    <tr class="row-color" *ngFor="let user of teamDetails.members">
       <th scope="row">{{ user.id }}</th>
       <td>
-        <img [src]="user.imageUrl" width="34" height="34" class="rounded-circle" alt="">
+        <img [src]="user.pictureUrl" width="34" height="34" class="rounded-circle" alt="">
       </td>
-      <td>{{ user.username }}</td>
+      <td>{{ user.name }}</td>
       <td>
         <span>{{ user.role }}</span>
       </td>
       <td>
-        <span class="badge-attendance">{{ user.attendances }} / 20</span>
+        <span class="badge-attendance">{{ teamDetails.attendancesPerMember.at(teamDetails.members.indexOf(user)) }}</span>
       </td>
       <td *ngIf="userType == 'mentor'">
             <span [ngClass]="{
               'badge-grade-green': user.grade >= 8.0,
               'badge-grade-orange': user.grade < 8.0 && user.grade >= 5.0,
               'badge-grade-red': user.grade < 5.0
-            }">{{ user.grade }}</span>
+            }">{{ teamDetails.gradesPerMember.at(teamDetails.members.indexOf(user)) }}</span>
       </td>
     </tr>
     </tbody>

@@ -18,7 +18,7 @@ declare var $: any; // Declared the $ symbol from jQuery
 export class NavigationComponent implements OnInit{
 
   activitiesList: Activity[] = [];
-  user: User;
+  loggedUser: User;
   team: Team | undefined;
   userRole: string = '';
 
@@ -29,26 +29,22 @@ export class NavigationComponent implements OnInit{
   createActivityModalRef: ElementRef;
 
   getTeam(){
-    return this.teamService.getUserTeam(this.user.id);
+    return this.teamService.getUserTeam(this.loggedUser.id);
   }
   constructor(private activatedRoute: ActivatedRoute, private activityService: ActivityService, private userService:UserService, private teamService:TeamService,private renderer: Renderer2, private elementRef: ElementRef) {
+    this.loggedUser = userService.getLoggedUser();
+
     this.joinActivityModalRef = this.elementRef;
     this.createActivityModalRef = this.elementRef;
-
-    this.user = userService.getLoggedUser();
-
   }
 
   ngOnInit() {
-    // this.user = this.userService.getLoggedUser();
-    this.activitiesList = this.activityService.getAllActivities();
-    if(this.user.role != 'mentor'){
+    this.loggedUser = this.userService.getLoggedUser();
+    if(this.loggedUser.role != 'mentor'){
       this.team = this.getTeam();
-      this.activitiesList = this.activitiesList.filter((activity) => {return this.team?.activities.includes(activity.id);});
     }
-    this.userRole = this.user.role || '';
 
-    this.enrolledActivities$ = this.activityService.getEnrolledActivities(this.user.username)
+    this.enrolledActivities$ = this.activityService.getActivities(this.loggedUser.name)
       .pipe(
         tap((activities: Activity[]) => {
           console.log(' > Received enrolled activity:', activities);

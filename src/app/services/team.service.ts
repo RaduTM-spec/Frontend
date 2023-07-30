@@ -14,7 +14,7 @@ export class TeamService {
       grade: 6,
       team_leader_name: 'John',
       activities: [1,2,3],
-      members: [1, 3, 5]
+      members: [3, 5]
     },
     {
       id: 2,
@@ -68,29 +68,6 @@ export class TeamService {
     }
   ];
 
-  getAllTeams(): Team[] {
-    return this.teamsList;
-  }
-
-  getTeamByName(name: string){
-    for(let i = 0; i < this.teamsList.length; i++){
-      if(this.teamsList[i].name == name){
-          return this.teamsList[i];
-      }
-    }
-    return this.teamsList[0];
-    // return this.teamsList.find(team => team.name === name);
-  }
-
-  getTeamGrade(id: number){
-    for(let i = 0; i < this.teamsList.length; i++){
-      if(this.teamsList[i].id == id){
-        return this.teamsList[i].grade;
-      }
-    }
-    return 0;
-  }
-
   getUserTeam(id: number){
     for(let i = 0; i < this.teamsList.length; i++){
       if(this.teamsList[i].members.includes(id))
@@ -99,7 +76,7 @@ export class TeamService {
     return this.teamsList[0];
   }
 
-  private URL_PATH = '';
+  private URL_PATH = 'http://localhost:8080';
 
   constructor(private http: HttpClient) {}
 
@@ -108,7 +85,7 @@ export class TeamService {
     return this.http.get<Team[]>(ACTIVITY_TEAMS_URL);
   }
   getTeamDetailsFromAnActivity(userName: string, activityName: string, teamName: string): Observable<TeamDetails> {
-    const TEAM_DETAILS_URL = `${this.URL_PATH}/activity-teams?userName=${userName}&activityName=${activityName}&teamName=${teamName}`;
+    const TEAM_DETAILS_URL = `${this.URL_PATH}/team-details?mentorUserName=${userName}&activityName=${activityName}&teamName=${teamName}`;
     return this.http.get<TeamDetails>(TEAM_DETAILS_URL);
   }
 }

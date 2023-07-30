@@ -10,16 +10,16 @@
 <div class="buttons-container">
   <div class="team-info" *ngIf="!getPath()">
     <div class="team-grade" [ngClass]="{
-              'badge-grade-green': teamGrade >= 8.0,
-              'badge-grade-orange': teamGrade < 8.0 && teamGrade >= 5.0,
-              'badge-grade-red': teamGrade < 5.0
+              'badge-grade-green': teamDetails.teamGrade >= 8.0,
+              'badge-grade-orange': teamDetails.teamGrade < 8.0 && teamDetails.teamGrade >= 5.0,
+              'badge-grade-red': teamDetails.teamGrade < 5.0
             }">
       <span class="label">Team Grade:</span>
-      <span>{{ teamGrade }}</span>
+      <span>{{ teamDetails.teamGrade }}</span>
     </div>
     <div class="team-members">
       <span class="label">Members:</span>
-      <span class="value">{{ number }}</span>
+      <span class="value">{{ teamDetails.members.length }}</span>
     </div>
   </div>
   <div class="team-info" *ngIf="getPath()">

@@ -16,15 +16,23 @@ export class AssessmentModalComponent {
   assessments: Assessment[] = [];
   private activity: Activity = {
     id: 1,
-    name: "Activity1"
+    name: "Activity1",
+    deadline: '02/08/2023',
+    creator: {
+      id: 9,
+      name: "vasile",
+      role: "mentor",
+      attendances: 20,
+      grade: 10,
+      pictureUrl: "https://robohash.org/hehehe?bgset=bg1"}
   };
   private mentor: User = {
     id: 9,
-    username: "vasile",
+    name: "vasile",
     role: "mentor",
     attendances: 20,
     grade: 10,
-    imageUrl: "https://robohash.org/hehehe?bgset=bg1"
+    pictureUrl: "https://robohash.org/hehehe?bgset=bg1"
   };
 
   constructor(private assessmentService: AssessmentService) {}
