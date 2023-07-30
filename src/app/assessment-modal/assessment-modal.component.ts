@@ -46,6 +46,13 @@ export class AssessmentModalComponent implements OnInit
     });
   }
 
+
+  markAllAsUnattended() {
+    this.assessments.forEach((assessment) => {
+      assessment.attended = false;
+    });
+  }
+
   ngOnInit() {
     let tempId: number = 1;
 
