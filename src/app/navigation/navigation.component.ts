@@ -5,8 +5,8 @@ import {ActivatedRoute} from "@angular/router";
 import {User} from "../models/user";
 import {UserService} from "../services/user.service";
 import {TeamService} from "../services/team.service";
-import {Team} from "../models/team";
 import {catchError, Observable, tap} from "rxjs";
+import {UserTeamDTO} from "../models/user-team-dto";
 
 declare var $: any; // Declared the $ symbol from jQuery
 
@@ -17,20 +17,16 @@ declare var $: any; // Declared the $ symbol from jQuery
 })
 export class NavigationComponent implements OnInit{
 
-  activitiesList: Activity[] = [];
   loggedUser: User;
-  team: Team | undefined;
   userRole: string = '';
 
   enrolledActivities$: Observable<Activity[]> | undefined;
+  loggedUser$: Observable<UserTeamDTO> | undefined;
 
 
   joinActivityModalRef: ElementRef;
   createActivityModalRef: ElementRef;
 
-  getTeam(){
-    return this.teamService.getUserTeam(this.loggedUser.id);
-  }
   constructor(private activatedRoute: ActivatedRoute, private activityService: ActivityService, private userService:UserService, private teamService:TeamService,private renderer: Renderer2, private elementRef: ElementRef) {
     this.loggedUser = userService.getLoggedUser();
 
@@ -40,9 +36,6 @@ export class NavigationComponent implements OnInit{
 
   ngOnInit() {
     this.loggedUser = this.userService.getLoggedUser();
-    if(this.loggedUser.role != 'mentor'){
-      this.team = this.getTeam();
-    }
 
     this.enrolledActivities$ = this.activityService.getActivities(this.loggedUser.name)
       .pipe(
@@ -55,7 +48,18 @@ export class NavigationComponent implements OnInit{
         })
 
       );
-    // this.enrolledActivities$ = this.activityService.get();
+
+    this.loggedUser$ = this.userService.authenticateUser(this.loggedUser.name)
+      .pipe(
+        tap((loggedUser: UserTeamDTO) => {
+          console.log(' > Received logged user:', loggedUser);
+        }),
+        catchError((error) => {
+          console.error('Error fetching logged user:', error);
+          return [];
+        })
+
+      );
   }
 
 

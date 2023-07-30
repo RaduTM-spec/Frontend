@@ -1,12 +1,12 @@
-<div id="sidepanel" class="side-panel" style="width: 250px;">
+<div id="sidepanel" class="side-panel" style="width: 250px;" *ngIf="loggedUser$ | async as logged">
   <header class="sidenav-header">Activities</header>
 
   <!--  *ngIf="enrolledActivities$ | async as activities"-->
   <main class="sidenav" *ngIf="enrolledActivities$ | async as activities">
     <app-activity *ngFor="let activity of activities"
                   [activity]="activity"
-                  [user]="loggedUser"
-                  [team]="getTeam()"
+                  [user]="logged.user"
+                  [team]="logged.team"
     >
     </app-activity>
   </main>

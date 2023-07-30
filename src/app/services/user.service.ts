@@ -1,5 +1,8 @@
 import {Injectable} from '@angular/core';
 import {User} from "../models/user";
+import {HttpClient} from "@angular/common/http";
+import {Observable} from "rxjs";
+import {UserTeamDTO} from "../models/user-team-dto";
 
 @Injectable({
   providedIn: 'root'
@@ -44,5 +47,14 @@ export class UserService {
     return this.loggedUser;
   }
 
+
+  private URL_PATH = 'http://localhost:8080';
+
+  constructor(private http: HttpClient) {}
+
+  authenticateUser(name: string): Observable<UserTeamDTO> {
+    const USER_TEAM_URL = `${this.URL_PATH}/authenticate?name=${name}`;
+    return this.http.post<UserTeamDTO>(USER_TEAM_URL, {title: `${name} logged in`});
+  }
 
 }
