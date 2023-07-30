@@ -32,10 +32,10 @@
   <div class="actions">
     <div>
       <button class="export-button" (click)="exportSituation()"><i class="fas fa-file-export"></i> Export</button>
-      <button class="assessment-button" *ngIf="userType === 'mentor'" (click)="openAssessmentModal()"><i class="fas fa-clipboard-check"></i> Assessment</button>
+      <button class="assessment-button" *ngIf="!getPath()" (click)="openAssessmentModal()"><i class="fas fa-clipboard-check"></i> Assessment</button>
     </div>
   </div>
 
 </div>
 
-<app-assessment-modal [teamUsers]="teamDetails.members"></app-assessment-modal>
+<app-assessment-modal *ngIf="!getPath()" [teamUsers]="teamDetails.members"></app-assessment-modal>

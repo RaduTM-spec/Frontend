@@ -4,7 +4,6 @@ import { UserService } from "../../services/user.service";
 import {ActivatedRoute} from "@angular/router";
 import {AssessmentModalComponent} from "../../assessment-modal/assessment-modal.component";
 import {TeamDetails} from "../../models/team-details";
-import {TeamService} from "../../services/team.service";
 
 declare var $: any;
 
