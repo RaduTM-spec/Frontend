@@ -20,16 +20,24 @@ export class AssessmentModalComponent implements OnInit
 
   private activity: Activity = {
     id: 1,
-    name: "Activity1"
+    name: "Activity1",
+    deadline: '02/08/2023',
+    creator: {
+      id: 9,
+      name: "vasile",
+      role: "mentor",
+      attendances: 20,
+      grade: 10,
+      pictureUrl: "https://robohash.org/hehehe?bgset=bg1"}
   };
 
   private mentor: User = {
     id: 9,
-    username: "vasile",
+    name: "vasile",
     role: "mentor",
     attendances: 20,
     grade: 10,
-    imageUrl: "https://robohash.org/hehehe?bgset=bg1"
+    pictureUrl: "https://robohash.org/hehehe?bgset=bg1"
   };
 
   assessments: Assessment[] = [];
@@ -72,7 +80,7 @@ export class AssessmentModalComponent implements OnInit
   // UNFINISHED
   saveAssessments() {
 
-    let mentorUserName: string = this.userService.getLoggedUser().username;
+    let mentorUserName: string = this.userService.getLoggedUser().name;
 
     this.assessmentService
       .sendTeamAssessments(this.assessments, mentorUserName, this.activity.name, this.teamName).pipe(

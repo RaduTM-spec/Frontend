@@ -1,13 +1,15 @@
 <!--info-container starts-->
-<app-info-container *ngIf="loggedUser.role == 'mentor'"
+<app-info-container *ngIf="activityTeams$ | async as teams"
                     [userType]="loggedUser.role"
-                    [number]="teamsActivity.length"
+                    [number]="teams.length"
 ></app-info-container>
 <!--info-container ends-->
 
 <!--main-content starts-->
-<div class="teams-container" *ngIf="loggedUser.role === 'mentor'">
-  <app-team-card *ngFor="let team of teamsActivity"
+
+<!--*ngIf="activityTeams$ | async as teams"-->
+<div class="teams-container" *ngIf="activityTeams$ | async as teams">
+  <app-team-card *ngFor="let team of teams"
                  [team]="team"
                  [activity]="activityName"
                  [loggedUser]="loggedUser"

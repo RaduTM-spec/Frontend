@@ -34,7 +34,7 @@ export class UserBoxComponent implements OnInit {
       // this.appState = 'APP_ERROR'
 
       this.loggedUserTeam = this.teamService.getUserTeam(this.loggedUser.id);
-      this.userAssessments$ = this.assessmentService.getUserAssessments(this.loggedUser.username)
+      this.userAssessments$ = this.assessmentService.getUserAssessments(this.loggedUser.name)
         .pipe(
           tap((assessments: Assessment[]) => {
             console.log(' > Received user assessments:', assessments);

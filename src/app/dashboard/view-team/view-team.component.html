@@ -1,11 +1,13 @@
-
+<div *ngIf="teamDetails$ | async as teamDetails">
 <app-info-container
                     [userType]="loggedUser.role"
-                    [number]="members.length"
-                    [teamGrade]="teamGrade"
+                    [number]="teamDetails.members.length"
+                    [teamDetails]="teamDetails"
 ></app-info-container>
 
 <app-members-table
                    [userType]="loggedUser.role"
-                   [usersList]="members"
+                   [teamDetails]="teamDetails"
 ></app-members-table>
+
+</div>

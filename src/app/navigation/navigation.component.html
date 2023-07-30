@@ -1,10 +1,11 @@
 <div id="sidepanel" class="side-panel" style="width: 250px;">
   <header class="sidenav-header">Activities</header>
 
-  <main class="sidenav">
-    <app-activity *ngFor="let activity of activitiesList"
+  <!--  *ngIf="enrolledActivities$ | async as activities"-->
+  <main class="sidenav" *ngIf="enrolledActivities$ | async as activities">
+    <app-activity *ngFor="let activity of activities"
                   [activity]="activity"
-                  [user]="user"
+                  [user]="loggedUser"
                   [team]="getTeam()"
     >
     </app-activity>
@@ -16,15 +17,15 @@
   </div>
   <footer>
 
-    <div class="user-box" [routerLink]="['/user-assessments']" routerLinkActive="active" [queryParams]="{userName: user.username}">
-      <img class="user-profile-picture" src="{{user.imageUrl}}" alt="User Profile">
+    <div class="user-box" [routerLink]="['/user-assessments']" routerLinkActive="active" [queryParams]="{userName: loggedUser.name}">
+      <img class="user-profile-picture" src="{{loggedUser.pictureUrl}}" alt="User Profile">
 <!--      src="https://robohash.org/profilepic.jpeg?bgset=bg1" -->
       <div class="user-details">
         <div class="user-profile">
-          {{user.username}}
+          {{loggedUser.name}}
         </div>
         <div class="username">
-          {{user.role}}
+          {{loggedUser.role}}
         </div>
       </div>
     </div>

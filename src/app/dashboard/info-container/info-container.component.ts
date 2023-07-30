@@ -1,8 +1,9 @@
-import {AfterViewInit, Component, ElementRef, Input, OnInit, Renderer2, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, Input, OnInit, Renderer2, ViewChild} from '@angular/core';
 import { User } from "../../models/user";
 import { UserService } from "../../services/user.service";
 import {ActivatedRoute} from "@angular/router";
-import {AssessmentModalComponent} from "../../assessment-modal/assessment-modal.component"; // Import the UserService
+import {AssessmentModalComponent} from "../../assessment-modal/assessment-modal.component";
+import {TeamDetails} from "../../models/team-details";
 
 declare var $: any;
 
@@ -13,23 +14,23 @@ declare var $: any;
 })
 export class InfoContainerComponent implements OnInit, AfterViewInit{
   @Input() userType: string = '';
-  @Input() teamGrade: number = 0;
   @Input() number: number = 0;
+  @Input() teamDetails!: TeamDetails;
+
+  loggedUser: User | undefined;
+
   activityName: string = '';
   teamName: string = '';
 
-  teamMembers: User[];
 
-  exportSituation() {
-  }
   @ViewChild(AssessmentModalComponent, { static: false }) assessmentModalComponent!: AssessmentModalComponent;
 
-  constructor(private activatedRoute: ActivatedRoute, private renderer: Renderer2, private userService: UserService) {
+  constructor(private activatedRoute: ActivatedRoute, private userService: UserService, private renderer: Renderer2) {
     console.log("assessment modal constructed!");
-    this.teamMembers = userService.getAllUsers(); // Fetch the team members using UserService
   }
 
   ngOnInit() {
+    this.loggedUser = this.userService.getLoggedUser();
     this.activatedRoute.queryParamMap.subscribe((params) => {
       this.activityName = params.get('activityName') || '';
       this.teamName = params.get('teamName') || '';
@@ -39,7 +40,7 @@ export class InfoContainerComponent implements OnInit, AfterViewInit{
   openAssessmentModal(): void {
     // we need to pass the team members array to the assessment modal
     if (this.assessmentModalComponent) {
-      this.assessmentModalComponent.teamUsers = this.teamMembers;
+      this.assessmentModalComponent.teamUsers = this.teamDetails.members;
     }
 
     const assessmentModal = document.getElementById('assessmentModal');
@@ -68,5 +69,8 @@ export class InfoContainerComponent implements OnInit, AfterViewInit{
   }
 
   ngAfterViewInit(): void {
+  }
+
+  exportSituation() {
   }
 }

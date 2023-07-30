@@ -1,7 +1,7 @@
 <div class="team-header">
 
   <div class="header-content">
-    <h3 class="header-title">{{loggedUser?.username}}`S SITUATION</h3>
+    <h3 class="header-title">{{loggedUser?.name}}`S SITUATION</h3>
   </div>
 
 </div>
@@ -20,11 +20,11 @@
       <div class="profile-header">
         <div class="user-details-card">
           <div class="user-picture-container">
-            <img class="user-picture" src="{{loggedUser?.imageUrl}}" alt="User Picture">
+            <img class="user-picture" src="{{loggedUser?.pictureUrl}}" alt="User Picture">
             <div class="change-photo">Change Photo</div>
           </div>
           <div class="user-details">
-            <h2 class="user-name">{{loggedUser?.username}}</h2>
+            <h2 class="user-name">{{loggedUser?.name}}</h2>
             <!--        <p class="team-name">Team: {{loggedUser?.name}}</p>-->
             <p class="email">Email: random.email@gmail.com</p>
             <p class="user-role">Role: {{loggedUser?.role}}</p>

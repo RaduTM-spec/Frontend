@@ -37,10 +37,12 @@
             <tr *ngFor="let assessment of assessments">
               <td>{{ assessment.user.id }}</td>
               <td>
-                <img [src]="assessment.user.imageUrl" width="34" height="34" class="rounded-circle" alt="">
+                <img [src]="assessment.user.pictureUrl" width="34" height="34" class="rounded-circle" alt="">
               </td>
-              <td>{{ assessment.user.username }} </td>
-              <td>{{ assessment.user.role }} </td>
+
+              <td>{{ assessment.user.name }}</td>
+              <td>{{ assessment.user.role }}</td>
+
               <td>
                 <button class="btn btn-toggle" [ngClass]="{ 'btn-toggle-attended': assessment.attended, 'btn-toggle-unattended': !assessment.attended }"
                         (click)="toggleAttendance(assessment)">
