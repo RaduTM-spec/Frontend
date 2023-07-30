@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {Router} from "@angular/router";
+import {AuthenticationService} from "../services/authentication.service";
 
 @Component({
   selector: 'app-login',
@@ -8,8 +10,9 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class LoginComponent implements OnInit {
   loginForm!: FormGroup;
+  // @Input() loggedIn: boolean = false;
 
-  constructor(private formBuilder: FormBuilder) {}
+  constructor(private formBuilder: FormBuilder, private router: Router, private authService: AuthenticationService) {}
 
   ngOnInit(): void {
     this.loginForm = this.formBuilder.group({
@@ -78,5 +81,22 @@ export class LoginComponent implements OnInit {
 
   onSubmit(): void {
     console.log(this.loginForm.value);
+
+    if (this.loginForm.invalid) {
+      console.log("Invalid login form!")
+      return;
+    }
+
+    if (this.isNewUser()) {
+      console.log("Registered")
+    } else {
+      console.log("Logged in")
+    }
+    this.onLoginSuccess();
+  }
+
+  onLoginSuccess() {
+    this.router.navigate(['/activity-teams']);
+    this.authService.login("");
   }
 }
