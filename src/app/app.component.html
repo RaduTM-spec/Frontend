@@ -1,14 +1,15 @@
 
+
 <body>
-
 <div class="app-container">
-
-    <app-navigation></app-navigation>
-
-    <div id="main" class="content-container">
-      <div class="dashboard-container">
-        <div class="team-header"></div>
-        <router-outlet></router-outlet>
-      </div>
+  <app-login *ngIf="!isLoggedIn()"></app-login>
+  <app-navigation *ngIf="isLoggedIn()"></app-navigation>
+  <div id="main" class="content-container" *ngIf="isLoggedIn()">
+    <div class="dashboard-container">
+      <div class="team-header"></div>
+      <router-outlet></router-outlet>
     </div>
+  </div>
 </div>
+</body>
+
