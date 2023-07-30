@@ -1,20 +1,19 @@
 // app-assessment-modal.component.ts
 
-import {Component, Input, OnInit} from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { User } from '../models/user';
 import { Assessment } from '../models/assessment';
 import { AssessmentService } from '../services/assessment.service';
-import {Activity} from "../models/activity";
-import {catchError, of} from "rxjs";
-import {UserService} from "../services/user.service";
+import { Activity } from "../models/activity";
+import { catchError } from "rxjs/operators";
+import { UserService } from "../services/user.service";
 
 @Component({
   selector: 'app-assessment-modal',
   templateUrl: './assessment-modal.component.html',
   styleUrls: ['./assessment-modal.component.css'],
 })
-export class AssessmentModalComponent implements OnInit
-{
+export class AssessmentModalComponent implements OnInit {
   @Input() teamUsers: User[] = [];
   @Input() teamName: string = "";
 
@@ -28,7 +27,8 @@ export class AssessmentModalComponent implements OnInit
       role: "mentor",
       attendances: 20,
       grade: 10,
-      pictureUrl: "https://robohash.org/hehehe?bgset=bg1"}
+      pictureUrl: "https://robohash.org/hehehe?bgset=bg1"
+    }
   };
 
   private mentor: User = {
@@ -44,16 +44,13 @@ export class AssessmentModalComponent implements OnInit
 
   assessmentTitle: string = "Assessment";
 
-
-  constructor(private assessmentService: AssessmentService,
-              private userService: UserService) {}
+  constructor(private assessmentService: AssessmentService, private userService: UserService) {}
 
   markAllAsAttended() {
     this.assessments.forEach((assessment) => {
-      assessment.attended = !assessment.attended;
+      assessment.attended = true;
     });
   }
-
 
   markAllAsUnattended() {
     this.assessments.forEach((assessment) => {
@@ -64,7 +61,7 @@ export class AssessmentModalComponent implements OnInit
   ngOnInit() {
     let tempId: number = 1;
 
-    this.assessments = this.teamUsers.map((user : User) : Assessment => ({
+    this.assessments = this.teamUsers.map((user: User): Assessment => ({
       id: tempId++,
       title: this.assessmentTitle,
       activity: this.activity,
@@ -76,28 +73,27 @@ export class AssessmentModalComponent implements OnInit
     }));
   }
 
-
-  // UNFINISHED
   saveAssessments() {
-
     let mentorUserName: string = this.userService.getLoggedUser().name;
+    let newAssessments = this.assessments.filter((assessment) => assessment.attended);
 
     this.assessmentService
-      .sendTeamAssessments(this.assessments, mentorUserName, this.activity.name, this.teamName).pipe(
-      catchError((error) => {
-        console.error('Error saving assessments:', error);
-        return of(null);
-      })
-    )
+      .sendTeamAssessments(this.activity.name, mentorUserName, this.teamName, newAssessments)
+      .pipe(
+        catchError((error) => {
+          console.error('Error saving assessments:', error);
+          return [];
+        })
+      )
       .subscribe((response) => {
         if (response) {
           console.log('Assessments saved successfully!', response);
+          // ...
         }
       });
   }
 
   toggleAttendance(assessment: Assessment) {
     assessment.attended = !assessment.attended;
-
   }
 }
