@@ -8,7 +8,8 @@ const routes: Routes = [
   {path:'user-assessments', component:UserBoxComponent},
   {path:'activity-teams', component:DashboardComponent},
   {path:'team-details', component:ViewTeamComponent},
-  {path: '', redirectTo: '/user-assessments', pathMatch: 'full'},
+  // {path: '', redirectTo: '/user-assessments', pathMatch: 'full'},
+  { path: '', redirectTo: '/login', pathMatch: 'full' }
 ];
 
 @NgModule({

@@ -3,14 +3,24 @@
   <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable assessment-modal" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="assessmentModalLabel">Assessment Modal</h5>
+        <h5 class="modal-title" id="assessmentModalLabel">New Session Assessment</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true" class="custom-close-button">&times;</span>
         </button>
       </div>
       <div class="modal-body">
+
+        <div class="static-row mb-3 d-flex align-items-center">
+          <button class="btn btn-primary mr-3" (click)="markAllAsAttended()">Mark All as Attended</button>
+          <div class="form-group mb-0">
+            <label for="assessmentTitle">Session Title:</label>
+            <input type="text" class="form-control" id="assessmentTitle" [(ngModel)]="assessmentTitle">
+          </div>
+        </div>
+
         <div class="scrollable-content">
-          <button class="btn btn-primary mb-3" (click)="markAllAsAttended()">Mark All as Attended</button>
+
+
           <table class="table table-striped">
             <thead>
             <tr>
@@ -24,23 +34,24 @@
             </tr>
             </thead>
             <tbody>
-            <tr *ngFor="let user of teamUsers">
-              <td>{{ user.id }}</td>
+            <tr *ngFor="let assessment of assessments">
+              <td>{{ assessment.user.id }}</td>
               <td>
-                <img [src]="user.pictureUrl" width="34" height="34" class="rounded-circle" alt="">
+                <img [src]="assessment.user.pictureUrl" width="34" height="34" class="rounded-circle" alt="">
               </td>
-              <td>{{ user.name }}</td>
-              <td>{{ user.role }}</td>
+              <td>{{ assessment.user.name }}</td>
+              <td>{{ assessment.user.role }}</td>
               <td>
-                <button class="btn btn-toggle" [ngClass]="{ 'btn-toggle-attended': user.attendances, 'btn-toggle-unattended': !user.attendances }">
-                  {{ user.attendances ? 'Attended' : 'Unattended' }}
+                <button class="btn btn-toggle" [ngClass]="{ 'btn-toggle-attended': assessment.attended, 'btn-toggle-unattended': !assessment.attended }"
+                        (click)="toggleAttendance(assessment)">
+                  {{ assessment.attended ? 'Attended' : 'Unattended' }}
                 </button>
               </td>
               <td>
-                <input type="number" class="form-control" [(ngModel)]="user.grade" name="gradeInput">
+                <input type="number" class="form-control" [(ngModel)]="assessment.grade" name="gradeInput">
               </td>
               <td>
-                <textarea class="form-control"  name="commentInput"></textarea>
+                <textarea class="form-control" placeholder="Optional comment.." name="commentInput" [(ngModel)]="assessment.comment"></textarea>
               </td>
             </tr>
             </tbody>
@@ -48,8 +59,8 @@
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" >Save</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-primary" >Send Assessments</button>
       </div>
     </div>
   </div>

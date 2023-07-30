@@ -26,7 +26,7 @@ export class InfoContainerComponent implements OnInit, AfterViewInit{
 
   @ViewChild(AssessmentModalComponent, { static: false }) assessmentModalComponent!: AssessmentModalComponent;
 
-  constructor(private activatedRoute: ActivatedRoute, private userService: UserService, private teamService: TeamService, private renderer: Renderer2) {
+  constructor(private activatedRoute: ActivatedRoute, private userService: UserService, private renderer: Renderer2) {
     console.log("assessment modal constructed!");
   }
 

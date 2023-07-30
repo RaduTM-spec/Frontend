@@ -4,7 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule, routingComponents } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavigationComponent } from './navigation/navigation.component';
-import {FormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { ProgressBarComponent } from './dashboard/progress-bar/progress-bar.component';
 import { TeamCardComponent } from './dashboard/team-card/team-card.component';
 import { JoinActivityModalComponent } from './join-activity-modal/join-activity-modal.component';
@@ -19,6 +19,7 @@ import { ActivityComponent } from './navigation/activity/activity.component';
 import { InfoContainerComponent } from './dashboard/info-container/info-container.component';
 import { MembersTableComponent } from './dashboard/members-table/members-table.component';
 import {AssessmentModalComponent} from "./assessment-modal/assessment-modal.component";
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import {AssessmentModalComponent} from "./assessment-modal/assessment-modal.comp
     InfoContainerComponent,
     MembersTableComponent,
     AssessmentModalComponent,
+    LoginComponent,
 
   ],
   imports: [
@@ -45,6 +47,7 @@ import {AssessmentModalComponent} from "./assessment-modal/assessment-modal.comp
     MatButtonModule,
     MatDatepickerModule,
     HttpClientModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
