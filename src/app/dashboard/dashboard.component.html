@@ -1,3 +1,6 @@
+<mat-snack-bar-container></mat-snack-bar-container>
+
+
 <!--info-container starts-->
 <app-info-container *ngIf="activityTeams$ | async as teams"
                     [userType]="loggedUser.role"
@@ -24,5 +27,6 @@
 
 <!-- Create Activity Modal -->
 <app-create-activity-modal></app-create-activity-modal>
+
 
 

@@ -7,6 +7,9 @@ import { ActivatedRoute } from "@angular/router";
 import { Assessment } from "../models/assessment";
 import { AssessmentService} from "../services/assessment.service";
 import { catchError, Observable, tap } from "rxjs";
+import {ErrorHandlingService} from "../services/error-handling.service";
+import {MatSnackBar, MatSnackBarConfig} from "@angular/material/snack-bar";
+import {NotifierService} from "angular-notifier";
 
 @Component({
   selector: 'app-user-box',
@@ -23,7 +26,10 @@ export class UserBoxComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private userService: UserService,
     private teamService: TeamService,
-    private assessmentService: AssessmentService
+    private assessmentService: AssessmentService,
+    private errorHandler: ErrorHandlingService,
+    private snackBar: MatSnackBar,
+    private notifierService: NotifierService
   ) {}
 
   ngOnInit(): void {
@@ -32,6 +38,8 @@ export class UserBoxComponent implements OnInit {
     if (this.loggedUser.role != "mentor") {
 
       // this.appState = 'APP_ERROR'
+
+
 
       this.loggedUserTeam = this.teamService.getUserTeam(this.loggedUser.id);
       this.userAssessments$ = this.assessmentService.getUserAssessments(this.loggedUser.name)
@@ -42,6 +50,7 @@ export class UserBoxComponent implements OnInit {
           }),
           catchError((error) => {
             console.log('Error fetching user assessments:', error);
+            this.errorHandler.handleBackendError(error);
             this.appState = 'APP_ERROR';
             return [];
           })
@@ -50,4 +59,18 @@ export class UserBoxComponent implements OnInit {
       this.appState = 'APP_LOADED'; // If the user is a mentor, we set app state to loaded
     }
   }
+
+
+
+  // Method to show a custom notification
+  showCustomNotification(): void {
+    this.notifierService.notify('success', 'Custom notification!', 'Success');
+  }
+
+  // Method to show a manual snackbar
+  showManualError(): void {
+    this.errorHandler.handleBackendError({ error: { message: 'This is an example error message.' } });
+  }
+
+
 }

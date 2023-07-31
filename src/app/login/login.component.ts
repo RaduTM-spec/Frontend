@@ -124,6 +124,7 @@ export class LoginComponent implements OnInit {
           this.onLoginSuccess();
         }),
         catchError((error) => {
+
           console.error("Existing user login error:", error);
           // Here too.. :P
           return [];
