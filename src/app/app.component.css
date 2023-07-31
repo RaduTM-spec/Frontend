@@ -28,3 +28,48 @@ body {
   width: 90%;
   margin: 0 auto;
 }
+
+/* notifications.css */
+
+/* Style for the notification container */
+.custom-notifications {
+  position: fixed;
+  top: 16px;
+  right: 16px;
+  z-index: 9999;
+}
+
+/* Style for individual notifications */
+.notifier__notification {
+  font-size: 14px;
+  line-height: 1.4;
+  padding: 12px 20px;
+  border-radius: 4px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.notifier__notification--success {
+  background-color: #4caf50;
+  color: #ffffff;
+}
+
+.notifier__notification--error {
+  background-color: #f44336;
+  color: #ffffff;
+}
+
+.notifier__notification--info {
+  background-color: #2196f3;
+  color: #ffffff;
+}
+
+/* Style for notification title */
+.notifier__notification-title {
+  font-weight: bold;
+  margin-bottom: 6px;
+}
+
+/* Style for notification message */
+.notifier__notification-message {
+  margin-bottom: 0;
+}

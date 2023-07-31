@@ -25,6 +25,12 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {MatIconModule} from "@angular/material/icon";
 import {NotifierModule} from "angular-notifier";
 import {NotificationModule} from "./notification.module";
+import {NotificationService} from "./services/notification.service";
+import {UserService} from "./services/user.service";
+import {AuthenticationService} from "./services/authentication.service";
+import {ErrorHandlingService} from "./services/error-handling.service";
+import {TeamService} from "./services/team.service";
+import {AssessmentService} from "./services/assessment.service";
 
 @NgModule({
   declarations: [
@@ -60,7 +66,14 @@ import {NotificationModule} from "./notification.module";
     NotificationModule
   ],
   providers: [
-    MatSnackBarConfig
+    UserService,
+    TeamService,
+    AuthenticationService,
+    AssessmentService,
+    ErrorHandlingService,
+    MatSnackBarConfig,
+    NotificationService,
+    NotificationModule
   ],
   bootstrap: [AppComponent]
 })

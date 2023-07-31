@@ -10,6 +10,8 @@ import { catchError, Observable, tap } from "rxjs";
 import {ErrorHandlingService} from "../services/error-handling.service";
 import {MatSnackBar, MatSnackBarConfig} from "@angular/material/snack-bar";
 import {NotifierService} from "angular-notifier";
+import {NotificationType} from "../enums/notification-type.enum";
+import {NotificationService} from "../services/notification.service";
 
 @Component({
   selector: 'app-user-box',
@@ -28,8 +30,7 @@ export class UserBoxComponent implements OnInit {
     private teamService: TeamService,
     private assessmentService: AssessmentService,
     private errorHandler: ErrorHandlingService,
-    private snackBar: MatSnackBar,
-    private notifierService: NotifierService
+    private notifierService: NotificationService
   ) {}
 
   ngOnInit(): void {
@@ -62,14 +63,13 @@ export class UserBoxComponent implements OnInit {
 
 
 
-  // Method to show a custom notification
-  showCustomNotification(): void {
-    this.notifierService.notify('success', 'Custom notification!', 'Success');
-  }
 
   // Method to show a manual snackbar
   showManualError(): void {
-    this.errorHandler.handleBackendError({ error: { message: 'This is an example error message.' } });
+    console.log("in show manual error")
+    // this.errorHandler.handleBackendError({ error: { message: 'This is an example error message.' } });
+    this.errorHandler.showNotification( "errearaer")
+
   }
 
 

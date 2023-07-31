@@ -2,6 +2,7 @@ import {NotifierModule, NotifierOptions} from "angular-notifier";
 import {FormsModule, NgModel} from "@angular/forms";
 import {NgModule} from "@angular/core";
 import {BrowserModule} from "@angular/platform-browser";
+import {MatError} from "@angular/material/form-field";
 
 
 const notifierCustomOptions: NotifierOptions = {
@@ -50,7 +51,7 @@ const notifierCustomOptions: NotifierOptions = {
   imports: [
     BrowserModule,
     FormsModule,
-    NotifierModule.withConfig(notifierCustomOptions)
+    NotifierModule.withConfig(notifierCustomOptions),
     ],
     exports: [NotifierModule]})
 export class NotificationModule {}
