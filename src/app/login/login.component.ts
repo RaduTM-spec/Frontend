@@ -136,19 +136,22 @@ export class LoginComponent implements OnInit {
   }
 
   onLoginSuccess() {
-    this.userService.user = this.userService.authenticateUser('vasile')
-      .pipe(
-        tap((loggedUser: UserTeamDTO) => {
-          console.log(' > Received logged user:', loggedUser);
-        }),
-        catchError((error) => {
-          console.error('Error fetching logged user:', error);
-          return [];
-        })
+    if(this.loginForm.get('username')?.value != '') {
 
-      );
 
-    this.authService.temporaryLogin();
-    this.router.navigate(['/user-assessments']);
+      this.userService.user = this.userService.authenticateUser(this.loginForm.get('username')?.value)
+        .pipe(
+          tap((loggedUser: UserTeamDTO) => {
+            console.log(' > Received logged user:', loggedUser);
+          }),
+          catchError((error) => {
+            console.error('Error fetching logged user:', error);
+            return [];
+          })
+        );
+
+      this.authService.temporaryLogin();
+      this.router.navigate(['/user-assessments']);
+    }
   }
 }

@@ -1,12 +1,8 @@
-export interface Team {
-  id: number
-  name: string
-  team_leader_name: string
+import {User} from "./user";
 
-  grade: number
-  activities: number[]
-  members: number[]
-  // members: User[]
+export interface Team {
+  name: string
+  leader: User
 
 
 }

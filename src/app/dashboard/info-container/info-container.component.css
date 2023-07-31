@@ -10,6 +10,11 @@
   padding: 10px;
 }
 
+.header-title{
+  padding-top: 10px;
+  font-weight: bold;
+  font-size: 30px;
+}
 .buttons-container {
   display: flex;
   align-items: center;

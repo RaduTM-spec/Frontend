@@ -8,7 +8,11 @@
   border-radius: 8px;
   padding: 10px;
 }
-
+.header-title{
+  padding-top: 10px;
+  font-weight: bold;
+  font-size: 30px;
+}
 
 .user-details {
   flex: 1; /* Add this line */
