@@ -12,20 +12,20 @@
   </main>
 
   <div class="button-container">
-    <button *ngIf="userRole != 'MEMBER'" type="button" class="button" (click)="showJoinActivityModal()">+ Join</button>
-    <button *ngIf="userRole == 'mentor'" type="button" class="button" (click)="showCreateActivityModal()">+ Create</button>
+    <button *ngIf="logged.user.role != 'MEMBER'" type="button" class="button" (click)="showJoinActivityModal()">+ Join</button>
+    <button *ngIf="logged.user.role == 'MENTOR'" type="button" class="button" (click)="showCreateActivityModal()">+ Create</button>
   </div>
   <footer>
 
-    <div class="user-box" [routerLink]="['/user-assessments']" routerLinkActive="active" [queryParams]="{userName: loggedUser.name}">
-      <img class="user-profile-picture" src="{{loggedUser.pictureUrl}}" alt="User Profile">
+    <div class="user-box" [routerLink]="['/user-assessments']" routerLinkActive="active" [queryParams]="{userName: logged.user.name}">
+      <img class="user-profile-picture" src="{{logged.user.pictureUrl}}" alt="User Profile">
 <!--      src="https://robohash.org/profilepic.jpeg?bgset=bg1" -->
       <div class="user-details">
         <div class="user-profile">
-          {{loggedUser.name}}
+          {{logged.user.name}}
         </div>
         <div class="username">
-          {{loggedUser.role}}
+          {{logged.user.role}}
         </div>
       </div>
     </div>

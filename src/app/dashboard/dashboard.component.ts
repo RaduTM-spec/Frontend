@@ -41,20 +41,22 @@ export class DashboardComponent implements OnInit{
     this.createActivityModalRef = this.elementRef;
 
     this.activatedRoute.queryParamMap.subscribe((params) => {
-        this.activityName = params.get('activityName') || '';
-        this.loggedUser = this.usersService.getLoggedUser();
+      this.activityName = params.get('activityName') || '';
+      this.loggedUser = this.usersService.getLoggedUser();
+
+      this.activityTeams$ = this.teamService.getActivityTeams(this.loggedUser.name, this.activityName)
+        .pipe(
+          tap((teams: Team[]) => {
+            console.log(' > Received activity teams:', teams);
+          }),
+          catchError((error) => {
+            console.error('Error fetching activity teams:', error);
+            return [];
+          })
+        );
     })
 
-    this.activityTeams$ = this.teamService.getActivityTeams(this.loggedUser.name, this.activityName)
-      .pipe(
-        tap((teams: Team[]) => {
-          console.log(' > Received activity teams:', teams);
-        }),
-        catchError((error) => {
-          console.error('Error fetching activity teams:', error);
-          return [];
-        })
-      );
+
   }
 
   exportSituation(){

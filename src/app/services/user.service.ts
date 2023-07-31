@@ -43,6 +43,8 @@ export class UserService {
 
   }
 
+  public user: Observable<UserTeamDTO> | undefined;
+
   getLoggedUser() {
     return this.loggedUser;
   }

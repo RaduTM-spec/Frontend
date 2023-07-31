@@ -12,6 +12,7 @@ export class AuthenticationService {
   private loggedIn = false;
   private apiUrl = environment.apiServerUrl;
 
+
   constructor(private http: HttpClient) {}
 
   isLoggedIn(): boolean {

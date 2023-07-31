@@ -18,7 +18,6 @@ export class AssessmentModalComponent implements OnInit {
   @Input() teamName: string = "";
 
   private activity: Activity = {
-    id: 1,
     name: "Activity1",
     deadline: '02/08/2023',
     creator: {

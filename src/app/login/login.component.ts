@@ -4,6 +4,8 @@ import { Router } from "@angular/router";
 import { AuthenticationService } from "../services/authentication.service";
 import { switchMap, tap } from 'rxjs/operators';
 import {catchError} from "rxjs";
+import {UserService} from "../services/user.service";
+import {UserTeamDTO} from "../models/user-team-dto";
 
 @Component({
   selector: 'app-login',
@@ -13,7 +15,7 @@ import {catchError} from "rxjs";
 export class LoginComponent implements OnInit {
   loginForm!: FormGroup;
 
-  constructor(private formBuilder: FormBuilder, private router: Router, private authService: AuthenticationService) {}
+  constructor(private formBuilder: FormBuilder, private router: Router, private authService: AuthenticationService, private userService: UserService) {}
 
   ngOnInit(): void {
     this.loginForm = this.formBuilder.group({
@@ -133,7 +135,19 @@ export class LoginComponent implements OnInit {
   }
 
   onLoginSuccess() {
+    this.userService.user = this.userService.authenticateUser('john_doe')
+      .pipe(
+        tap((loggedUser: UserTeamDTO) => {
+          console.log(' > Received logged user:', loggedUser);
+        }),
+        catchError((error) => {
+          console.error('Error fetching logged user:', error);
+          return [];
+        })
+
+      );
+
     this.authService.temporaryLogin();
-    this.router.navigate(['/activity-teams']);
+    this.router.navigate(['/user-assessments']);
   }
 }

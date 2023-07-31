@@ -1,5 +1,9 @@
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import {Observable} from "rxjs";
+import {UserTeamDTO} from "../models/user-team-dto";
+import {UserService} from "../services/user.service";
+import {ActivityService} from "../services/activity.service";
 
 @Component({
   selector: 'app-join-activity-modal',
@@ -7,10 +11,14 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./join-activity-modal.component.css']
 })
 export class JoinActivityModalComponent {
+
+  userName: string = '';
   activityName: string = "";
   isActive: boolean = false;
 
-  constructor(private http: HttpClient) { }
+  loggedUser$: Observable<UserTeamDTO> | undefined;
+
+  constructor(private http: HttpClient, private userService:UserService, private activityService: ActivityService) { }
 
   showJoinActivityModal() {
     this.isActive = true;
@@ -27,16 +35,11 @@ export class JoinActivityModalComponent {
       return;
     }
 
-    // The POST request..but I think we will use a service here instead
-    this.http.post('/api/activities', { name: this.activityName }).subscribe(
-      (response) => {
-        // Handle the response from the backend
-        console.log(response);
-      },
-      (error) => {
-        // Handle any error that occurs during the POST request
-        console.error(error);
-      }
-    );
+    this.loggedUser$ = this.userService.user;
+    this.loggedUser$?.subscribe(value => {
+      this.userName = value.user.name;
+      // POST request to the backend API using the HttpClient
+      this.activityService.joinActivity(this.userName, this.activityName);
+    })
   }
 }
