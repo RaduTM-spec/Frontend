@@ -7,6 +7,11 @@ import { AssessmentService } from '../services/assessment.service';
 import { Activity } from "../models/activity";
 import { catchError } from "rxjs/operators";
 import { UserService } from "../services/user.service";
+import {ErrorHandlingService} from "../services/error-handling.service";
+import {NotificationService} from "../services/notification.service";
+
+declare var $: any;
+
 
 @Component({
   selector: 'app-assessment-modal',
@@ -43,8 +48,12 @@ export class AssessmentModalComponent implements OnInit {
 
   assessmentTitle: string = "Assessment";
 
-  constructor(private assessmentService: AssessmentService, private userService: UserService) {}
-
+  constructor(
+    private assessmentService: AssessmentService,
+    private userService: UserService,
+    private errorHandlingService: ErrorHandlingService,
+    private notificationService: NotificationService
+  ) {}
   markAllAsAttended() {
     this.assessments.forEach((assessment) => {
       assessment.attended = true;
@@ -81,13 +90,15 @@ export class AssessmentModalComponent implements OnInit {
       .pipe(
         catchError((error) => {
           console.error('Error saving assessments:', error);
+          this.errorHandlingService.handleBackendError(error);
           return [];
         })
       )
       .subscribe((response) => {
         if (response) {
           console.log('Assessments saved successfully!', response);
-          // ...
+          this.notificationService.showSuccessNotification("Session assessments sent successfully!")
+          $('#assessmentModal').modal('hide');
         }
       });
   }

@@ -2,11 +2,12 @@ import {Component, ElementRef, OnInit, Renderer2} from '@angular/core';
 import {Activity} from "../models/activity";
 import {ActivityService} from "../services/activity.service";
 import {ActivatedRoute} from "@angular/router";
-import {User} from "../models/user";
 import {UserService} from "../services/user.service";
 import {TeamService} from "../services/team.service";
 import {catchError, Observable, tap} from "rxjs";
 import {UserTeamDTO} from "../models/user-team-dto";
+import {ErrorHandlingService} from "../services/error-handling.service";
+import {AppState} from "../enums/app-state.enum";
 
 declare var $: any; // Declared the $ symbol from jQuery
 
@@ -19,6 +20,8 @@ export class NavigationComponent implements OnInit{
 
   userRole: string = '';
 
+  panelState: AppState = AppState.EMPTY;
+
   enrolledActivities$: Observable<Activity[]> | undefined;
   loggedUser$: Observable<UserTeamDTO> | undefined;
 
@@ -26,15 +29,21 @@ export class NavigationComponent implements OnInit{
   joinActivityModalRef: ElementRef;
   createActivityModalRef: ElementRef;
 
-  constructor(private activatedRoute: ActivatedRoute, private activityService: ActivityService, private userService:UserService, private teamService:TeamService,private renderer: Renderer2, private elementRef: ElementRef) {
-
+  constructor(private activatedRoute: ActivatedRoute,
+              private activityService: ActivityService,
+              private userService:UserService,
+              private teamService:TeamService,
+              private renderer: Renderer2,
+              private elementRef: ElementRef,
+              private errorHandlingService: ErrorHandlingService
+              ) {
     this.joinActivityModalRef = this.elementRef;
     this.createActivityModalRef = this.elementRef;
   }
 
   ngOnInit() {
     // this.loggedUser = this.userService.getLoggedUser();
-
+    this.panelState = AppState.LOADING;
     this.loggedUser$ = this.userService.user;
 
     this.loggedUser$?.subscribe(value => {
@@ -42,11 +51,18 @@ export class NavigationComponent implements OnInit{
         .pipe(
           tap((activities: Activity[]) => {
             console.log(' > Received enrolled activity:', activities);
+            if (activities.length > 0) {
+              this.panelState = AppState.LOADED;
+            } else {
+              this.panelState = AppState.EMPTY;
+            }
           }),
           catchError((error) => {
+            this.panelState = AppState.EMPTY;
+            this.errorHandlingService.handleBackendError(error);
             console.error('Error fetching enrolled activities:', error);
             return [];
-          })
+          }),
 
         );
     })
@@ -111,4 +127,5 @@ export class NavigationComponent implements OnInit{
   //   window.location.reload();
   // }
 
+  protected readonly AppState = AppState;
 }

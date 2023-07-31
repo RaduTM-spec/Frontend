@@ -1,5 +1,8 @@
 
 
+/* Import specific theme styles */
+@import '../node_modules/angular-notifier/styles';
+
 :root{
   --background-color: #1c1c1c;
   --frame-background-color: white;

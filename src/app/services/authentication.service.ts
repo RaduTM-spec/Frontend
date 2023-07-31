@@ -4,6 +4,8 @@ import { HttpClient, HttpErrorResponse } from "@angular/common/http";
 import { catchError, Observable, throwError } from "rxjs";
 import { UserTeamDTO } from "../models/user-team-dto";
 import { tap } from "rxjs/operators";
+import { NotificationService } from "./notification.service";
+import {ErrorHandlingService} from "./error-handling.service";
 
 @Injectable({
   providedIn: 'root'
@@ -12,8 +14,11 @@ export class AuthenticationService {
   private loggedIn = false;
   private apiUrl = environment.apiServerUrl;
 
-
-  constructor(private http: HttpClient) {}
+  constructor(
+    private http: HttpClient,
+    private notificationService: NotificationService,
+    private errorHandlingService: ErrorHandlingService
+  ) {}
 
   isLoggedIn(): boolean {
     return this.loggedIn;
@@ -29,8 +34,9 @@ export class AuthenticationService {
       tap((response: UserTeamDTO) => {
         // Handle successful response
         this.loggedIn = true;
+        this.notificationService.showSuccessNotification("Login Successful!");
       }),
-      catchError(this.handleError)
+      catchError((error: HttpErrorResponse) => this.handleError(error))
     );
   }
 
@@ -45,7 +51,7 @@ export class AuthenticationService {
         // Handle successful response
         this.loggedIn = true;
       }),
-      catchError(this.handleError)
+      catchError((error: HttpErrorResponse) => this.handleError(error))
     );
   }
 
@@ -60,7 +66,7 @@ export class AuthenticationService {
         // Handle successful response
         this.loggedIn = true;
       }),
-      catchError(this.handleError)
+      catchError((error: HttpErrorResponse) => this.handleError(error))
     );
   }
 
@@ -75,7 +81,7 @@ export class AuthenticationService {
         // Handle successful response
         this.loggedIn = true;
       }),
-      catchError(this.handleError)
+      catchError((error: HttpErrorResponse) => this.handleError(error))
     );
   }
 
@@ -86,11 +92,12 @@ export class AuthenticationService {
   logout(): void {
     // we will need to clear the logged in user from the user service and etc
     this.loggedIn = false;
+    this.notificationService.showDefaultNotification("Logged out successfully")
   }
 
   private handleError(error: HttpErrorResponse): Observable<never> {
-    console.error("An error occurred:", error);
     this.loggedIn = false;
+    this.errorHandlingService.handleBackendError(error);
     return throwError(error);
   }
 }

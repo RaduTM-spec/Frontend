@@ -1,19 +1,13 @@
 <div class="team-header">
 
-
-
   <div class="header-content">
     <h3 class="header-title">{{loggedUser?.name}}`S SITUATION</h3>
   </div>
-
 </div>
-
-
-
 <button mat-button  (click)="showManualError()">Show Manual Error</button>
 
 <ng-container [ngSwitch]="appState">
-  <div *ngSwitchCase="'APP_LOADING'">
+  <div *ngSwitchCase="AppState.LOADING">
     <div class="d-flex justify-content-center mt-4">
       <div class="spinner-border" role="status">
         <span class="visually-hidden">Loading...</span>
@@ -21,7 +15,7 @@
     </div>
   </div>
 
-  <div *ngSwitchCase="'APP_LOADED'">
+  <div *ngSwitchCase="AppState.LOADED">
     <ng-container class="user-profile">
       <div class="profile-header">
         <div class="user-details-card">
@@ -47,13 +41,20 @@
             <!--      <app-session-card></app-session-card>-->
             <!--      <app-session-card></app-session-card>-->
 
+
             <app-session-card *ngFor="let assessment of assessments" [assessment]="assessment"></app-session-card>
+          </div>
+        </ng-container>
+
+        <ng-container>
+          <div class="alert alert-secondary" role="alert">
+            Since you are a MENTOR, you can only assign assessments to teams and users..
           </div>
         </ng-container>
     </ng-container>
   </div>
 
-  <div *ngSwitchCase="'APP_ERROR'">
+  <div *ngSwitchCase="AppState.EMPTY">
     <div class="alert alert-secondary" role="alert">
       Seems like there is no assessment data for you yet.
     </div>

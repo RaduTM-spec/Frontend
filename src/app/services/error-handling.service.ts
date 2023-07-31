@@ -11,13 +11,15 @@ export class ErrorHandlingService {
 
   handleBackendError(error: any): void {
     if (error?.error?.message) {
-      this.showNotification(error.error.message);
+      console.log(error)
+      this.notificationService.showErrorNotification(error.error.message);
     } else {
-      this.showNotification('An unknown error occurred. Please try again later.');
+      console.log(error)
+      this.notificationService.showDefaultNotification('An unknown error occurred. Please try again later.');
     }
   }
 
-  public showNotification(message: string): void {
-    this.notificationService.notify(NotificationType.SUCCESS, message);
-  }
+
+
+
 }

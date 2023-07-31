@@ -1,11 +1,14 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from "@angular/router";
-import { AuthenticationService } from "../services/authentication.service";
-import { switchMap, tap } from 'rxjs/operators';
+import {Component, OnInit} from '@angular/core';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {Router} from "@angular/router";
+import {AuthenticationService} from "../services/authentication.service";
+import {tap} from 'rxjs/operators';
 import {catchError} from "rxjs";
 import {UserService} from "../services/user.service";
 import {UserTeamDTO} from "../models/user-team-dto";
+import {ErrorHandlingService} from "../services/error-handling.service";
+import {NotificationService} from "../services/notification.service";
+import {NotificationType} from "../enums/notification-type.enum";
 
 @Component({
   selector: 'app-login',
@@ -15,7 +18,13 @@ import {UserTeamDTO} from "../models/user-team-dto";
 export class LoginComponent implements OnInit {
   loginForm!: FormGroup;
 
-  constructor(private formBuilder: FormBuilder, private router: Router, private authService: AuthenticationService, private userService: UserService) {}
+  constructor(
+    private formBuilder: FormBuilder,
+    private router: Router,
+    private authService: AuthenticationService,
+    private userService: UserService,
+    private errorHandler: ErrorHandlingService,
+    private notificationHandler: NotificationService) {}
 
   ngOnInit(): void {
     this.loginForm = this.formBuilder.group({
@@ -113,7 +122,7 @@ export class LoginComponent implements OnInit {
         }),
         catchError((error) => {
           console.error("User login error:", error);
-          // We will see what we do about errors here.
+          this.errorHandler.handleBackendError(error);
           return [];
         })
       ).subscribe();
@@ -126,9 +135,8 @@ export class LoginComponent implements OnInit {
           this.onLoginSuccess();
         }),
         catchError((error) => {
-
+          this.errorHandler.handleBackendError(error);
           console.error("Existing user login error:", error);
-          // Here too.. :P
           return [];
         })
       ).subscribe();
@@ -145,12 +153,14 @@ export class LoginComponent implements OnInit {
             console.log(' > Received logged user:', loggedUser);
           }),
           catchError((error) => {
+            this.errorHandler.handleBackendError(error);
             console.error('Error fetching logged user:', error);
             return [];
           })
         );
 
       this.authService.temporaryLogin();
+      this.notificationHandler.showSuccessNotification("Login Successful!")
       this.router.navigate(['/user-assessments']);
     }
   }

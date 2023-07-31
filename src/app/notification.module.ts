@@ -1,19 +1,18 @@
 import {NotifierModule, NotifierOptions} from "angular-notifier";
-import {FormsModule, NgModel} from "@angular/forms";
+import {FormsModule} from "@angular/forms";
 import {NgModule} from "@angular/core";
 import {BrowserModule} from "@angular/platform-browser";
-import {MatError} from "@angular/material/form-field";
 
 
 const notifierCustomOptions: NotifierOptions = {
   position: {
     horizontal: {
       position: 'left',
-      distance: 12,
+      distance: 400,
     },
     vertical: {
       position: 'bottom',
-      distance: 12,
+      distance: 50,
       gap: 10,
     },
   },

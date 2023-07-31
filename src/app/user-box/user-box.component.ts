@@ -1,17 +1,15 @@
-import { Component, OnInit } from '@angular/core';
-import { UserService } from "../services/user.service";
-import { User } from "../models/user";
-import { TeamService } from "../services/team.service";
-import { Team } from "../models/team";
-import { ActivatedRoute } from "@angular/router";
-import { Assessment } from "../models/assessment";
-import { AssessmentService} from "../services/assessment.service";
-import { catchError, Observable, tap } from "rxjs";
+import {Component, OnInit} from '@angular/core';
+import {UserService} from "../services/user.service";
+import {User} from "../models/user";
+import {TeamService} from "../services/team.service";
+import {Team} from "../models/team";
+import {ActivatedRoute} from "@angular/router";
+import {Assessment} from "../models/assessment";
+import {AssessmentService} from "../services/assessment.service";
+import {catchError, Observable, tap} from "rxjs";
 import {ErrorHandlingService} from "../services/error-handling.service";
-import {MatSnackBar, MatSnackBarConfig} from "@angular/material/snack-bar";
-import {NotifierService} from "angular-notifier";
-import {NotificationType} from "../enums/notification-type.enum";
 import {NotificationService} from "../services/notification.service";
+import {AppState} from "../enums/app-state.enum";
 
 @Component({
   selector: 'app-user-box',
@@ -22,7 +20,7 @@ export class UserBoxComponent implements OnInit {
   loggedUser: User | undefined;
   loggedUserTeam: Team | undefined;
   userAssessments$: Observable<Assessment[]> | undefined;
-  appState: 'APP_LOADING' | 'APP_LOADED' | 'APP_ERROR' = 'APP_LOADING'; // Will change it to be a global enum
+  appState: AppState = AppState.LOADING;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -38,23 +36,23 @@ export class UserBoxComponent implements OnInit {
 
     if (this.loggedUser.role != "mentor") {
 
-      // this.appState = 'APP_ERROR'
+      // this.appState = AppState.ERROR
 
       this.userAssessments$ = this.assessmentService.getUserAssessments(this.loggedUser.name)
         .pipe(
           tap((assessments: Assessment[]) => {
             console.log(' > Received user assessments:', assessments);
-            this.appState = assessments.length > 0 ? 'APP_LOADED' : 'APP_ERROR';
+            this.appState = assessments.length > 0 ? AppState.LOADED : AppState.EMPTY;
           }),
           catchError((error) => {
             console.log('Error fetching user assessments:', error);
             this.errorHandler.handleBackendError(error);
-            this.appState = 'APP_ERROR';
+            this.appState = AppState.EMPTY;
             return [];
           })
         );
     } else {
-      this.appState = 'APP_LOADED'; // If the user is a mentor, we set app state to loaded
+      this.appState = AppState.LOADED; // If the user is a mentor, we set app state to loaded
     }
   }
 
@@ -65,9 +63,10 @@ export class UserBoxComponent implements OnInit {
   showManualError(): void {
     console.log("in show manual error")
     // this.errorHandler.handleBackendError({ error: { message: 'This is an example error message.' } });
-    this.errorHandler.showNotification( "errearaer")
+    this.notifierService.showDefaultNotification( "Fuck TypeScript!")
 
   }
 
 
+  protected readonly AppState = AppState;
 }

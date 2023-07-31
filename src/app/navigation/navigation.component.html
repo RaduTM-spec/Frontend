@@ -3,12 +3,32 @@
 
   <!--  *ngIf="enrolledActivities$ | async as activities"-->
   <main class="sidenav" *ngIf="enrolledActivities$ | async as activities">
-    <app-activity *ngFor="let activity of activities"
-                  [activity]="activity"
-                  [user]="logged.user"
-                  [team]="logged.team"
-    >
-    </app-activity>
+
+    <ng-container *ngSwitchCase="panelState">
+      <div *ngSwitchCase="AppState.LOADING">
+        <div class="d-flex justify-content-center mt-4">
+          <div class="spinner-border" role="status">
+            <span class="visually-hidden">Loading...</span>
+          </div>
+        </div>
+      </div>
+
+      <div *ngSwitchCase="AppState.LOADED">
+        <app-activity *ngFor="let activity of activities"
+                      [activity]="activity"
+                      [user]="logged.user"
+                      [team]="logged.team">
+        </app-activity>
+      </div>
+
+      <div *ngSwitchCase="AppState.EMPTY">
+          <span> No activity joined yet</span>
+      </div>
+
+
+    </ng-container>
+
+
   </main>
 
   <div class="button-container">
