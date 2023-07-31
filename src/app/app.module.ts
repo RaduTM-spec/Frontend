@@ -20,6 +20,11 @@ import { InfoContainerComponent } from './dashboard/info-container/info-containe
 import { MembersTableComponent } from './dashboard/members-table/members-table.component';
 import {AssessmentModalComponent} from "./assessment-modal/assessment-modal.component";
 import { LoginComponent } from './login/login.component';
+import { MatSnackBarConfig, MatSnackBarModule} from "@angular/material/snack-bar";
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {MatIconModule} from "@angular/material/icon";
+import {NotifierModule} from "angular-notifier";
+import {NotificationModule} from "./notification.module";
 
 @NgModule({
   declarations: [
@@ -40,6 +45,8 @@ import { LoginComponent } from './login/login.component';
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
+    MatSnackBarModule,
     AppRoutingModule,
     FormsModule,
     MatInputModule,
@@ -47,9 +54,14 @@ import { LoginComponent } from './login/login.component';
     MatButtonModule,
     MatDatepickerModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatIconModule,
+    NotifierModule,
+    NotificationModule
   ],
-  providers: [],
+  providers: [
+    MatSnackBarConfig
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,10 +1,16 @@
 <div class="team-header">
 
+
+
   <div class="header-content">
     <h3 class="header-title">{{loggedUser?.name}}`S SITUATION</h3>
   </div>
 
 </div>
+
+
+
+<button mat-button (click)="showManualError()">Show Manual Snackbar</button>
 
 <ng-container [ngSwitch]="appState">
   <div *ngSwitchCase="'APP_LOADING'">
