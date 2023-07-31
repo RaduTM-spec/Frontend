@@ -136,7 +136,7 @@ export class LoginComponent implements OnInit {
   }
 
   onLoginSuccess() {
-    this.userService.user = this.userService.authenticateUser('john_doe')
+    this.userService.user = this.userService.authenticateUser('vasile')
       .pipe(
         tap((loggedUser: UserTeamDTO) => {
           console.log(' > Received logged user:', loggedUser);
