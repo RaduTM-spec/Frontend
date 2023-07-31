@@ -1,7 +1,7 @@
 .login-container {
-  max-width: 900px; /* Increase the max-width for a wider layout */
-  margin: 0 auto; /* Center the login form horizontally */
-  padding: 45px; /* Add more padding around the login form */
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 45px;
   border: 1px solid #ccc;
   border-radius: 8px;
   background-color: #f9f9f9;
@@ -12,13 +12,26 @@
   transform: translate(-50%, -50%);
 }
 
+/* Input fields and select */
+input[type="text"],
+select {
+  padding: 10px;
+  font-size: 14px;
+  border: 1px solid #333333;
+  border-radius: 4px;
+  width: 100%;
+  max-width: 1000px;
+  transition: border-color 0.3s ease-in-out;
 
+
+}
 
 h2 {
   text-align: center;
   margin-bottom: 20px;
 }
 
+/* User Type Buttons */
 .user-type-buttons {
   display: flex;
   justify-content: center;
@@ -30,23 +43,25 @@ h2 {
   margin: 0 10px;
   font-size: 14px;
   font-weight: bold;
-  border: 1px solid #ccc;
+  border: 1px solid #333333;
   border-radius: 4px;
   cursor: pointer;
   background-color: #fff;
-  transition: background-color 0.3s ease-in-out;
+  color: #333333;
+  transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
 }
 
+/* Selected User Type Button */
 .user-type-button.active {
-  background-color: #007bff;
+  background-color: #333333;
   color: #fff;
-  border-color: #007bff;
+  border-color: #333333;
 }
 
+/* On Hover Effect */
 .user-type-button:hover {
-  background-color: #007bff;
+  background-color: #333333;
   color: #fff;
-  border-color: #007bff;
 }
 
 .form-group {
@@ -60,14 +75,14 @@ label {
   margin-bottom: 5px;
 }
 
-input[type="text"],
-select {
-  padding: 10px;
-  font-size: 14px;
-  border: 1px solid ;
-  border-radius: 4px;
-  transition: border-color 0.3s ease-in-out;
-}
+/*input[type="text"],*/
+/*select {*/
+/*  padding: 10px;*/
+/*  font-size: 14px;*/
+/*  border: 1px solid ;*/
+/*  border-radius: 4px;*/
+/*  transition: border-color 0.3s ease-in-out;*/
+/*}*/
 
 input[type="text"]:focus,
 select:focus {
@@ -147,4 +162,15 @@ button[type="submit"] {
   transition: background-color 0.3s ease-in-out;
   width: 100%; /* Make the buttons the same width as the inputs */
   max-width: 300px; /* Limit the max-width to prevent stretching on larger screens */
+}
+
+.logo-container {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.logo-container img {
+  max-width: 120px; /* Set the maximum width of the logo */
+  display: block; /* Center the logo horizontally */
+  margin: 0 auto;
 }
