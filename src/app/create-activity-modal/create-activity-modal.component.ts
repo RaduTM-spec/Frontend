@@ -29,6 +29,7 @@ export class CreateActivityModalComponent {
     }
 
     this.loggedUser = this.authService.loggedUser
+
     // POST request to the backend API using the HttpClient
     this.activityService.createActivity(this.loggedUser.user.name, this.newActivityName, this.endingDate);
 

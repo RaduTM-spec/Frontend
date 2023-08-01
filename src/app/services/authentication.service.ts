@@ -40,6 +40,7 @@ export class AuthenticationService {
       tap((loggedUser: UserTeamDTO) => {
         console.log(' > Received logged user:', loggedUser);
         this.notificationService.showSuccessNotification("Login Successful!")
+        this.loggedIn = true;
 
       }),
       catchError((error) => {
@@ -54,65 +55,60 @@ export class AuthenticationService {
     return new Promise( resolve => setTimeout(resolve, ms) );
   }
 
-  loginExistingUser(username: string): Observable<UserTeamDTO> {
-    const endpoint = `${this.apiUrl}/authenticate?name=${username}`;
-    const body = { name: username };
-
-    this.loggedIn = true;
-
-    return this.http.post<UserTeamDTO>(endpoint,body).pipe(
-      tap((response: UserTeamDTO) => {
-        // Handle successful response
-        this.loggedIn = true;
-        this.notificationService.showSuccessNotification("Login Successful!");
-
-      }),
-      catchError((error: HttpErrorResponse) => this.handleError(error))
-    );
-  }
-
   loginNewMentor(username: string, create: any, activityName: any, dueDate: any): Observable<UserTeamDTO> {
-    const endpoint = `${this.apiUrl}/new/mentor`;
+    const endpoint = `${this.apiUrl}/new/mentor?userName=${username}&create=${create}&activityName=${activityName}&dueDate=${dueDate}`;
     const body = { name: username };
-
-    this.loggedIn = true;
 
     return this.http.post<UserTeamDTO>(endpoint, body).pipe(
-      tap((response: UserTeamDTO) => {
+      tap((newMentor: UserTeamDTO) => {
         // Handle successful response
+        console.log(' > Received new MENTOR:', newMentor);
+        this.notificationService.showSuccessNotification(`Mentor ${username} created successfully!`)
         this.loggedIn = true;
       }),
-      catchError((error: HttpErrorResponse) => this.handleError(error))
+      catchError((error) => {
+        this.errorHandlingService.handleBackendError(error);
+        console.error('Error creating new MENTOR:', error);
+        return [];
+      })
     );
   }
 
   loginNewLead(username: string, teamName: any): Observable<UserTeamDTO> {
-    const endpoint = `${this.apiUrl}/new/lead`;
+    const endpoint = `${this.apiUrl}/new/lead?userName=${username}&teamName=${teamName}`;
     const body = { name: username };
 
-    this.loggedIn = true;
-
     return this.http.post<UserTeamDTO>(endpoint, body).pipe(
-      tap((response: UserTeamDTO) => {
+      tap((teamLeader: UserTeamDTO) => {
         // Handle successful response
+        console.log(' > Received new TEAM_LEADER:', teamLeader);
+        this.notificationService.showSuccessNotification(`Team leader ${username} created successfully!`)
         this.loggedIn = true;
       }),
-      catchError((error: HttpErrorResponse) => this.handleError(error))
+      catchError((error) => {
+        this.errorHandlingService.handleBackendError(error);
+        console.error('Error creating new TEAM_LEADER:', error);
+        return [];
+      })
     );
   }
 
   loginNewMember(username: string, teamName: any): Observable<UserTeamDTO> {
-    const endpoint = `${this.apiUrl}/new/member`;
+    const endpoint = `${this.apiUrl}/new/member?username=${username}&teamName=${teamName}`;
     const body = { name: username };
 
-    this.loggedIn = true;
-
     return this.http.post<UserTeamDTO>(endpoint, body).pipe(
-      tap((response: UserTeamDTO) => {
+      tap((newMember: UserTeamDTO) => {
         // Handle successful response
+        console.log(' > Received new MEMBER:', newMember);
+        this.notificationService.showSuccessNotification(`Member ${username} created successfully!`)
         this.loggedIn = true;
       }),
-      catchError((error: HttpErrorResponse) => this.handleError(error))
+      catchError((error) => {
+        this.errorHandlingService.handleBackendError(error);
+        console.error(`Error creating new MEMBER ${username}:`, error);
+        return [];
+      })
     );
   }
 

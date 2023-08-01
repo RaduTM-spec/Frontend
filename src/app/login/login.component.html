@@ -10,12 +10,12 @@
     <button class="user-type-button" [class.active]="loginForm.get('userType')?.value === 'new'" (click)="setUserType('new')">New User</button>
   </div>
 
-  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" novalidate>
+  <form [formGroup]="loginForm" novalidate>
 
     <div class="form-group">
       <label for="username">Username</label>
       <input type="text" id="username" formControlName="username" required>
-      <div *ngIf="loginForm.get('username')?.hasError('required') && (loginForm.get('username')?.dirty || loginForm.get('username')?.touched)" class="form-error-message">
+      <div *ngIf="loginForm.get('username')?.hasError('required')" class="form-error-message">
         <div>Username is required.</div>
       </div>
     </div>
@@ -32,7 +32,7 @@
     <div class="form-group" *ngIf="isMemberOrLeader()">
       <label for="teamName">Team Name</label>
       <input type="text" id="teamName" formControlName="teamName" required>
-      <div *ngIf="loginForm.get('teamName')?.hasError('required') && (loginForm.get('teamName')?.dirty || loginForm.get('teamName')?.touched)" class="form-error-message">
+      <div *ngIf="loginForm.get('teamName')?.hasError('required')" class="form-error-message">
         <div>Team Name is required.</div>
       </div>
     </div>
@@ -48,7 +48,7 @@
     <div class="form-group" *ngIf="isMentor()">
       <label for="activityName">Activity Name</label>
       <input type="text" id="activityName" formControlName="activityName" required>
-      <div *ngIf="loginForm.get('activityName')?.hasError('required') && (loginForm.get('activityName')?.dirty || loginForm.get('activityName')?.touched)" class="form-error-message">
+      <div *ngIf="loginForm.get('activityName')?.hasError('required')" class="form-error-message">
         <div>Activity Name is required.</div>
       </div>
     </div>
@@ -56,7 +56,7 @@
     <div class="form-group" *ngIf="isMentor()">
       <label for="dueDate">Due Date</label>
       <input type="date" id="dueDate" formControlName="dueDate" required>
-      <div *ngIf="loginForm.get('dueDate')?.hasError('required') && (loginForm.get('dueDate')?.dirty || loginForm.get('dueDate')?.touched)" class="form-error-message">
+      <div *ngIf="loginForm.get('dueDate')?.hasError('required')" class="form-error-message">
         <div>Due Date is required.</div>
       </div>
     </div>
@@ -64,7 +64,7 @@
     <div class="form-buttons">
 
       <div *ngIf="isNewUser()">
-        <button (click)="onLoginSuccess()" type="submit">Register</button>
+        <button (click)="onRegisterSuccess()" type="submit">Register</button>
       </div>
       <div *ngIf="!isNewUser()">
         <button (click)="onLoginSuccess()" type="submit">Login</button>

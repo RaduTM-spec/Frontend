@@ -17,6 +17,7 @@ export class ActivityService {
   }
 
   createActivity(userName: string, activityName: string, deadline: string){
+    console.log(userName, activityName, deadline)
     this.http.post(`${this.URL_PATH}/activities?userName=${userName}&activityName=${activityName}&deadline=${deadline}` ,{title: 'Activity created!'}).subscribe(
       (response)=> {
         // Handle the response from the backend

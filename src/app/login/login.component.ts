@@ -2,11 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Router} from "@angular/router";
 import {AuthenticationService} from "../services/authentication.service";
-import {tap} from 'rxjs/operators';
-import {catchError} from "rxjs";
 import {UserService} from "../services/user.service";
 import {ErrorHandlingService} from "../services/error-handling.service";
-import {NotificationService} from "../services/notification.service";
 
 @Component({
   selector: 'app-login',
@@ -20,9 +17,8 @@ export class LoginComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
-    private authService: AuthenticationService,
-    private userService: UserService,
-    private errorHandler: ErrorHandlingService) {}
+    private authService: AuthenticationService
+  ) {}
 
   ngOnInit(): void {
     this.loginForm = this.formBuilder.group({
@@ -45,9 +41,21 @@ export class LoginComponent implements OnInit {
     const role = this.loginForm.get('role')?.value;
     return this.isNewUser() && (role === 'MEMBER' || role === 'TEAM_LEADER');
   }
+  isMemberOrLeaderComplete(){
+    const username = this.loginForm.get('username')?.value;
+    const teamName = this.loginForm.get('teamName')?.value;
+    return username != '' && teamName != '';
+  }
 
   isMentor(): boolean {
     return this.isNewUser() && this.loginForm.get('role')?.value === 'MENTOR';
+  }
+  isMentorComplete(){
+    const username = this.loginForm.get('username')?.value;
+    const activityName = this.loginForm.get('activityName')?.value;
+    const dueDate = this.loginForm.get('dueDate')?.value;
+    return username != '' && activityName != '' && dueDate != '';
+
   }
 
   setUserType(userType: string): void {
@@ -89,58 +97,6 @@ export class LoginComponent implements OnInit {
     }
   }
 
-  onSubmit(): void {
-    if (this.loginForm.invalid) {
-      console.log("Invalid login form!");
-      return;
-    }
-
-    const username = this.loginForm.get('username')?.value;
-    if (this.isNewUser()) {
-      const role = this.loginForm.get('role')?.value;
-      const teamName = this.loginForm.get('teamName')?.value;
-      const create = this.loginForm.get('create')?.value;
-      const activityName = this.loginForm.get('activityName')?.value;
-      const dueDate = this.loginForm.get('dueDate')?.value;
-
-      let loginObservable;
-
-      if (role === 'MENTOR') {
-        loginObservable = this.authService.loginNewMentor(username, create, activityName, dueDate);
-      } else if (role === 'TEAM LEAD') {
-        loginObservable = this.authService.loginNewLead(username, teamName);
-      } else {
-        loginObservable = this.authService.loginNewMember(username, teamName);
-      }
-
-      loginObservable.pipe(
-        tap((response) => {
-          console.log("User logged in:", response);
-          this.onLoginSuccess();
-        }),
-        catchError((error) => {
-          console.error("User login error:", error);
-          this.errorHandler.handleBackendError(error);
-          return [];
-        })
-      ).subscribe();
-
-    } else {
-
-      this.authService.loginExistingUser(username).pipe(
-        tap((response) => {
-          console.log("Existing user logged in:", response);
-          this.onLoginSuccess();
-        }),
-        catchError((error) => {
-          this.errorHandler.handleBackendError(error);
-          console.error("Existing user login error:", error);
-          return [];
-        })
-      ).subscribe();
-    }
-  }
-
   async onLoginSuccess() {
     if (this.loginForm.get('username')?.value != '') {
 
@@ -149,8 +105,44 @@ export class LoginComponent implements OnInit {
         loggedUser => this.authService.loggedUser = loggedUser
       )
       await this.authService.delay(200);
-      this.authService.temporaryLogin();
-      this.router.navigate(['/user-assessments'],);
+      await this.router.navigate(['/user-assessments'],);
+    }
+  }
+  async onRegisterSuccess() {
+    if (this.isMentor() && this.isMentorComplete()) {
+      const username = this.loginForm.get('username')?.value;
+      const create = this.loginForm.get('create')?.value;
+      const activityName = this.loginForm.get('activityName')?.value;
+      const dueDate = this.loginForm.get('dueDate')?.value;
+
+      const observable$ = this.authService.loginNewMentor(username,create,activityName,dueDate)
+      observable$.subscribe(
+        loggedUser => this.authService.loggedUser = loggedUser
+      )
+      await this.authService.delay(200);
+      await this.router.navigate(['/user-assessments'],);
+
+    } else if (this.isMemberOrLeader() && this.isMemberOrLeaderComplete()) {
+      const username = this.loginForm.get('username')?.value;
+      const teamName = this.loginForm.get('teamName')?.value;
+      const role = this.loginForm.get('role')?.value;
+
+      if(role == 'MEMBER'){
+        const observable$ = this.authService.loginNewMember(username,teamName)
+        observable$.subscribe(
+          loggedUser => this.authService.loggedUser = loggedUser
+        )
+      }
+      else{
+        const observable$ = this.authService.loginNewLead(username,teamName)
+        observable$.subscribe(
+          loggedUser => this.authService.loggedUser = loggedUser
+        )
+      }
+
+      await this.authService.delay(200);
+      await this.router.navigate(['/user-assessments'],);
+
     }
   }
 }
