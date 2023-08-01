@@ -17,8 +17,6 @@ export class InfoContainerComponent implements OnInit, AfterViewInit{
   @Input() number: number = 0;
   @Input() teamDetails!: TeamDetails;
 
-  loggedUser: User | undefined;
-
   activityName: string = '';
   teamName: string = '';
 
@@ -30,7 +28,6 @@ export class InfoContainerComponent implements OnInit, AfterViewInit{
   }
 
   ngOnInit() {
-    this.loggedUser = this.userService.getLoggedUser();
     this.activatedRoute.queryParamMap.subscribe((params) => {
       this.activityName = params.get('activityName') || '';
       this.teamName = params.get('teamName') || '';

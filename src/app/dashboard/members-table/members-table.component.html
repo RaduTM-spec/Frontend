@@ -7,7 +7,7 @@
       <th scope="col">Name</th>
       <th scope="col">Role</th>
       <th scope="col">Attendances</th>
-      <th *ngIf="userType == 'mentor'" scope="col">Grade</th>
+      <th *ngIf="userType == 'MENTOR'" scope="col">Grade</th>
     </tr>
     </thead>
     <tbody>
@@ -23,7 +23,7 @@
       <td>
         <span class="badge-attendance">{{ teamDetails.attendancesPerMember.at(teamDetails.members.indexOf(user)) }}</span>
       </td>
-      <td *ngIf="userType == 'mentor'">
+      <td *ngIf="userType == 'MENTOR'">
             <span [ngClass]="{
               'badge-grade-green': user.grade >= 8.0,
               'badge-grade-orange': user.grade < 8.0 && user.grade >= 5.0,

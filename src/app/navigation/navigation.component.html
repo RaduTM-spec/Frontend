@@ -4,7 +4,7 @@
   <!--  *ngIf="enrolledActivities$ | async as activities"-->
   <main class="sidenav" *ngIf="enrolledActivities$ | async as activities">
 
-    <ng-container *ngSwitchCase="panelState">
+    <ng-container [ngSwitch]="panelState">
       <div *ngSwitchCase="AppState.LOADING">
         <div class="d-flex justify-content-center mt-4">
           <div class="spinner-border" role="status">

@@ -1,10 +1,10 @@
 import {Component, OnInit} from '@angular/core';
-import {User} from "../../models/user";
 import {TeamService} from "../../services/team.service";
 import {ActivatedRoute} from "@angular/router";
 import {UserService} from "../../services/user.service";
 import {catchError, Observable, tap} from "rxjs";
 import {TeamDetails} from "../../models/team-details";
+import {UserTeamDTO} from "../../models/user-team-dto";
 
 @Component({
   selector: 'app-mentor-view-team',
@@ -13,14 +13,13 @@ import {TeamDetails} from "../../models/team-details";
 })
 export class ViewTeamComponent implements OnInit{
 
-  loggedUser: User;
 
   teamDetails$: Observable<TeamDetails> | undefined;
+  loggedUser$: Observable<UserTeamDTO> | undefined;
 
   teamName:string = '';
   activityName:string = '';
-  constructor(private activatedRoute: ActivatedRoute, private teamService: TeamService, private usersService: UserService) {
-    this.loggedUser = this.usersService.getLoggedUser();
+  constructor(private activatedRoute: ActivatedRoute, private teamService: TeamService, private userService: UserService) {
   }
 
   ngOnInit(): void {
@@ -29,16 +28,20 @@ export class ViewTeamComponent implements OnInit{
       this.teamName = params.get('teamName') || '';
     })
 
-    this.teamDetails$ = this.teamService.getTeamDetailsFromAnActivity(this.loggedUser.name, this.activityName, this.teamName)
-      .pipe(
-        tap((teamDetail: TeamDetails) => {
-          console.log(' > Received team details:', teamDetail);
-        }),
-        catchError((error) => {
-          console.error('Error fetching team details:', error);
-          return [];
-        })
-      );
+    this.loggedUser$ = this.userService.user;
+
+    this.loggedUser$?.subscribe(loggedUser => {
+      this.teamDetails$ = this.teamService.getTeamDetailsFromAnActivity(loggedUser.user.name, this.activityName, this.teamName)
+        .pipe(
+          tap((teamDetail: TeamDetails) => {
+            console.log(' > Received team details:', teamDetail);
+          }),
+          catchError((error) => {
+            console.error('Error fetching team details:', error);
+            return [];
+          })
+        );
+    })
   }
 
   exportSituation() {

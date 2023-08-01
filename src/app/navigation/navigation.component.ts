@@ -18,8 +18,6 @@ declare var $: any; // Declared the $ symbol from jQuery
 })
 export class NavigationComponent implements OnInit{
 
-  userRole: string = '';
-
   panelState: AppState = AppState.EMPTY;
 
   enrolledActivities$: Observable<Activity[]> | undefined;
@@ -46,8 +44,8 @@ export class NavigationComponent implements OnInit{
     this.panelState = AppState.LOADING;
     this.loggedUser$ = this.userService.user;
 
-    this.loggedUser$?.subscribe(value => {
-      this.enrolledActivities$ = this.activityService.getActivities(value.user.name)
+    this.loggedUser$?.subscribe(loggedUser => {
+      this.enrolledActivities$ = this.activityService.getActivities(loggedUser.user.name)
         .pipe(
           tap((activities: Activity[]) => {
             console.log(' > Received enrolled activity:', activities);

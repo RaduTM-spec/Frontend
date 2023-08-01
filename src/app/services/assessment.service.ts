@@ -16,9 +16,9 @@ export class AssessmentService {
   constructor(private http: HttpClient) {}
 
   getUserAssessments(userName: string): Observable<Assessment[]> {
-      const endpoint = `${this.apiUrl}/user-assessments?userName=${userName}`;
+    const endpoint = `${this.apiUrl}/user-assessments?userName=${userName}`;
 
-      return this.http.get<Assessment[]>(endpoint);
+    return this.http.get<Assessment[]>(endpoint);
   }
 
   // might not work with the request body but I wanted to see if it is automatically converted to query params

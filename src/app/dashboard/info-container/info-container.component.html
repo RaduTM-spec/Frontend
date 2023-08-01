@@ -2,7 +2,8 @@
   <div class="header-content">
     <div>
       <h3 class="header-title" *ngIf="getPath()">{{activityName}}</h3>
-      <h3 class="header-title" *ngIf="!getPath()">{{teamName}}</h3>
+      <h3 class="header-title" *ngIf="!getPath() && userType == 'MENTOR'">{{teamName}}</h3>
+      <h3 class="header-title" *ngIf="!getPath() && userType != 'MENTOR'">{{activityName}}</h3>
     </div>
   </div>
 </div>
@@ -32,7 +33,7 @@
   <div class="actions">
     <div>
       <button class="export-button" (click)="exportSituation()"><i class="fas fa-file-export"></i> Export</button>
-      <button class="assessment-button" *ngIf="!getPath() && userType=='mentor'" (click)="openAssessmentModal()"><i class="fas fa-clipboard-check"></i> Assessment</button>
+      <button class="assessment-button" *ngIf="!getPath() && userType=='MENTOR'" (click)="openAssessmentModal()"><i class="fas fa-clipboard-check"></i> Assessment</button>
     </div>
   </div>
 
