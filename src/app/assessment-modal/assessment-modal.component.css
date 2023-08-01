@@ -124,3 +124,8 @@
 .comment-input::placeholder {
   color: #b9b9b9;
 }
+
+.assessment-title-input {
+  flex-grow: 1;
+  margin-left: 1rem; /* Adjust the distance from the Mark All button */
+}
