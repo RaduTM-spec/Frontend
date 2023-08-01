@@ -22,6 +22,7 @@ export class ActivityService {
       (response)=> {
         // Handle the response from the backend
         console.log('Activity created:', response);
+        window.location.reload();
       },
       catchError((error) => {
         console.error('Error creating activity:', error);
@@ -34,6 +35,7 @@ export class ActivityService {
       (response)=> {
         // Handle the response from the backend
         console.log('Joined activity:', response);
+        window.location.reload();
       },
       catchError((error) => {
         console.error('Error joining activity:', error);

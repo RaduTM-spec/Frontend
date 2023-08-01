@@ -14,17 +14,21 @@ export class AuthenticationService {
   private loggedIn = false;
   private apiUrl = environment.apiServerUrl;
 
+  // @ts-ignore
+  private _loggedUser: any = JSON.parse(localStorage.getItem("loggedUser"));
+
   constructor(
     private http: HttpClient,
     private notificationService: NotificationService,
     private errorHandlingService: ErrorHandlingService,
   ) {}
 
-  isLoggedIn(): boolean {
+  isLoggedIn() {
+    this.loggedIn = localStorage.getItem("loggedUser") != null;
     return this.loggedIn;
   }
 
-  private _loggedUser: any;
+
 
   get loggedUser(): any {
     return this._loggedUser;
@@ -41,6 +45,7 @@ export class AuthenticationService {
         console.log(' > Received logged user:', loggedUser);
         this.notificationService.showSuccessNotification("Login Successful!")
         this.loggedIn = true;
+        localStorage.setItem("loggedUser", JSON.stringify(loggedUser));
 
       }),
       catchError((error) => {
@@ -65,6 +70,7 @@ export class AuthenticationService {
         console.log(' > Received new MENTOR:', newMentor);
         this.notificationService.showSuccessNotification(`Mentor ${username} created successfully!`)
         this.loggedIn = true;
+        localStorage.setItem("loggedUser", JSON.stringify(newMentor));
       }),
       catchError((error) => {
         this.errorHandlingService.handleBackendError(error);
@@ -84,6 +90,7 @@ export class AuthenticationService {
         console.log(' > Received new TEAM_LEADER:', teamLeader);
         this.notificationService.showSuccessNotification(`Team leader ${username} created successfully!`)
         this.loggedIn = true;
+        localStorage.setItem("loggedUser", JSON.stringify(teamLeader));
       }),
       catchError((error) => {
         this.errorHandlingService.handleBackendError(error);
@@ -103,6 +110,7 @@ export class AuthenticationService {
         console.log(' > Received new MEMBER:', newMember);
         this.notificationService.showSuccessNotification(`Member ${username} created successfully!`)
         this.loggedIn = true;
+        localStorage.setItem("loggedUser", JSON.stringify(newMember));
       }),
       catchError((error) => {
         this.errorHandlingService.handleBackendError(error);
@@ -119,6 +127,7 @@ export class AuthenticationService {
   logout(): void {
     // we will need to clear the logged in user from the user service and etc
     this.loggedIn = false;
+    localStorage.removeItem("loggedUser");
     this.notificationService.showDefaultNotification("Logged out successfully")
   }
 

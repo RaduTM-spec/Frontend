@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {AuthenticationService} from "./services/authentication.service";
 
 @Component({
@@ -6,14 +6,14 @@ import {AuthenticationService} from "./services/authentication.service";
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent{
   title = 'Internship Tool';
 
-  constructor(private authService: AuthenticationService) {}
+  constructor(private authService: AuthenticationService) {
+  }
 
   isLoggedIn(): boolean {
     return this.authService.isLoggedIn();
   }
-
 
 }

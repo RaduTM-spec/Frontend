@@ -25,10 +25,10 @@
       </td>
       <td *ngIf="userType == 'MENTOR'">
             <span [ngClass]="{
-              'badge-grade-green': teamDetails.attendancesPerMember.at(teamDetails.members.indexOf(user)) >= 8.0,
-              'badge-grade-orange': teamDetails.attendancesPerMember.at(teamDetails.members.indexOf(user)) < 8.0 && teamDetails.attendancesPerMember.at(teamDetails.members.indexOf(user)) >= 5.0,
-              'badge-grade-red': teamDetails.attendancesPerMember.at(teamDetails.members.indexOf(user)) < 5.0
-            }">{{ teamDetails.attendancesPerMember.at(teamDetails.members.indexOf(user)) }}</span>
+              'badge-grade-green': teamDetails.gradesPerMember.at(teamDetails.members.indexOf(user)) >= 8.0,
+              'badge-grade-orange': teamDetails.gradesPerMember.at(teamDetails.members.indexOf(user)) < 8.0 && teamDetails.gradesPerMember.at(teamDetails.members.indexOf(user)) >= 5.0,
+              'badge-grade-red': teamDetails.gradesPerMember.at(teamDetails.members.indexOf(user)) < 5.0
+            }">{{ teamDetails.gradesPerMember.at(teamDetails.members.indexOf(user)) }}</span>
       </td>
     </tr>
     </tbody>

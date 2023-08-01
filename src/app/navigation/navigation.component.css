@@ -120,6 +120,15 @@ footer {
   margin-top: 5px;
 }
 
+.logout-button{
+  margin-left: auto;
+  margin-right: 0;
+  padding: 3px;
+  color: var(--background-color);
+  transform: scale(1.5);
+}
+
+
 
 
 .collapse-div{

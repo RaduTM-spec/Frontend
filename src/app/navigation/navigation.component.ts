@@ -63,20 +63,6 @@ export class NavigationComponent implements OnInit {
           return [];
         }),
       );
-
-
-    // this.loggedUser$ = this.userService.authenticateUser(this.loggedUser.name)
-    //   .pipe(
-    //     tap((loggedUser: UserTeamDTO) => {
-    //       console.log(' > Received logged user:', loggedUser);
-    //     }),
-    //     catchError((error) => {
-    //       console.error('Error fetching logged user:', error);
-    //       return [];
-    //     })
-    //
-    //   );
-
   }
 
   showJoinActivityModal() {
@@ -120,7 +106,26 @@ export class NavigationComponent implements OnInit {
     }
   }
 
+  logout(){
+    this.authService.logout();
+  }
 
+  animation(){
+    const element = document.getElementById("i");
+    // @ts-ignore
+    element.classList.remove("fa-door-closed");
+    // @ts-ignore
+    element.classList.add("fa-door-open");
+  }
+
+  animation2(){
+    const element = document.getElementById("i");
+    // @ts-ignore
+    element.classList.remove("fa-door-open");
+    // @ts-ignore
+    element.classList.add("fa-door-closed");
+
+  }
   // reloadPage(){
   //   window.location.reload();
   // }

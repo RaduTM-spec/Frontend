@@ -4,7 +4,9 @@
 <div class="app-container">
 
   <app-login *ngIf="!isLoggedIn()"></app-login>
+
   <app-navigation *ngIf="isLoggedIn()"></app-navigation>
+
   <div id="main" class="content-container" *ngIf="isLoggedIn()">
 
     <div class="dashboard-container">
