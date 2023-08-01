@@ -1,4 +1,4 @@
-<div id="sidepanel" class="side-panel" style="width: 250px;" *ngIf="loggedUser$ | async as logged">
+<div id="sidepanel" class="side-panel" style="width: 250px;">
   <header class="sidenav-header">Activities</header>
 
   <!--  *ngIf="enrolledActivities$ | async as activities"-->
@@ -16,8 +16,8 @@
       <div *ngSwitchCase="AppState.LOADED">
         <app-activity *ngFor="let activity of activities"
                       [activity]="activity"
-                      [user]="logged.user"
-                      [team]="logged.team">
+                      [user]="loggedUser.user"
+                      [team]="loggedUser.team">
         </app-activity>
       </div>
 
@@ -32,20 +32,20 @@
   </main>
 
   <div class="button-container">
-    <button *ngIf="logged.user.role != 'MEMBER'" type="button" class="button" (click)="showJoinActivityModal()">+ Join</button>
-    <button *ngIf="logged.user.role == 'MENTOR'" type="button" class="button" (click)="showCreateActivityModal()">+ Create</button>
+    <button *ngIf="loggedUser.user.role != 'MEMBER'" type="button" class="button" (click)="showJoinActivityModal()">+ Join</button>
+    <button *ngIf="loggedUser.user.role == 'MENTOR'" type="button" class="button" (click)="showCreateActivityModal()">+ Create</button>
   </div>
   <footer>
 
-    <div class="user-box" [routerLink]="['/user-assessments']" routerLinkActive="active" [queryParams]="{userName: logged.user.name}">
-      <img class="user-profile-picture" src="{{logged.user.pictureUrl}}" alt="User Profile">
+    <div class="user-box" [routerLink]="['/user-assessments']" routerLinkActive="active" [queryParams]="{userName: loggedUser.user.name}">
+      <img class="user-profile-picture" src="{{loggedUser.user.pictureUrl}}" alt="User Profile">
 <!--      src="https://robohash.org/profilepic.jpeg?bgset=bg1" -->
       <div class="user-details">
         <div class="user-profile">
-          {{logged.user.name}}
+          {{loggedUser.user.name}}
         </div>
         <div class="username">
-          {{logged.user.role}}
+          {{loggedUser.user.role}}
         </div>
       </div>
     </div>

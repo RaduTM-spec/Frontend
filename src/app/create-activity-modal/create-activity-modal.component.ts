@@ -1,10 +1,8 @@
-import { Component } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import {Activity} from "../models/activity";
-import {catchError, Observable, tap} from "rxjs";
-import {UserTeamDTO} from "../models/user-team-dto";
+import {Component} from '@angular/core';
+import {HttpClient} from '@angular/common/http';
 import {UserService} from "../services/user.service";
 import {ActivityService} from "../services/activity.service";
+import {AuthenticationService} from "../services/authentication.service";
 
 @Component({
   selector: 'app-create-activity-modal',
@@ -12,14 +10,17 @@ import {ActivityService} from "../services/activity.service";
   styleUrls: ['./create-activity-modal.component.css']
 })
 export class CreateActivityModalComponent {
-  userName: string = '';
   newActivityName: string = "";
   endingDate: string = "";
 
-  loggedUser$: Observable<UserTeamDTO> | undefined;
+  loggedUser: any;
 
 
-  constructor(private http: HttpClient, private userService:UserService, private activityService: ActivityService) { }
+  constructor(private http: HttpClient,
+              private userService: UserService,
+              private activityService: ActivityService,
+              private authService: AuthenticationService
+  ) {}
 
   createActivity() {
     // Input validation here somewhere
@@ -27,13 +28,9 @@ export class CreateActivityModalComponent {
       return;
     }
 
-    this.loggedUser$ = this.userService.user;
-    this.loggedUser$?.subscribe(value => {
-      this.userName = value.user.name;
-      // POST request to the backend API using the HttpClient
-      this.activityService.createActivity(this.userName, this.newActivityName, this.endingDate);
-    })
-
+    this.loggedUser = this.authService.loggedUser
+    // POST request to the backend API using the HttpClient
+    this.activityService.createActivity(this.loggedUser.user.name, this.newActivityName, this.endingDate);
 
 
   }

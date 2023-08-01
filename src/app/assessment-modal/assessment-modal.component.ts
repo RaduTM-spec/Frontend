@@ -33,8 +33,6 @@ export class AssessmentModalComponent implements OnInit {
       id: 9,
       name: "vasile",
       role: "mentor",
-      attendances: 20,
-      grade: 10,
       pictureUrl: "https://robohash.org/hehehe?bgset=bg1"
     }
   };
@@ -43,8 +41,6 @@ export class AssessmentModalComponent implements OnInit {
     id: 9,
     name: "vasile",
     role: "mentor",
-    attendances: 20,
-    grade: 10,
     pictureUrl: "https://robohash.org/hehehe?bgset=bg1"
   };
 

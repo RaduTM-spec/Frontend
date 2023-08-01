@@ -4,8 +4,5 @@ export interface User {
   role : string
   pictureUrl : string
 
-  attendances: number
-  grade: number
-
 
 }

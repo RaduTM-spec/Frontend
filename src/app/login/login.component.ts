@@ -5,10 +5,8 @@ import {AuthenticationService} from "../services/authentication.service";
 import {tap} from 'rxjs/operators';
 import {catchError} from "rxjs";
 import {UserService} from "../services/user.service";
-import {UserTeamDTO} from "../models/user-team-dto";
 import {ErrorHandlingService} from "../services/error-handling.service";
 import {NotificationService} from "../services/notification.service";
-import {NotificationType} from "../enums/notification-type.enum";
 
 @Component({
   selector: 'app-login',
@@ -18,13 +16,13 @@ import {NotificationType} from "../enums/notification-type.enum";
 export class LoginComponent implements OnInit {
   loginForm!: FormGroup;
 
+
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
     private authService: AuthenticationService,
     private userService: UserService,
-    private errorHandler: ErrorHandlingService,
-    private notificationHandler: NotificationService) {}
+    private errorHandler: ErrorHandlingService) {}
 
   ngOnInit(): void {
     this.loginForm = this.formBuilder.group({
@@ -143,25 +141,16 @@ export class LoginComponent implements OnInit {
     }
   }
 
-  onLoginSuccess() {
-    if(this.loginForm.get('username')?.value != '') {
+  async onLoginSuccess() {
+    if (this.loginForm.get('username')?.value != '') {
 
-
-      this.userService.user = this.userService.authenticateUser(this.loginForm.get('username')?.value)
-        .pipe(
-          tap((loggedUser: UserTeamDTO) => {
-            console.log(' > Received logged user:', loggedUser);
-          }),
-          catchError((error) => {
-            this.errorHandler.handleBackendError(error);
-            console.error('Error fetching logged user:', error);
-            return [];
-          })
-        );
-
+      const observable$ = this.authService.authenticateUser(this.loginForm.get('username')?.value)
+      observable$.subscribe(
+        loggedUser => this.authService.loggedUser = loggedUser
+      )
+      await this.authService.delay(200);
       this.authService.temporaryLogin();
-      this.notificationHandler.showSuccessNotification("Login Successful!")
-      this.router.navigate(['/user-assessments']);
+      this.router.navigate(['/user-assessments'],);
     }
   }
 }

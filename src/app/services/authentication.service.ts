@@ -17,24 +17,55 @@ export class AuthenticationService {
   constructor(
     private http: HttpClient,
     private notificationService: NotificationService,
-    private errorHandlingService: ErrorHandlingService
+    private errorHandlingService: ErrorHandlingService,
   ) {}
 
   isLoggedIn(): boolean {
     return this.loggedIn;
   }
 
+  private _loggedUser: any;
+
+  get loggedUser(): any {
+    return this._loggedUser;
+  }
+
+  set loggedUser(value: any) {
+    this._loggedUser = value;
+  }
+
+  authenticateUser(name: string): Observable<UserTeamDTO> {
+    const USER_TEAM_URL = `${this.apiUrl}/authenticate?name=${name}`;
+    return this.http.post<UserTeamDTO>(USER_TEAM_URL, {title: `${name} logged in`}).pipe(
+      tap((loggedUser: UserTeamDTO) => {
+        console.log(' > Received logged user:', loggedUser);
+        this.notificationService.showSuccessNotification("Login Successful!")
+
+      }),
+      catchError((error) => {
+        this.errorHandlingService.handleBackendError(error);
+        console.error('Error fetching logged user:', error);
+        return [];
+      })
+    );
+  }
+
+  delay(ms: number) {
+    return new Promise( resolve => setTimeout(resolve, ms) );
+  }
+
   loginExistingUser(username: string): Observable<UserTeamDTO> {
-    const endpoint = `${this.apiUrl}/authenticate`;
+    const endpoint = `${this.apiUrl}/authenticate?name=${username}`;
     const body = { name: username };
 
     this.loggedIn = true;
 
-    return this.http.post<UserTeamDTO>(endpoint, body).pipe(
+    return this.http.post<UserTeamDTO>(endpoint,body).pipe(
       tap((response: UserTeamDTO) => {
         // Handle successful response
         this.loggedIn = true;
         this.notificationService.showSuccessNotification("Login Successful!");
+
       }),
       catchError((error: HttpErrorResponse) => this.handleError(error))
     );
@@ -98,6 +129,7 @@ export class AuthenticationService {
   private handleError(error: HttpErrorResponse): Observable<never> {
     this.loggedIn = false;
     this.errorHandlingService.handleBackendError(error);
+    console.error('error');
     return throwError(error);
   }
 }

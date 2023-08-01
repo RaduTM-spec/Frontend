@@ -1,11 +1,11 @@
-<div *ngIf="loggedUser$ | async as logged">
+
 <div class="notification-container">
   <notifier-container></notifier-container>
 </div>
 
 <!--info-container starts-->
 <app-info-container *ngIf="activityTeams$ | async as teams"
-                    [userType]="logged.user.role"
+                    [userType]="loggedUser.user.role"
                     [number]="teams.length"
 ></app-info-container>
 <!--info-container ends-->
@@ -17,7 +17,7 @@
   <app-team-card *ngFor="let team of teams"
                  [team]="team"
                  [activity]="activityName"
-                 [loggedUser]="logged.user"
+                 [loggedUser]="loggedUser.user"
   ></app-team-card>
 </div>
 <!--main-content ends-->
@@ -32,4 +32,4 @@
 
 
 
-</div>
+

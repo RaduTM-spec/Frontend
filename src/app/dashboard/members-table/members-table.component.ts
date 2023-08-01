@@ -1,5 +1,4 @@
 import {Component, Input} from '@angular/core';
-import {TeamDetails} from "../../models/team-details";
 
 @Component({
   selector: 'app-members-table',
@@ -8,6 +7,6 @@ import {TeamDetails} from "../../models/team-details";
 })
 export class MembersTableComponent {
   @Input() userType: string = '';
-  @Input() teamDetails!: TeamDetails;
+  @Input() teamDetails: any;
 
 }

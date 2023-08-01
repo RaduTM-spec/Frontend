@@ -5,9 +5,9 @@ import {ActivatedRoute} from "@angular/router";
 import {UserService} from "../services/user.service";
 import {TeamService} from "../services/team.service";
 import {catchError, Observable, tap} from "rxjs";
-import {UserTeamDTO} from "../models/user-team-dto";
 import {ErrorHandlingService} from "../services/error-handling.service";
 import {AppState} from "../enums/app-state.enum";
+import {AuthenticationService} from "../services/authentication.service";
 
 declare var $: any; // Declared the $ symbol from jQuery
 
@@ -16,12 +16,13 @@ declare var $: any; // Declared the $ symbol from jQuery
   templateUrl: './navigation.component.html',
   styleUrls: ['./navigation.component.css']
 })
-export class NavigationComponent implements OnInit{
+export class NavigationComponent implements OnInit {
 
   panelState: AppState = AppState.EMPTY;
 
   enrolledActivities$: Observable<Activity[]> | undefined;
-  loggedUser$: Observable<UserTeamDTO> | undefined;
+
+  loggedUser: any;
 
 
   joinActivityModalRef: ElementRef;
@@ -29,12 +30,13 @@ export class NavigationComponent implements OnInit{
 
   constructor(private activatedRoute: ActivatedRoute,
               private activityService: ActivityService,
-              private userService:UserService,
-              private teamService:TeamService,
+              private userService: UserService,
+              private authService: AuthenticationService,
+              private teamService: TeamService,
               private renderer: Renderer2,
               private elementRef: ElementRef,
               private errorHandlingService: ErrorHandlingService
-              ) {
+  ) {
     this.joinActivityModalRef = this.elementRef;
     this.createActivityModalRef = this.elementRef;
   }
@@ -42,28 +44,26 @@ export class NavigationComponent implements OnInit{
   ngOnInit() {
     // this.loggedUser = this.userService.getLoggedUser();
     this.panelState = AppState.LOADING;
-    this.loggedUser$ = this.userService.user;
+    this.loggedUser = this.authService.loggedUser;
 
-    this.loggedUser$?.subscribe(loggedUser => {
-      this.enrolledActivities$ = this.activityService.getActivities(loggedUser.user.name)
-        .pipe(
-          tap((activities: Activity[]) => {
-            console.log(' > Received enrolled activity:', activities);
-            if (activities.length > 0) {
-              this.panelState = AppState.LOADED;
-            } else {
-              this.panelState = AppState.EMPTY;
-            }
-          }),
-          catchError((error) => {
+    this.enrolledActivities$ = this.activityService.getActivities(this.loggedUser.user.name)
+      .pipe(
+        tap((activities: Activity[]) => {
+          console.log(' > Received enrolled activity:', activities);
+          if (activities.length > 0) {
+            this.panelState = AppState.LOADED;
+          } else {
             this.panelState = AppState.EMPTY;
-            this.errorHandlingService.handleBackendError(error);
-            console.error('Error fetching enrolled activities:', error);
-            return [];
-          }),
+          }
+        }),
+        catchError((error) => {
+          this.panelState = AppState.EMPTY;
+          this.errorHandlingService.handleBackendError(error);
+          console.error('Error fetching enrolled activities:', error);
+          return [];
+        }),
+      );
 
-        );
-    })
 
     // this.loggedUser$ = this.userService.authenticateUser(this.loggedUser.name)
     //   .pipe(
@@ -112,13 +112,13 @@ export class NavigationComponent implements OnInit{
       }
     });
   }
+
   closeModalOnOutsideClick() {
     const modalBackdrop = document.getElementsByClassName('modal-backdrop');
     if (modalBackdrop && modalBackdrop.length > 0) {
       this.renderer.removeChild(document.body, modalBackdrop[0]);
     }
   }
-
 
 
   // reloadPage(){
