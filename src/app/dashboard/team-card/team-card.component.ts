@@ -9,6 +9,7 @@ import {User} from "../../models/user";
 })
 export class TeamCardComponent {
   @Input() team!: Team;
+  @Input() grade!: number;
   @Input() activity!: string;
   @Input() loggedUser!: User;
 

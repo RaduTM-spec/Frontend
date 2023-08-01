@@ -3,12 +3,12 @@
     <div class="team-card-header">
       <h3>{{ team.name }}</h3>
       <div class="team-grade-box">
-        <span>{{ 0 }}</span>
+        <span>{{ grade }}</span>
       </div>
     </div>
     <div class="team-card-content">
       <p>Leader: {{ team.leader.name }}</p>
-      <app-progress-bar  [grade]="0"></app-progress-bar>
+      <app-progress-bar  [grade]="grade"></app-progress-bar>
     </div>
   </div>
 </div>

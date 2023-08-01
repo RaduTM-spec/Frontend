@@ -14,8 +14,9 @@
 
 <!--*ngIf="activityTeams$ | async as teams"-->
 <div class="teams-container" *ngIf="activityTeams$ | async as teams">
-  <app-team-card *ngFor="let team of teams"
-                 [team]="team"
+  <app-team-card *ngFor="let teamGradeDTO of teams"
+                 [team]="teamGradeDTO.team"
+                 [grade]="teamGradeDTO.grade"
                  [activity]="activityName"
                  [loggedUser]="loggedUser.user"
   ></app-team-card>

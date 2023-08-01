@@ -1,26 +1,22 @@
-import {Component, OnInit} from '@angular/core';
-import {Renderer2} from '@angular/core';
-import {ElementRef} from '@angular/core';
-import {Team} from "../models/team";
-import {TeamService} from "../services/team.service";
-import {UserService} from "../services/user.service";
-import {ActivatedRoute} from "@angular/router";
-import {ActivityService} from "../services/activity.service";
-import {catchError, Observable, tap} from "rxjs";
-import {AuthenticationService} from "../services/authentication.service";
-
-
-// declare var $: any; // Declared the $ symbol from jQuery
-
+import { Component, OnInit } from '@angular/core';
+import { Renderer2 } from '@angular/core';
+import { ElementRef } from '@angular/core';
+import { Team } from '../models/team';
+import { TeamService } from '../services/team.service';
+import { UserService } from '../services/user.service';
+import { ActivatedRoute } from '@angular/router';
+import { ActivityService } from '../services/activity.service';
+import { catchError, Observable, tap } from 'rxjs';
+import { AuthenticationService } from '../services/authentication.service';
+import { TeamGradeDTO } from '../models/team-grade-dto'; // Import the TeamGradeDto interface
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.css']
+  styleUrls: ['./dashboard.component.css'],
 })
 export class DashboardComponent implements OnInit {
-
-  activityTeams$: Observable<Team[]> | undefined;
+  activityTeams$: Observable<TeamGradeDTO[]> | undefined;
 
   loggedUser: any;
 
@@ -36,8 +32,8 @@ export class DashboardComponent implements OnInit {
     private userService: UserService,
     private authService: AuthenticationService,
     private renderer: Renderer2,
-    private elementRef: ElementRef) {
-
+    private elementRef: ElementRef
+  ) {
     this.joinActivityModalRef = this.elementRef;
     this.createActivityModalRef = this.elementRef;
   }
@@ -49,11 +45,12 @@ export class DashboardComponent implements OnInit {
     this.activatedRoute.queryParamMap.subscribe((params) => {
       this.activityName = params.get('activityName') || '';
 
-      this.loggedUser = this.authService.loggedUser
+      this.loggedUser = this.authService.loggedUser;
 
-      this.activityTeams$ = this.teamService.getActivityTeams(this.loggedUser.user.name, this.activityName)
+      this.activityTeams$ = this.teamService
+        .getActivityTeamsAndGrades(this.loggedUser.user.name, this.activityName)
         .pipe(
-          tap((teams: Team[]) => {
+          tap((teams: TeamGradeDTO[]) => {
             console.log(` > Received activity ${this.activityName} teams:`, teams);
           }),
           catchError((error) => {
@@ -61,13 +58,9 @@ export class DashboardComponent implements OnInit {
             return [];
           })
         );
-    })
-
-
+    });
   }
 
   exportSituation() {
-
   }
-
 }
