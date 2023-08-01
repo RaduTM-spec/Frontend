@@ -22,6 +22,10 @@ export class AssessmentModalComponent implements OnInit {
   @Input() teamUsers: User[] = [];
   @Input() teamName: string = "";
 
+  markAllAttended: boolean = true;
+  markAllButtonText: string = "Mark All Attended";
+  markAllButtonColor: string = "btn-success";
+
   private activity: Activity = {
     name: "Activity1",
     deadline: '02/08/2023',
@@ -54,15 +58,24 @@ export class AssessmentModalComponent implements OnInit {
     private errorHandlingService: ErrorHandlingService,
     private notificationService: NotificationService
   ) {}
+
   markAllAsAttended() {
-    this.assessments.forEach((assessment) => {
-      assessment.attended = true;
-    });
+    this.markAllAttended = true;
+    this.markAllButtonColor = "btn-danger";
+    this.markAllButtonText = "Mark All Unattended";
+    this.setAttendanceForAll(true);
   }
 
   markAllAsUnattended() {
+    this.markAllAttended = false;
+    this.markAllButtonColor = "btn-success";
+    this.markAllButtonText = "Mark All Attended";
+    this.setAttendanceForAll(false);
+  }
+
+  setAttendanceForAll(attended: boolean) {
     this.assessments.forEach((assessment) => {
-      assessment.attended = false;
+      assessment.attended = attended;
     });
   }
 

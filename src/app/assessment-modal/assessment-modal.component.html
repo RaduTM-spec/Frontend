@@ -11,7 +11,10 @@
       <div class="modal-body">
 
         <div class="static-row mb-3 d-flex align-items-center">
-          <button class="btn btn-primary mr-3" (click)="markAllAsAttended()">Mark All Attended</button>
+          <button class="btn" [ngClass]="markAllButtonColor" (click)="markAllAsAttended()">
+            {{ markAllButtonText }}
+          </button>
+
           <div class="form-group mb-0">
             <label for="assessmentTitle">Session Title:</label>
             <input type="text" class="form-control" id="assessmentTitle" [(ngModel)]="assessmentTitle">
@@ -19,7 +22,6 @@
         </div>
 
         <div class="scrollable-content">
-
 
           <table class="table table-striped">
             <thead>
