@@ -8,8 +8,10 @@
       <div class="grade" [ngClass]="{
               'badge-grade-green': assessment.grade >= 8.0,
               'badge-grade-orange': assessment.grade < 8.0 && assessment.grade >= 5.0,
-              'badge-grade-red': assessment.grade < 5.0
-            }">Grade: {{assessment.grade}}/10</div>
+              'badge-grade-red': assessment.grade < 5.0}">
+              <a *ngIf="assessment.grade < 10">Grade: {{assessment.grade}}/10</a>
+              <a *ngIf="assessment.grade > 10">Grade: 10/10</a>
+      </div>
     </div>
   </div>
 
