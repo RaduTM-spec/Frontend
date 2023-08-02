@@ -108,9 +108,10 @@ export class AssessmentModalComponent implements OnChanges {
       )
       .subscribe((response) => {
         if (response) {
+          window.location.reload();
           console.log('Assessments saved successfully!', response);
           this.notificationService.showSuccessNotification("Session assessments sent successfully!")
-          this.router.navigate(["/team-details"])
+          // this.router.navigate(["/team-details"])
           $('#assessmentModal').modal('hide');
         }
       });
