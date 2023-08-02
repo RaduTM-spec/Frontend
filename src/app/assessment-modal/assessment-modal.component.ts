@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
+import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import { User } from '../models/user';
 import { AssessmentService } from '../services/assessment.service';
 import { Activity } from "../models/activity";
@@ -6,7 +6,7 @@ import { catchError } from "rxjs/operators";
 import { UserService } from "../services/user.service";
 import { ErrorHandlingService } from "../services/error-handling.service";
 import { NotificationService } from "../services/notification.service";
-import { Router } from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {Assessment} from "../models/assessment";
 import {AuthenticationService} from "../services/authentication.service";
 
@@ -17,10 +17,10 @@ declare var $: any;
   templateUrl: './assessment-modal.component.html',
   styleUrls: ['./assessment-modal.component.css'],
 })
-export class AssessmentModalComponent implements OnChanges {
+export class AssessmentModalComponent implements OnInit, OnChanges {
   @Input() teamUsers: User[] = [];
   @Input() teamName: string = "";
-  @Input() currentActivity!: string;
+  @Input() activityName!: string;
 
 
   markAllAttended: boolean = true;
@@ -38,7 +38,7 @@ export class AssessmentModalComponent implements OnChanges {
 
   private activity: Activity = {
     id: 1,
-    name: "Activity1",
+    name: this.activityName,
     deadline: '02/08/2023',
     creator: this.mentor
   };
@@ -53,8 +53,11 @@ export class AssessmentModalComponent implements OnChanges {
     private errorHandlingService: ErrorHandlingService,
     private notificationService: NotificationService,
     private router: Router,
-    private authService: AuthenticationService
-  ) {}
+    private authService: AuthenticationService,
+    private activatedRoute: ActivatedRoute
+  ) {
+
+  }
 
   markAllAsAttended() {
     this.markAllAttended = true;
@@ -75,6 +78,22 @@ export class AssessmentModalComponent implements OnChanges {
     if (changes['teamUsers'] && changes['teamUsers'].currentValue) {
       this.updateAssessments();
     }
+    this.activatedRoute.queryParamMap.subscribe((params) => {
+      this.activityName = params.get('activityName') || '';
+      console.log(`got the activityName in assessment modal now: ${this.activityName}`)
+      this.teamName = params.get('teamName') || '';
+    })
+
+    this.activity = {
+      id: 1,
+      name: this.activityName,
+      deadline: '02/08/2023',
+      creator: this.mentor
+    };
+  }
+
+  ngOnInit() {
+    this.authService.delay(100000);
   }
 
   updateAssessments() {

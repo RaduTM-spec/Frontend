@@ -24,12 +24,12 @@ export class InfoContainerComponent implements OnInit, AfterViewInit{
   @ViewChild(AssessmentModalComponent, { static: false }) assessmentModalComponent!: AssessmentModalComponent;
 
   constructor(private activatedRoute: ActivatedRoute, private userService: UserService, private renderer: Renderer2) {
-    console.log("assessment modal constructed!");
   }
 
   ngOnInit() {
     this.activatedRoute.queryParamMap.subscribe((params) => {
       this.activityName = params.get('activityName') || '';
+      console.log(`got the activityName: ${this.activityName}`)
       this.teamName = params.get('teamName') || '';
     })
   }
@@ -38,6 +38,8 @@ export class InfoContainerComponent implements OnInit, AfterViewInit{
     // we need to pass the team members array to the assessment modal
     if (this.assessmentModalComponent) {
       this.assessmentModalComponent.teamUsers = this.teamDetails.members;
+      this.assessmentModalComponent.activityName=this.activityName;
+      console.log(`opened assessment and the activityName is : ${this.activityName}`)
     }
 
     const assessmentModal = document.getElementById('assessmentModal');
