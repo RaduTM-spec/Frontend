@@ -25,7 +25,7 @@ body {
   flex-grow: 1;
   transition: margin-left .5s;
 
-  overflow: auto;
+  /*overflow: auto;*/
 }
 
 .dashboard-container {
@@ -33,7 +33,7 @@ body {
   margin: 0 auto;
 
   max-height: calc(100vh - 90px);
-  overflow-y: auto;
+  /*overflow-y: auto;*/
 }
 
 /* notifications.css */

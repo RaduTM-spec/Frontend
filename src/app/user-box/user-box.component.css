@@ -98,11 +98,17 @@
 
 
 .sessions-container {
+  max-height: 57vh;
+  overflow: auto;
+
+
+}
+.content{
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   align-items: flex-start;
-
+  overflow-y: auto;
 }
 
 .user-picture-container {

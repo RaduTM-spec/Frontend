@@ -5,7 +5,7 @@
       <h3 class="header-title">{{loggedUser.user.name}}`s PROFILE</h3>
     </div>
   </div>
-  <button mat-button (click)="showManualError()">Show Manual Error</button>
+<!--  <button mat-button (click)="showManualError()">Show Manual Error</button>-->
 
   <div class="profile-header">
     <div class="user-details-card">
@@ -38,12 +38,9 @@
       <ng-container class="user-profile">
         <ng-container *ngIf="loggedUser.user.role != 'MENTOR'">
           <div class="sessions-container" *ngIf="userAssessments$ | async as assessments">
-            <!--      <app-session-card></app-session-card>-->
-            <!--      <app-session-card></app-session-card>-->
-            <!--      <app-session-card></app-session-card>-->
-
-
-            <app-session-card *ngFor="let assessment of assessments" [assessment]="assessment"></app-session-card>
+            <div class="content">
+              <app-session-card *ngFor="let assessment of assessments" [assessment]="assessment"></app-session-card>
+            </div>
           </div>
         </ng-container>
 

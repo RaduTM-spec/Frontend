@@ -42,8 +42,8 @@ export class UserBoxComponent implements OnInit {
         .pipe(
           tap((assessments: Assessment[]) => {
             console.log(' > Received user assessments:', assessments);
-            // this.appState = assessments.length > 0 ? AppState.LOADED : AppState.EMPTY;
-            this.appState = AppState.LOADED;
+            this.appState = assessments.length > 0 ? AppState.LOADED : AppState.EMPTY;
+            // this.appState = AppState.LOADED;
           }),
           catchError((error) => {
             console.log('Error fetching user assessments:', error);
