@@ -29,20 +29,22 @@ export class ViewTeamComponent implements OnInit {
     this.activatedRoute.queryParamMap.subscribe((params) => {
       this.activityName = params.get('activityName') || '';
       this.teamName = params.get('teamName') || '';
+
+      this.loggedUser = this.authService.loggedUser
+
+      this.teamDetails$ = this.teamService.getTeamDetailsFromAnActivity(this.loggedUser.user.name, this.activityName, this.teamName)
+        .pipe(
+          tap((teamDetail: TeamDetails) => {
+            console.log(' > Received team details:', teamDetail);
+          }),
+          catchError((error) => {
+            console.error('Error fetching team details:', error);
+            return [];
+          })
+        );
     })
 
-    this.loggedUser = this.authService.loggedUser
 
-    this.teamDetails$ = this.teamService.getTeamDetailsFromAnActivity(this.loggedUser.user.name, this.activityName, this.teamName)
-      .pipe(
-        tap((teamDetail: TeamDetails) => {
-          console.log(' > Received team details:', teamDetail);
-        }),
-        catchError((error) => {
-          console.error('Error fetching team details:', error);
-          return [];
-        })
-      );
 
   }
 
