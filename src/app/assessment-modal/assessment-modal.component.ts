@@ -144,7 +144,7 @@ export class AssessmentModalComponent implements OnInit, OnChanges {
     this.markAllAttended = !this.markAllAttended;
     this.markAllButtonText = this.markAllAttended ? "Mark All Attended" : "Mark All Unattended";
     this.markAllButtonColor = this.markAllAttended ? "btn-success" : "btn-danger";
-    this.setAttendanceForAll(this.markAllAttended);
+    this.setAttendanceForAll(!this.markAllAttended);
   }
 
   setAttendanceForAll(attended: boolean) {

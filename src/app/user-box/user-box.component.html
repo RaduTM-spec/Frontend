@@ -39,7 +39,7 @@
         <ng-container *ngIf="loggedUser.user.role != 'MENTOR'">
           <div class="sessions-container" *ngIf="userAssessments$ | async as assessments">
             <div class="content">
-              <app-session-card *ngFor="let assessment of assessments" [assessment]="assessment"></app-session-card>
+              <app-session-card *ngFor="let assessment of assessments.reverse()" [assessment]="assessment"></app-session-card>
             </div>
           </div>
         </ng-container>
