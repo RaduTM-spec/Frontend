@@ -20,7 +20,7 @@ export class UserBoxComponent implements OnInit {
 
   loggedUser: any;
 
-  appState: AppState = AppState.LOADING;
+  appState: AppState = AppState.LOADED;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -37,8 +37,6 @@ export class UserBoxComponent implements OnInit {
     this.loggedUser = this.authService.loggedUser
 
     if (this.loggedUser.user.role != "MENTOR") {
-
-      // this.appState = AppState.ERROR
 
       this.userAssessments$ = this.assessmentService.getUserAssessments(this.loggedUser.user.name)
         .pipe(

@@ -7,6 +7,6 @@ import {Assessment} from "../../models/assessment";
   styleUrls: ['./session-card.component.css']
 })
 export class SessionCardComponent {
-  @Input() assessment: Assessment | undefined;
+  @Input() assessment!: Assessment;
 
 }

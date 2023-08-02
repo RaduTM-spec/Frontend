@@ -8,6 +8,7 @@
       <th scope="col">Role</th>
       <th scope="col">Attendances</th>
       <th *ngIf="userType == 'MENTOR'" scope="col">Grade</th>
+      <th *ngIf="userType == 'TEAM_LEADER'" scope="col">Delete</th>
     </tr>
     </thead>
     <tbody>
@@ -29,6 +30,9 @@
               'badge-grade-orange': teamDetails.gradesPerMember.at(teamDetails.members.indexOf(user)) < 8.0 && teamDetails.gradesPerMember.at(teamDetails.members.indexOf(user)) >= 5.0,
               'badge-grade-red': teamDetails.gradesPerMember.at(teamDetails.members.indexOf(user)) < 5.0
             }">{{ teamDetails.gradesPerMember.at(teamDetails.members.indexOf(user)) }}</span>
+      </td>
+      <td *ngIf="userType == 'TEAM_LEADER'" >
+        <button class="delete-button" (click)="removeMember(user.name)" *ngIf="user.role != 'TEAM_LEADER'"><i class="fa-solid fa-ban"></i></button>
       </td>
     </tr>
     </tbody>

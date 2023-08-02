@@ -6,7 +6,7 @@
   border-radius: 8px;
   padding: 10px;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
-  transition: transform 0.3s;
+  transition: transform 0.1s;
   cursor: pointer;
 }
 
@@ -18,13 +18,23 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 2px;
 }
 
 .title {
   font-weight: bold;
-  font-size: 18px;
+  font-size: 20px;
   line-height: 1.2;
+  margin: 5px;
+  padding-bottom: 10px;
+  border-bottom: #222222 1px solid;
+
+}
+
+.sub-title{
+  font-size: 16px;
+  border-radius: 8px;
+  padding: 5px 8px;
+  margin: 5px;
 }
 
 .info {
@@ -35,7 +45,7 @@
 
 .date,
 .grade {
-  font-size: 12px;
+  font-size: 16px;
   border-radius: 8px;
   padding: 5px 8px;
   margin: 5px;
@@ -46,9 +56,6 @@
   background-color: #c20e0e;
 }
 
-.grade {
-  background-color: var(--background-color);
-}
 
 .content {
   margin-top: 10px;
@@ -60,8 +67,8 @@
 
 .name {
   font-weight: bold;
-  margin-bottom: 5px;
-  font-size: 14px;
+  margin: 0 5px 5px 5px;
+  font-size: 16px;
 }
 
 .comment {
@@ -71,4 +78,25 @@
   padding: 8px;
   border-radius: 8px;
   color: var(--background-color);
+}
+
+.badge-grade-green {
+  background-color: var(--modals-button);
+  color: #fff;
+  padding: 3px 6px;
+  border-radius: 4px;
+}
+
+.badge-grade-orange {
+  background-color: #ee911e;
+  color: #fff;
+  padding: 3px 6px;
+  border-radius: 4px;
+}
+
+.badge-grade-red {
+  background-color: #9d140b;
+  color: #fff;
+  padding: 3px 6px;
+  border-radius: 4px;
 }

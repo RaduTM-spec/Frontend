@@ -1,13 +1,20 @@
 <div class="card">
+  <div class="title">{{assessment.activity.name}}</div>
   <div class="header">
-    <div class="title">{{assessment?.title}}</div>
+    <div class="sub-title">{{assessment.title}}</div>
+
     <div class="info">
 <!--      <div class="date">Date: {{assessment?.activity?.deadline | date:'dd/MM'}}</div>-->
-      <div class="grade">Grade: {{assessment?.grade}}/10</div>
+      <div class="grade" [ngClass]="{
+              'badge-grade-green': assessment.grade >= 8.0,
+              'badge-grade-orange': assessment.grade < 8.0 && assessment.grade >= 5.0,
+              'badge-grade-red': assessment.grade < 5.0
+            }">Grade: {{assessment.grade}}/10</div>
     </div>
   </div>
+
   <div class="content">
-    <div class="name">{{assessment?.mentor?.name}}</div>
-    <div class="comment">{{assessment?.comment}}</div>
+    <div class="name"><i class="fa-solid fa-user" style="margin: 0 5px"></i>{{assessment.mentor.name}}</div>
+    <div class="comment">{{assessment.comment}}</div>
   </div>
 </div>
